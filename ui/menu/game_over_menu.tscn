@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=3 uid="uid://beo8088eeuvfy"]
+
+[ext_resource type="Script" uid="uid://baehqb25lxd4x" path="res://ui/menu/game_over_menu.gd" id="1_ps2gm"]
+
+[sub_resource type="Theme" id="Theme_fsuem"]
+
+[sub_resource type="FontFile" id="FontFile_o3t8p"]
+cache/0/45/0/ascent = 0.0
+cache/0/45/0/descent = 0.0
+cache/0/45/0/underline_position = 0.0
+cache/0/45/0/underline_thickness = 0.0
+cache/0/45/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_cwspd"]
+font = SubResource("FontFile_o3t8p")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+outline_size = 12
+outline_color = Color(1, 1, 1, 0.67451)
+shadow_size = 14
+shadow_color = Color(0, 0, 0, 0.447059)
+
+[node name="GameOverMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fsuem")
+script = ExtResource("1_ps2gm")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="left_blank_space" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="content_container" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="label_container" type="VBoxContainer" parent="GridContainer/content_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/content_container/label_container"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "VOCÊ 
+PERDEU!"
+label_settings = SubResource("LabelSettings_cwspd")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/content_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="button_container" type="VBoxContainer" parent="GridContainer/content_container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="restart_button" type="Button" parent="GridContainer/content_container/MarginContainer/button_container"]
+layout_mode = 2
+text = "Tentar de novo"
+
+[node name="main_menu_button" type="Button" parent="GridContainer/content_container/MarginContainer/button_container"]
+layout_mode = 2
+text = "Voltar ao menu principal"
+
+[node name="quit_button" type="Button" parent="GridContainer/content_container/MarginContainer/button_container"]
+layout_mode = 2
+text = "Sair"
+
+[node name="mid_down_blank_space" type="Control" parent="GridContainer/content_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="right_blank_space" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="GridContainer/content_container/MarginContainer/button_container/restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GridContainer/content_container/MarginContainer/button_container/main_menu_button" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GridContainer/content_container/MarginContainer/button_container/quit_button" to="." method="_on_quit_button_pressed"]

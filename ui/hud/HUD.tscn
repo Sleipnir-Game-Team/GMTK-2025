@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbi5oq1h8iiaf"]
+
+[ext_resource type="FontFile" uid="uid://bwmj1glum30at" path="res://assets/Text_Fonts/ModernDOS9x16.ttf" id="1_idfc3"]
+
+[sub_resource type="Theme" id="Theme_nknrp"]
+default_font = ExtResource("1_idfc3")
+
+[node name="Hud" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_nknrp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="left_container" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(555, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="gameplay_space" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(810, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="right_container" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(555, 0)
+layout_mode = 2
+mouse_filter = 2

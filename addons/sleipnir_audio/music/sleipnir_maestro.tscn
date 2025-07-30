@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq7lvdpdewp3"]
+
+[ext_resource type="Script" uid="uid://cr1i7mnkajgjm" path="res://addons/sleipnir_audio/music/sleipnir_maestro.gd" id="1_0aeta"]
+[ext_resource type="Script" uid="uid://b73e3i0mnvixr" path="res://addons/sleipnir_audio/music/maestro_core/maestro_trigger_controler.gd" id="2_oddtv"]
+
+[node name="SleipnirMaestro" type="Node" node_paths=PackedStringArray("MainPlayer", "TriggerPlayer", "Clock")]
+process_mode = 3
+script = ExtResource("1_0aeta")
+MainPlayer = NodePath("Main")
+TriggerPlayer = NodePath("Triggers")
+Clock = NodePath("Conductor")
+_song_path = "res://addons/sleipnir_audio/song_res"
+
+[node name="Main" type="Node" parent="."]
+
+[node name="Triggers" type="Node" parent="."]
+script = ExtResource("2_oddtv")
+
+[node name="Conductor" type="Timer" parent="."]
+
+[connection signal="timeout" from="Conductor" to="." method="_on_conductor_timeout"]

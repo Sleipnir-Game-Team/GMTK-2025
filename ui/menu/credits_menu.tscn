@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj2fderj85812"]
+
+[ext_resource type="Script" uid="uid://cl2nenhmfxo3p" path="res://ui/menu/credits_menu.gd" id="1_h4uwf"]
+[ext_resource type="Resource" uid="uid://dvrkseb41fulr" path="res://credits/Milton/milton.tres" id="3_h4uwf"]
+[ext_resource type="Resource" uid="uid://wns6r18pu0yj" path="res://credits/Neemias/neemias.tres" id="3_n0w4v"]
+[ext_resource type="Resource" uid="uid://coibb0rqkfsmr" path="res://credits/Ian/ian.tres" id="4_7wep3"]
+[ext_resource type="Resource" uid="uid://cfd4d5hr5v56d" path="res://credits/LV3TO/lv3to.tres" id="5_88kal"]
+[ext_resource type="Resource" uid="uid://b4vgnssqdmljq" path="res://credits/Megumi/megumi.tres" id="6_wlyvv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4flhf"]
+font_size = 100
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="CreditsMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h4uwf")
+pessoas = Array[Resource]([ExtResource("3_h4uwf"), ExtResource("3_n0w4v"), ExtResource("4_7wep3"), ExtResource("5_88kal"), ExtResource("6_wlyvv")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CRÉDITOS"
+label_settings = SubResource("LabelSettings_4flhf")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Grade" type="GridContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="back" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="back_button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/back"]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 40
+text = "Voltar"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/back/back_button" to="." method="_on_back_button_pressed"]

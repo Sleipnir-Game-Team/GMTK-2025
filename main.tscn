@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi0nwileboayl"]
+
+[ext_resource type="Script" uid="uid://ceunm6ik2o4y4" path="res://main.gd" id="1_cxumw"]
+[ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="5_u5r6x"]
+
+[node name="Main" type="MarginContainer"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cxumw")
+
+[node name="Hud" parent="." instance=ExtResource("5_u5r6x")]
+layout_mode = 2

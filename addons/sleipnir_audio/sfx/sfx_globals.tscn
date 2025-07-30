@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://lg6kuv3fkktu"]
+
+[ext_resource type="Script" uid="uid://dh70xcu1lubbi" path="res://addons/sleipnir_audio/sfx/sfx_globals.gd" id="1_p5jl5"]
+
+[node name="SfxGlobals" type="Node"]
+script = ExtResource("1_p5jl5")
+
+[node name="placeholder" type="Node" parent="."]
+
+[node name="ui" type="Node" parent="."]
+
+[node name="button" type="Node" parent="ui"]
+
+[node name="slider" type="Node" parent="ui"]
