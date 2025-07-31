@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bevslu0c3rktv" path="res://entities/prensa.tscn" id="7_272bh"]
 
 [node name="Main" type="MarginContainer"]
-process_mode = 3
+process_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
