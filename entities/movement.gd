@@ -50,8 +50,6 @@ var jump_boosted: bool = false
 ## Duração do dash em segundos
 @export var dash_duration: float = 0.15
 
-## Desaceleração do dash em pixels/seg²
-@export var dash_deceleration: float = 12000
 var dash_time_left: float = 0.0
 var facing: int = 1
 #endregion
@@ -61,7 +59,6 @@ var facing: int = 1
 @onready var gravity_rise: float = _calculate_gravity_rise(jump_height_factor, jump_time_to_peak)
 @onready var gravity_fall: float = _calculate_gravity_fall(jump_height_factor, jump_time_to_descent)
 @onready var jump_speed: float = _calculate_jump_speed(gravity_rise, jump_time_to_peak)
-@onready var dash_acceleration: float = dash_speed / dash_duration
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 var crouching: bool = false:
@@ -91,41 +88,44 @@ func _physics_process(delta: float) -> void:
 	
 	# Captura do comando de pulo
 	if Input.is_action_just_pressed("player_jump"):
-		jump_buffer = jump_buffer_time
 		if _dashing():
 			# Pulo iniciado durante o dash
 			boosted_jump()
+		else:
+			jump_buffer = jump_buffer_time
 	
 	# Início de dash: sprint + crouch, precisa estar no chão
 	if not _dashing() \
 		and is_on_floor() \
 		and Input.is_action_pressed("player_sprint") \
 		and Input.is_action_just_pressed("player_crouch"):
-		dash_time_left = dash_duration
+		dash()
 	
 	if _dashing():
 		dash_time_left -= delta
 		# Velocidade constante do dash.
 		velocity.x = facing * dash_speed
 	
-	if jump_boosted and not is_on_floor():
-		move_and_slide()
-		return
-	elif is_on_floor():
+	if jump_boosted and is_on_floor():
 		jump_boosted = false
 	
 	# Movimento horizontal (fora do dash)
 	if not _dashing():
 		var input_axis := Input.get_axis("player_left", "player_right")
-		if input_axis != 0:
-			facing = input_axis
 		
 		var target_speed := movement_walking_speed
-		# Agachado ignora completamente o sprint
-		if crouching:
-			target_speed *= movement_crouch_modifier
-		elif Input.is_action_pressed("player_sprint"):
-			target_speed *= movement_sprint_modifier
+		
+		if jump_boosted and input_axis == facing:
+			target_speed = jump_dash_boost
+		else:
+			jump_boosted = false
+			facing = input_axis
+			
+			if crouching:
+				# Agachado ignora o sprint
+				target_speed *= movement_crouch_modifier
+			elif Input.is_action_pressed("player_sprint"):
+				target_speed *= movement_sprint_modifier
 		
 		velocity.x = input_axis * target_speed
 	
@@ -145,8 +145,12 @@ func jump() -> void:
 
 func boosted_jump() -> void:
 	jump_boosted = true
+	dash_time_left = 0
 	velocity.x = facing * jump_dash_boost
 	jump()
+
+func dash() -> void:
+	dash_time_left = dash_duration
 
 func _dashing() -> bool:
 	return dash_time_left > 0
