@@ -22,9 +22,16 @@ extends CharacterBody2D
 ## Velocidade horizontal de saltos iniciados mid-dash.
 @export var jump_dash_boost: float = 2000.0
 
-## Tempo atual no buffer.[br]
+## Tempo extra em segundos para dar o comando de boost após um dash
+@export var jump_boost_grace_period: float = 0.5
+
+## Tempo atual no buffer de salto.[br]
 ## Se está no chão e esse valor é acima de 0, pular.
 var jump_buffer: float = 0
+
+## Tempo atual no buffer de jump boost.[br]
+## Se o dash já acabou, tem esse tempo extra para dar o boost.
+var jump_boost_buffer: float = 0
 
 ## Se o input de pulo atual foi iniciado num dash.
 var jump_boosted: bool = false
@@ -86,9 +93,12 @@ func _physics_process(delta: float) -> void:
 		g *= jump_cut_multiplier
 	velocity.y += g * delta
 	
+	if jump_boosted and is_on_floor():
+		jump_boosted = false
+	
 	# Captura do comando de pulo
 	if Input.is_action_just_pressed("player_jump"):
-		if _dashing():
+		if _can_jump_boost():
 			# Pulo iniciado durante o dash
 			boosted_jump()
 		else:
@@ -106,20 +116,20 @@ func _physics_process(delta: float) -> void:
 		# Velocidade constante do dash.
 		velocity.x = facing * dash_speed
 	
-	if jump_boosted and is_on_floor():
-		jump_boosted = false
 	
 	# Movimento horizontal (fora do dash)
 	if not _dashing():
+		# Direção do Input do usuário
 		var input_axis := Input.get_axis("player_left", "player_right")
 		
 		var target_speed := movement_walking_speed
 		
 		if jump_boosted and input_axis == facing:
+			# Se está em um boosted jump e segurando o input na direção do salto, mantém a velocidade
 			target_speed = jump_dash_boost
 		else:
 			jump_boosted = false
-			facing = input_axis
+			facing = int(input_axis)
 			
 			if crouching:
 				# Agachado ignora o sprint
@@ -136,6 +146,7 @@ func _physics_process(delta: float) -> void:
 		jump()
 	else:
 		jump_buffer -= delta
+		jump_boost_buffer -= delta
 	
 	move_and_slide()
 
@@ -145,15 +156,23 @@ func jump() -> void:
 
 func boosted_jump() -> void:
 	jump_boosted = true
+	jump_boost_buffer = 0
 	dash_time_left = 0
 	velocity.x = facing * jump_dash_boost
 	jump()
 
 func dash() -> void:
 	dash_time_left = dash_duration
+	jump_boost_buffer = dash_duration + jump_boost_grace_period
 
 func _dashing() -> bool:
 	return dash_time_left > 0
+
+func _can_jump() -> bool:
+	return is_on_floor()
+
+func _can_jump_boost() -> bool:
+	return jump_boost_buffer > 0
 
 func _jump_buffered() -> bool:
 	return jump_buffer > 0
@@ -176,5 +195,5 @@ func _calculate_gravity_fall(height_factor: float, time_to_descent: float) -> fl
 	var h := _target_jump_height_px(height_factor)
 	return 2.0 * h / (time_to_descent * time_to_descent)
 
-func _calculate_jump_speed(gravity_rise: float, time_to_peak: float) -> float:
-	return -gravity_rise * time_to_peak
+func _calculate_jump_speed(_gravity_rise: float, time_to_peak: float) -> float:
+	return -_gravity_rise * time_to_peak
