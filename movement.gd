@@ -16,14 +16,24 @@ extends CharacterBody2D
 ## Aplicado apenas quando o botão de pular é solto antes do pico. 
 @export var jump_cut_multiplier: float = 2.0
 
-@export_group("Movement", "walking")
-@export var walking_speed: float = 200.0
+@export_group("Movement", "movement")
+@export var movement_walking_speed: float = 200.0
+@export_range(1, 10, .2) var movement_sprint_modifier: float = 2.0
+@export_range(0.1, 1, .05) var movement_crouch_modifier: float = 0.8
 
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 
 @onready var gravity_rise: float = _calculate_gravity_rise(jump_height_factor, jump_time_to_peak)
 @onready var gravity_fall: float = _calculate_gravity_fall(jump_height_factor, jump_time_to_descent)
 @onready var jump_speed: float = _calculate_jump_speed(gravity_rise, jump_time_to_peak)
+
+var crouching: bool = false
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("player_crouch"):
+		crouching = true
+	elif event.is_action_released("player_crouch"):
+		crouching = false
 
 func _physics_process(delta: float) -> void:
 	var g := gravity_rise
@@ -38,9 +48,16 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.x = 0.0
 	if Input.is_action_pressed("player_left"):
-		velocity.x = -walking_speed
+		velocity.x = -movement_walking_speed
 	if Input.is_action_pressed("player_right"):
-		velocity.x = walking_speed
+		velocity.x = movement_walking_speed
+	
+	if crouching:
+		velocity.x *= movement_crouch_modifier
+		 
+	elif Input.is_action_pressed("player_sprint"):
+		velocity.x *= movement_sprint_modifier
+	
 	
 	if is_on_floor() and Input.is_action_just_pressed("player_jump"):
 		velocity.y = jump_speed
