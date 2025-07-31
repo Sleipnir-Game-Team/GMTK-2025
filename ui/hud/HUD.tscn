@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbi5oq1h8iiaf"]
-
-[ext_resource type="FontFile" uid="uid://bwmj1glum30at" path="res://assets/Text_Fonts/ModernDOS9x16.ttf" id="1_idfc3"]
+[gd_scene load_steps=2 format=3 uid="uid://dbi5oq1h8iiaf"]
 
 [sub_resource type="Theme" id="Theme_nknrp"]
-default_font = ExtResource("1_idfc3")
 
 [node name="Hud" type="Control"]
 process_mode = 3

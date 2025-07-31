@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi0nwileboayl"]
+[gd_scene load_steps=5 format=3 uid="uid://bi0nwileboayl"]
 
 [ext_resource type="Script" uid="uid://ceunm6ik2o4y4" path="res://main.gd" id="1_cxumw"]
+[ext_resource type="Script" uid="uid://y2higcsr86v" path="res://movement.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="5_u5r6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(71, 136.25)
 
 [node name="Main" type="MarginContainer"]
 process_mode = 3
@@ -20,3 +24,20 @@ script = ExtResource("1_cxumw")
 
 [node name="Hud" parent="." instance=ExtResource("5_u5r6x")]
 layout_mode = 2
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(717, 440)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player"]
+script = ExtResource("3_h2yge")
+walking_speed = 500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 1080)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(0, 0, 1920, 0, 2949, -1, 2949, -295, 3514, -295, 3514, -709, 4185, -709, 4190, 1437, 5, 1438, -86, 1438, -86, -1083, 0, -1081)
