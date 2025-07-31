@@ -1,16 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://btpewc3y00kox"]
 
-[ext_resource type="Script" uid="uid://blbrxxi5ce0tn" path="res://entities/saw.gd" id="1_03mwj"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="2_eck7m"]
+[ext_resource type="PackedScene" uid="uid://dgw8jyei8vdy6" path="res://components/damage_area.tscn" id="3_jt62x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
 
 [node name="Saw" type="Area2D"]
-script = ExtResource("1_03mwj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1bvp3")
 
 [node name="Signalizer" parent="." instance=ExtResource("2_eck7m")]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="DamageArea" parent="." instance=ExtResource("3_jt62x")]
+
+[connection signal="body_entered" from="." to="DamageArea" method="_on_parent_body_entered"]

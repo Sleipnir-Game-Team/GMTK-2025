@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnixi33jpc4vo"]
+
+[ext_resource type="Script" uid="uid://dhethq8p82xi4" path="res://entities/beartrap.gd" id="1_7v1yc"]
+[ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="1_c130s"]
+[ext_resource type="PackedScene" uid="uid://dgw8jyei8vdy6" path="res://components/damage_area.tscn" id="2_7v1yc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+
+[node name="Beartrap" type="Area2D"]
+script = ExtResource("1_7v1yc")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="ActivatedArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="ActivatedArea"]
+shape = SubResource("RectangleShape2D_kek77")
+disabled = true
+
+[node name="Signalizer" parent="ActivatedArea" instance=ExtResource("1_c130s")]
+
+[node name="DamageArea" parent="ActivatedArea" instance=ExtResource("2_7v1yc")]
+
+[node name="Duration" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Warmup" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="ActivatedArea" to="ActivatedArea/DamageArea" method="_on_parent_body_entered"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Warmup" to="." method="_on_warmup_timeout"]

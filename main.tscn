@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi0nwileboayl"]
+[gd_scene load_steps=8 format=3 uid="uid://bi0nwileboayl"]
 
 [ext_resource type="Script" uid="uid://ceunm6ik2o4y4" path="res://main.gd" id="1_cxumw"]
 [ext_resource type="PackedScene" uid="uid://bp3vd4kj37iij" path="res://entities/player.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btpewc3y00kox" path="res://entities/saw.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cvgcvqwsxaxky" path="res://entities/laser.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="5_u5r6x"]
+[ext_resource type="PackedScene" uid="uid://dnixi33jpc4vo" path="res://entities/beartrap.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bevslu0c3rktv" path="res://entities/prensa.tscn" id="7_272bh"]
 
 [node name="Main" type="MarginContainer"]
 process_mode = 3
@@ -38,3 +41,20 @@ collision_layer = 0
 
 [node name="Player" parent="." instance=ExtResource("3_1bvp3")]
 position = Vector2(939, 846)
+
+[node name="Laser" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(110, 900)
+rotation = -0.449738
+scale = Vector2(1, 26.16)
+
+[node name="Beartrap" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(491, 1062)
+scale = Vector2(9.83341, 4.09531)
+
+[node name="Prensa" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(1061, 639)
+
+[node name="End" parent="Prensa" index="1"]
+position = Vector2(0, 441)
+
+[editable path="Prensa"]

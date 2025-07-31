@@ -1,8 +1,8 @@
 extends Node
 
 func damage(target, dealer, ammount):
-	#target.champion.stats.hp = max(0, target.champion.stats.hp - ammount)
-	print(target, " recebeu ", str(ammount), " de dano de ", dealer)
+	GameManager.find_node("Life", target).damage(ammount)
+	#print(target, " recebeu ", str(ammount), " de dano de ", dealer)
 	
 	var dealerSig = GameManager.find_node("Signalizer", dealer)
 	var targetSig = GameManager.find_node("Signalizer", target)

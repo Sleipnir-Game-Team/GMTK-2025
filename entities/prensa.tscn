@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bevslu0c3rktv"]
+
+[ext_resource type="Script" uid="uid://1s25fawp5tlm" path="res://entities/prensa.gd" id="1_0gvv1"]
+[ext_resource type="PackedScene" uid="uid://dgw8jyei8vdy6" path="res://components/damage_area.tscn" id="2_esc0m"]
+[ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="3_jlu5u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxwb0"]
+
+[node name="Prensa" type="Area2D"]
+script = ExtResource("1_0gvv1")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_uxwb0")
+
+[node name="End" type="Node2D" parent="."]
+position = Vector2(0, 222)
+
+[node name="DamageArea" parent="." instance=ExtResource("2_esc0m")]
+
+[node name="Signalizer" parent="." instance=ExtResource("3_jlu5u")]
+
+[connection signal="body_entered" from="." to="DamageArea" method="_on_parent_body_entered"]

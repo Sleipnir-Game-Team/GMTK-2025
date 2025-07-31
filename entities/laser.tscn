@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvgcvqwsxaxky"]
+
+[ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="1_byvr5"]
+[ext_resource type="Script" uid="uid://blcpq5ywbr1ce" path="res://entities/laser.gd" id="1_pwb0i"]
+[ext_resource type="PackedScene" uid="uid://dgw8jyei8vdy6" path="res://components/damage_area.tscn" id="2_pwb0i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sbgf"]
+
+[node name="Laser" type="Area2D"]
+script = ExtResource("1_pwb0i")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0sbgf")
+disabled = true
+
+[node name="Signalizer" parent="." instance=ExtResource("1_byvr5")]
+
+[node name="DamageArea" parent="." instance=ExtResource("2_pwb0i")]
+
+[node name="Duration" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="DamageArea" method="_on_parent_body_entered"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
