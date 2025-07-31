@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Base 4.4"
-config/tags=PackedStringArray("base")
+config/name="GMTK 2025"
+config/tags=PackedStringArray("jam_game", "on_going")
 run/main_scene="res://ui/menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
