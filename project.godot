@@ -27,6 +27,7 @@ JsonHandler="*res://globals/json_handler.gd"
 SfxGlobals="*res://addons/sleipnir_audio/sfx/sfx_globals.tscn"
 AudioManager="*res://addons/sleipnir_audio/manager/audio_manager.gd"
 SleipnirMaestro="*res://addons/sleipnir_audio/music/sleipnir_maestro.tscn"
+Effects="*res://globals/effects.gd"
 
 [debug]
 
@@ -37,6 +38,7 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
@@ -92,13 +94,14 @@ player_sprint={
 
 [layer_names]
 
-2d_physics/layer_1="WALLS"
-2d_physics/layer_2="BALL"
-2d_physics/layer_3="PLAYER"
-2d_physics/layer_4="ENEMIES"
+2d_physics/layer_1="PLAYER"
+2d_physics/layer_2="Camada 2"
+2d_physics/layer_3="Camada 3"
+2d_physics/layer_4="Camada 4"
 2d_physics/layer_5="BOSS"
-2d_physics/layer_7="GOLD_LIGHT"
-2d_physics/layer_8="RED_LIGHT"
+2d_physics/layer_6="Camada 6"
+2d_physics/layer_7="Camada 7"
+2d_physics/layer_8="Camada 8"
 
 [rendering]
 

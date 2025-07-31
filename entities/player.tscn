@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp3vd4kj37iij"]
+
+[ext_resource type="Script" path="res://movement.gd" id="1_e4p34"]
+[ext_resource type="PackedScene" uid="uid://daill7lx175oy" path="res://components/receiver.tscn" id="2_rfe5m"]
+[ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="3_qly61"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(71, 136.25)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_e4p34")
+walking_speed = 500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Receiver" parent="." instance=ExtResource("2_rfe5m")]
+
+[node name="Signalizer" parent="." instance=ExtResource("3_qly61")]

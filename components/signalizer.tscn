@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ycmcgby6ixu1"]
+
+[ext_resource type="Script" uid="uid://sekoo4fho5k5" path="res://components/signalizer.gd" id="1_744jt"]
+
+[node name="Signalizer" type="Node"]
+script = ExtResource("1_744jt")

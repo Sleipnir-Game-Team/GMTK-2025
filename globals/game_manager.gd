@@ -1,5 +1,9 @@
 extends Node
 
+enum masks{
+	PLAYER_MASK = 1
+}
+
 ## Quantas camadas de pause tem
 ##  0 - O jogo não está pausado
 ## +1 - O jogo está pausado por essa quantidade de fontes
@@ -21,6 +25,9 @@ func pause() -> void:
 func resume() -> void:
 	_pause_layers -= 1
 	Logger.info("Camada de pause removida, atualmente existem %s camadas" % [_pause_layers])
+
+func find_node(nodeName: String, parent: Node):
+	return get_node(str(parent.get_path()) + "/" + nodeName)
 
 func win_game() -> void:
 	UI_Controller.changeScreen("res://ui/menu/victory_menu.tscn", get_tree().root)

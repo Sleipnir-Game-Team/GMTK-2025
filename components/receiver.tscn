@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://daill7lx175oy"]
+
+[ext_resource type="Script" uid="uid://dfqb0tcxa30i3" path="res://components/receiver.gd" id="1_8m8l3"]
+
+[node name="Receiver" type="Node"]
+script = ExtResource("1_8m8l3")
