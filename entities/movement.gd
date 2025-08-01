@@ -22,8 +22,12 @@ extends CharacterBody2D
 ## Velocidade horizontal de saltos iniciados mid-dash.
 @export var jump_dash_boost: float = 2000.0
 
+## Tempo extra em segundos para saltar após sair de uma plataforma.
+@export var jump_coyote_time: float = 0.2
+
 ## Tempo extra em segundos para dar o comando de boost após um dash
-@export var jump_boost_grace_period: float = 0.5
+@export var jump_boost_grace_period: float = 0.2
+
 
 ## Tempo atual no buffer de salto.[br]
 ## Se está no chão e esse valor é acima de 0, pular.
@@ -35,6 +39,9 @@ var jump_boost_buffer: float = 0
 
 ## Se o input de pulo atual foi iniciado num dash.
 var jump_boosted: bool = false
+
+## Contador de tempo de coyote time.
+var jump_coyote_counter: float = 0
 #endregion
 
 @export_group("Movement", "movement")
@@ -125,6 +132,7 @@ func _physics_process(delta: float) -> void:
 	elif not Input.is_action_pressed("player_jump"):
 		# Se está subindo e soltou o botão de pulo, aumenta a gravidade para cair mais rápido
 		g *= jump_cut_multiplier
+	
 	velocity.y += g * delta
 	
 	if jump_boosted and is_on_floor():
@@ -150,7 +158,6 @@ func _physics_process(delta: float) -> void:
 		# Velocidade constante do dash.
 		velocity.x = facing * dash_speed
 	
-	
 	# Movimento horizontal (fora do dash)
 	if not _dashing():
 		# Direção do Input do usuário
@@ -174,18 +181,22 @@ func _physics_process(delta: float) -> void:
 		velocity.x = input_axis * target_speed
 	
 	# Pulo normal
-	if _jump_buffered() \
-		and is_on_floor() \
-		and not _dashing():
+	if _can_jump():
 		jump()
 	else:
 		jump_buffer -= delta
 		jump_boost_buffer -= delta
 	
+	if is_on_floor():
+		jump_coyote_counter = jump_coyote_time
+	else:
+		jump_coyote_counter -= delta
+	
 	move_and_slide()
 
 func jump() -> void:
 	jump_buffer = 0
+	jump_coyote_counter = 0
 	velocity.y = jump_speed
 
 func boosted_jump() -> void:
@@ -208,7 +219,7 @@ func _dashing() -> bool:
 	return dash_time_left > 0
 
 func _can_jump() -> bool:
-	return is_on_floor()
+	return _jump_buffered() and ((is_on_floor() and not _dashing()) or jump_coyote_counter > 0)
 
 func _can_jump_boost() -> bool:
 	return jump_boost_buffer > 0
@@ -240,9 +251,6 @@ func _calculate_gravity_fall(height_factor: float, time_to_descent: float) -> fl
 	return 2.0 * h / (time_to_descent * time_to_descent)
 
 func _calculate_jump_speed(gravity: float, time_to_peak: float) -> float:
-	print("Jump")
-	print(-gravity)
-	print(time_to_peak)
 	return -gravity * time_to_peak
 #endregion
 

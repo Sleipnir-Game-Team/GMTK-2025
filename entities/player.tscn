@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://daill7lx175oy" path="res://components/receiver.tscn" id="2_rfe5m"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="3_qly61"]
 [ext_resource type="Script" uid="uid://cbhm6im8bgg6a" path="res://components/life.gd" id="4_rfe5m"]
-[ext_resource type="Script" uid="uid://pt3hteik6iyr" path="res://components/inventory.gd" id="5_qly61"]
-[ext_resource type="Script" uid="uid://d0dgdoq5a1l2k" path="res://entities/teste.gd" id="6_qsoyl"]
+[ext_resource type="Script" path="res://components/inventory.gd" id="5_qly61"]
+[ext_resource type="Script" path="res://entities/teste.gd" id="6_qsoyl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(71, 136.25)
