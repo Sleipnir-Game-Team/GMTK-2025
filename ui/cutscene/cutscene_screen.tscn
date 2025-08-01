@@ -13,8 +13,7 @@ script = ExtResource("1_wglgp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="color_bg" type="ColorRect" parent="."]
-layout_mode = 1
+[node name="color_bg" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,20 +21,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="scene_image" type="TextureRect" parent="VBoxContainer"]
+[node name="scene_image" type="TextureRect" parent="CanvasLayer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="scene_text" type="RichTextLabel" parent="VBoxContainer"]
+[node name="scene_text" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
