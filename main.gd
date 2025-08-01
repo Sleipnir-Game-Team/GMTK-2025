@@ -10,8 +10,8 @@ func _input(event: InputEvent) -> void:
 		UI_Controller.managePauseMenu()
 	#if event.is_action_pressed("win"):
 		#GameManager.win_game()
-	if event.is_action_pressed("lose"):
-		GameManager.game_over()
+	#if event.is_action_pressed("lose"):
+		#GameManager.game_over()
 	if event.is_action_pressed("dialogue"):
 		UI_Controller.processAction({"Content": test_text}, "dialogue")
 	if event.is_action_pressed("cutscene"):

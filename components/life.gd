@@ -31,7 +31,9 @@ func damage(valor: int) -> void:
 			damage_received.emit(old_life - entity_life)
 		if on_hit_invicibility_time > 0:
 			invicibility_frames(on_hit_invicibility_time)
-
+	
+	print(entity_life,"/",max_life)
+	
 	if entity_life == 0:
 		death.emit()
 

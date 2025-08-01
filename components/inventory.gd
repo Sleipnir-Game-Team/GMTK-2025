@@ -18,13 +18,18 @@ func _ready():
 		node_4.name = "4"
 		add_child(node_4)
 
-func switch(slot1, slot2):
-	var aux = slot1
-	get_node(str(slot1)).replace_by(slot2)
-	get_node(str(slot2)).replace_by(aux)
+func switch(slotNumber1, slotNumber2):
+	var node1 =  get_node(str(slotNumber1))
+	var node2 =  get_node(str(slotNumber2))
+	node1.name = 0
+	node2.name = slotNumber1
+	node1.name = slotNumber2
 
-func replace(slot):
-	get_node(str(slot)).replace_by(slot)
+func replace(slotNumber, item):
+	var target = get_node(str(slotNumber))
+	item.name = str(slotNumber)
+	target.replace_by(item)
+	
 
 func _input(event):
 	if event.is_pressed():

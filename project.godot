@@ -29,6 +29,7 @@ SfxGlobals="*res://addons/sleipnir_audio/sfx/sfx_globals.tscn"
 AudioManager="*res://addons/sleipnir_audio/manager/audio_manager.gd"
 SleipnirMaestro="*res://addons/sleipnir_audio/music/sleipnir_maestro.tscn"
 Effects="*res://globals/effects.gd"
+ItemsList="*res://globals/item_list.gd"
 
 [debug]
 

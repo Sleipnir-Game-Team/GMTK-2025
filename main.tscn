@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://ceunm6ik2o4y4" path="res://main.gd" id="1_cxumw"]
 [ext_resource type="PackedScene" uid="uid://bp3vd4kj37iij" path="res://entities/player.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btpewc3y00kox" path="res://entities/saw.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" path="res://entities/laser.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cvgcvqwsxaxky" path="res://entities/laser.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="5_u5r6x"]
 [ext_resource type="PackedScene" uid="uid://dnixi33jpc4vo" path="res://entities/beartrap.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bevslu0c3rktv" path="res://entities/prensa.tscn" id="7_272bh"]
-[ext_resource type="Script" path="res://camera_path.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://b6gpyus2ya60i" path="res://camera_path.gd" id="8_5vw27"]
 
 [sub_resource type="Curve2D" id="Curve2D_272bh"]
 bake_interval = 0.01
