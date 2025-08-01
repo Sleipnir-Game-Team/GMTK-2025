@@ -83,8 +83,8 @@ var knockback_time: float = 0
 @onready var gravity_fall: float = _calculate_gravity_fall(jump_height_factor, jump_time_to_descent)
 @onready var jump_speed: float = _calculate_jump_speed(gravity_rise, jump_time_to_peak)
 
-@onready var gravity_knockback: float = _calculate_gravity_knockback(knockback_height_factor, knockback_duration) 
-@onready var knockback_horizontal_speed = _calculate_knockback_horizontal_speed(knockback_width_factor, knockback_duration)
+@onready var gravity_knockback: float = _calculate_gravity_knockback(knockback_height_factor, knockback_duration)
+@onready var knockback_horizontal_speed: float = _calculate_knockback_horizontal_speed(knockback_width_factor, knockback_duration)
 @onready var knockback_speed: Vector2 = _calculate_knockback_speed(gravity_knockback, knockback_duration)
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -227,7 +227,6 @@ func _get_character_width_world() -> float:
 	var local_width := collision_shape_2d.shape.get_rect().size.x
 	return local_width * collision_shape_2d.global_scale.x
 
-
 #region JUMP Auxiliary Functions
 func _target_jump_height_px(height_factor: float) -> float:
 	return height_factor * _get_character_height_world()
@@ -252,20 +251,20 @@ func _target_knockback_distance(width_factor: float) -> float:
 	return width_factor * _get_character_width_world()
 
 func _calculate_knockback_horizontal_speed(width_factor: float, duration: float) -> float:
-	var w = _target_knockback_distance(width_factor)
+	var w := _target_knockback_distance(width_factor)
 	return w / duration
 
 func _calculate_gravity_knockback(height_factor: float, duration: float) -> float:
-	var h = _target_jump_height_px(height_factor)
-	var time_to_peak = duration / 2
+	var h := _target_jump_height_px(height_factor)
+	var time_to_peak := duration / 2
 	return 2.0 * h / pow(time_to_peak, 2)
 
 func _calculate_knockback_speed(gravity: float, duration: float) -> Vector2:
-	var time_to_peak = duration / 2
+	var time_to_peak := duration / 2
 	return Vector2(knockback_horizontal_speed, -gravity * time_to_peak)
 #endregion
 
-func _on_signalizer_damage_received(dealer: Area2D, ammount: int) -> void:
-	var dir := signi((global_position - dealer.global_position).x)
+func _on_signalizer_damage_received(dealer: Area2D, _ammount: int) -> void:
+	var dir := signi(int((global_position - dealer.global_position).x))
 	knockback_speed.x = knockback_horizontal_speed * dir
 	knockback_time = knockback_duration

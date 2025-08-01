@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://btpewc3y00kox" path="res://entities/saw.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" path="res://entities/laser.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="5_u5r6x"]
-[ext_resource type="PackedScene" uid="uid://dnixi33jpc4vo" path="res://entities/beartrap.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bevslu0c3rktv" path="res://entities/prensa.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" path="res://entities/beartrap.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" path="res://entities/prensa.tscn" id="7_272bh"]
 [ext_resource type="Script" uid="uid://b6gpyus2ya60i" path="res://camera_path.gd" id="8_5vw27"]
 
 [sub_resource type="Curve2D" id="Curve2D_272bh"]
@@ -40,7 +40,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(0, 0, 1920, 0, 2949, -1, 2949, -295, 3514, -295, 3514, -709, 4185, -709, 4190, 1437, 5, 1438, -86, 1438, -86, -1083, 0, -1081)
+polygon = PackedVector2Array(0, 0, 2949, 0, 2949, -295, 3514, -295, 3514, -709, 4185, -709, 4190, 1437, 5, 1438, -86, 1438, -86, -1080, 0, -1080)
 
 [node name="Saw" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(1343, 1071)
@@ -75,6 +75,5 @@ script = ExtResource("8_5vw27")
 
 [node name="Camera2D" type="Camera2D" parent="Path2D/PathFollow2D"]
 rotation = -0.00624156
-scale = Vector2(1, 1)
 
 [editable path="Prensa"]
