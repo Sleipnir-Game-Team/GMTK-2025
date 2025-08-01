@@ -12,6 +12,7 @@ func _process(delta):
 	if ($Collision.shape.size.y < minimumSize and direction == -1 
 		or $Collision.shape.size.y > maximumSize and direction == 1):
 		direction *= -1
+		AudioManager.play_global("level.danger.smasher")
 	if $Collision.shape.size.y < minimumSize + 100:
 		$Collision.shape.size.y += slow_speed * delta * direction
 	else:

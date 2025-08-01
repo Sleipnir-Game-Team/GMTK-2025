@@ -75,6 +75,5 @@ script = ExtResource("8_5vw27")
 
 [node name="Camera2D" type="Camera2D" parent="Path2D/PathFollow2D"]
 rotation = -0.00624156
-scale = Vector2(1, 1)
 
 [editable path="Prensa"]

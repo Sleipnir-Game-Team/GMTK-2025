@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp3vd4kj37iij"]
+[gd_scene load_steps=11 format=3 uid="uid://bp3vd4kj37iij"]
 
-[ext_resource type="Script" path="res://entities/movement.gd" id="1_rfe5m"]
+[ext_resource type="Script" uid="uid://y2higcsr86v" path="res://entities/movement.gd" id="1_rfe5m"]
 [ext_resource type="PackedScene" uid="uid://daill7lx175oy" path="res://components/receiver.tscn" id="2_rfe5m"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="3_qly61"]
 [ext_resource type="Script" uid="uid://cbhm6im8bgg6a" path="res://components/life.gd" id="4_rfe5m"]
+[ext_resource type="Script" uid="uid://pt3hteik6iyr" path="res://components/inventory.gd" id="5_qly61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(71, 136.25)
@@ -72,7 +73,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
-script = ExtResource("1_e4p34")
+script = ExtResource("1_rfe5m")
 knockback_duration = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -95,3 +96,5 @@ unique_name_in_owner = true
 script = ExtResource("4_rfe5m")
 
 [connection signal="damage_received" from="Signalizer" to="." method="_on_signalizer_damage_received"]
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("5_qly61")
