@@ -1,6 +1,9 @@
 extends Control
 
-
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		accept_event()
+		UI_Controller.managePauseMenu()
 ## OnClick do botão "Continuar" - resume a execução do jogo
 func _on_resume_button_pressed() -> void:
 	AudioManager.play_global("ui.screen.resume")
