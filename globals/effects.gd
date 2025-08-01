@@ -18,3 +18,8 @@ func heal(target, dealer, ammount):
 	
 	dealerSig.cure_dealt.emit(target, ammount)
 	targetSig.cure_received.emit(dealer, ammount)
+
+func add_hp(target, source, ammount):
+	GameManager.find_node("Life", target).max_life += ammount
+	GameManager.find_node("Life", target).entity_life += ammount
+	

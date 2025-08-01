@@ -16,5 +16,6 @@ func _on_cooldown_timeout():
 
 
 func _on_warmup_timeout():
+	AudioManager.play_global("level.danger.flamethrower")
 	$ActivatedArea/Collision.disabled = false
 	$Duration.start()
