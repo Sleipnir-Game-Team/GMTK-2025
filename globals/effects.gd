@@ -8,7 +8,7 @@ func damage(target, dealer, ammount):
 	var targetSig = GameManager.find_node("Signalizer", target)
 	
 	dealerSig.damage_dealt.emit(target, ammount)
-	targetSig.damage_recieved.emit(dealer, ammount)
+	targetSig.damage_received.emit(dealer, ammount)
 
 func heal(target, dealer, ammount):
 	#target.champion.stats.hp = min(target.champion.stats.hp + ammount, target.champion.stats.getHpMax())
@@ -17,4 +17,4 @@ func heal(target, dealer, ammount):
 	var targetSig = GameManager.find_node("Signalizer", target)
 	
 	dealerSig.cure_dealt.emit(target, ammount)
-	targetSig.cure_recieved.emit(dealer, ammount)
+	targetSig.cure_received.emit(dealer, ammount)

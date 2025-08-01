@@ -73,6 +73,7 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_e4p34")
+knockback_duration = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
@@ -90,4 +91,7 @@ libraries = {
 }
 
 [node name="Life" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_rfe5m")
+
+[connection signal="damage_received" from="Signalizer" to="." method="_on_signalizer_damage_received"]

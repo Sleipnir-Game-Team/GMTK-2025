@@ -61,13 +61,36 @@ var dash_time_left: float = 0.0
 var facing: int = 1
 #endregion
 
+@export_group("Knockback", "knockback")
+#region
+## Duração total em segundos do knockback.[br]
+## Metade desse tempo é subindo, a segunda metade caindo
+@export var knockback_duration: float = 0.15
+
+## Altura do knockback em termos da altura do personagem. Por exemplo: [br]
+## • [code]2.0[/code]  - Sobe duas vezes sua altura 
+@export var knockback_height_factor: float = 1.5
+
+## Distância do knockback em termos da largura do personagem. Por exemplo: [br]
+## • [code]2.0[/code]  - É empurrado duas vezes sua largura para trás
+@export var knockback_width_factor: float = 2
+var knockback_time: float = 0
+#endregion
+
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 
 @onready var gravity_rise: float = _calculate_gravity_rise(jump_height_factor, jump_time_to_peak)
 @onready var gravity_fall: float = _calculate_gravity_fall(jump_height_factor, jump_time_to_descent)
 @onready var jump_speed: float = _calculate_jump_speed(gravity_rise, jump_time_to_peak)
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
+@onready var gravity_knockback: float = _calculate_gravity_knockback(knockback_height_factor, knockback_duration) 
+@onready var knockback_horizontal_speed = _calculate_knockback_horizontal_speed(knockback_width_factor, knockback_duration)
+@onready var knockback_speed: Vector2 = _calculate_knockback_speed(gravity_knockback, knockback_duration)
+
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var life: Life = %Life
+
+var knocked: bool = false
 var crouching: bool = false:
 	set(_crouching):
 		crouching = _crouching
@@ -84,6 +107,17 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		crouching = false
 
 func _physics_process(delta: float) -> void:
+	if knockback_time > 0:
+		knockback_time -= delta
+		if not knocked:
+			knockback()
+		else:
+			velocity.y += gravity_knockback * delta
+		move_and_slide()
+		return
+	else:
+		knocked = false
+	
 	var g := gravity_rise
 	if _falling():
 		# Se está caindo, gravidade padrão de queda
@@ -165,6 +199,11 @@ func dash() -> void:
 	dash_time_left = dash_duration
 	jump_boost_buffer = dash_duration + jump_boost_grace_period
 
+func knockback() -> void:
+	knocked = true
+	dash_time_left = 0
+	velocity = knockback_speed
+
 func _dashing() -> bool:
 	return dash_time_left > 0
 
@@ -184,16 +223,49 @@ func _get_character_height_world() -> float:
 	var local_height := collision_shape_2d.shape.get_rect().size.y
 	return local_height * collision_shape_2d.global_scale.y
 
+func _get_character_width_world() -> float:
+	var local_width := collision_shape_2d.shape.get_rect().size.x
+	return local_width * collision_shape_2d.global_scale.x
+
+
+#region JUMP Auxiliary Functions
 func _target_jump_height_px(height_factor: float) -> float:
 	return height_factor * _get_character_height_world()
 
 func _calculate_gravity_rise(height_factor: float, time_to_peak: float) -> float:
 	var h := _target_jump_height_px(height_factor)
-	return 2.0 * h / (time_to_peak * time_to_peak)
+	return 2.0 * h / pow(time_to_peak, 2)
 
 func _calculate_gravity_fall(height_factor: float, time_to_descent: float) -> float:
 	var h := _target_jump_height_px(height_factor)
 	return 2.0 * h / (time_to_descent * time_to_descent)
 
-func _calculate_jump_speed(_gravity_rise: float, time_to_peak: float) -> float:
-	return -_gravity_rise * time_to_peak
+func _calculate_jump_speed(gravity: float, time_to_peak: float) -> float:
+	print("Jump")
+	print(-gravity)
+	print(time_to_peak)
+	return -gravity * time_to_peak
+#endregion
+
+#region KNOCKBACK Auxiliary Functions
+func _target_knockback_distance(width_factor: float) -> float:
+	return width_factor * _get_character_width_world()
+
+func _calculate_knockback_horizontal_speed(width_factor: float, duration: float) -> float:
+	var w = _target_knockback_distance(width_factor)
+	return w / duration
+
+func _calculate_gravity_knockback(height_factor: float, duration: float) -> float:
+	var h = _target_jump_height_px(height_factor)
+	var time_to_peak = duration / 2
+	return 2.0 * h / pow(time_to_peak, 2)
+
+func _calculate_knockback_speed(gravity: float, duration: float) -> Vector2:
+	var time_to_peak = duration / 2
+	return Vector2(knockback_horizontal_speed, -gravity * time_to_peak)
+#endregion
+
+func _on_signalizer_damage_received(dealer: Area2D, ammount: int) -> void:
+	var dir := signi((global_position - dealer.global_position).x)
+	knockback_speed.x = knockback_horizontal_speed * dir
+	knockback_time = knockback_duration

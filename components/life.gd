@@ -2,26 +2,26 @@ class_name Life
 extends Node
 
 @export var max_life: int = 3
-@export var can_exceed_max:= false
+@export var can_exceed_max: = false
 @onready var entity_life: int = max_life
 
-@export var on_hit_invecibility_time:= 1
-var invecibility_timer: Timer
+@export var on_hit_invicibility_time:= 1
+var invicibility_timer: Timer
 var invincibility: bool = false
 
 signal death
-signal invecibility_end
+signal invicibility_end
 
 signal damage_received(damage: int)
 signal healing_received(heal: int)
 
 
 func _ready() -> void:
-	invecibility_timer = Timer.new()
-	if on_hit_invecibility_time > 0:
-		invecibility_timer.wait_time = on_hit_invecibility_time
-		invecibility_timer.timeout.connect(_on_invencibility_time_timeout)
-	add_child(invecibility_timer)
+	invicibility_timer = Timer.new()
+	if on_hit_invicibility_time > 0:
+		invicibility_timer.wait_time = on_hit_invicibility_time
+		invicibility_timer.timeout.connect(_on_invicibility_time_timeout)
+	add_child(invicibility_timer)
 
 func damage(valor: int) -> void:
 	if entity_life > 0 and not invincibility:
@@ -29,8 +29,8 @@ func damage(valor: int) -> void:
 		entity_life = max(0, entity_life - valor)
 		if old_life > entity_life:
 			damage_received.emit(old_life - entity_life)
-		if on_hit_invecibility_time > 0:
-			invencibility_frames(on_hit_invecibility_time)
+		if on_hit_invicibility_time > 0:
+			invicibility_frames(on_hit_invicibility_time)
 
 	if entity_life == 0:
 		death.emit()
@@ -45,10 +45,10 @@ func recover(heal: int) -> void:
 		if entity_life > old_life:
 			healing_received.emit(entity_life - old_life)
 
-func invencibility_frames(invecibility_time: float) -> void:
-	invecibility_timer.start(invecibility_time)
+func invicibility_frames(invicibility_time: float) -> void:
+	invicibility_timer.start(invicibility_time)
 	invincibility = true
 
-func _on_invencibility_time_timeout() -> void:
+func _on_invicibility_time_timeout() -> void:
 	invincibility = false
-	invecibility_end.emit()
+	invicibility_end.emit()
