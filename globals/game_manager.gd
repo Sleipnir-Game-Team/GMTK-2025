@@ -26,7 +26,7 @@ func resume() -> void:
 	_pause_layers -= 1
 	Logger.info("Camada de pause removida, atualmente existem %s camadas" % [_pause_layers])
 
-func find_node(nodeName: String, parent: Node):
+func find_node(nodeName: String, parent: Node) -> Node:
 	return get_node(str(parent.get_path()) + "/" + nodeName)
 
 func win_game() -> void:

@@ -1,11 +1,11 @@
 class_name Ativo extends Item
 
-var avaible = true
+var available: bool = true
 
-func try_use():
-	if avaible:
+func try_use() -> void:
+	if available:
 		use()
-		avaible = false
+		available = false
 
-func use():
+func use() -> void:
 	print("uhhh, you should override this")

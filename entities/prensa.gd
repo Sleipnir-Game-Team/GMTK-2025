@@ -1,17 +1,17 @@
 extends Area2D
 
-@onready var maximumSize = abs($End.position.y)
-@onready var minimumSize = $Collision.shape.size.y
+@onready var maximumSize: float = abs($End.position.y)
+@onready var minimumSize: float = $Collision.shape.size.y
 
-@export var quick_speed = 1200
-@export var slow_speed = 200
+@export var quick_speed: float = 1200
+@export var slow_speed: float = 200
 
-var speed = 0
+var speed: float = 0
 
-var direction = 1
+var direction: int = 1
 
-func _process(delta):
-	var shape_size = $Collision.shape.size.y
+func _process(delta: float) -> void:
+	var shape_size: float = $Collision.shape.size.y
 	if (shape_size < minimumSize and direction == -1 
 		or shape_size > maximumSize and direction == 1):
 		direction *= -1

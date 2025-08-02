@@ -1,4 +1,4 @@
 extends Permanente
 
-func use():
+func use() -> void:
 	Effects.add_hp(player, self, 3)

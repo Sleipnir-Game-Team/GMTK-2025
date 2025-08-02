@@ -1,4 +1,4 @@
 extends Consumivel
 
-func use():
+func use() -> void:
 	print("You consume a fart")

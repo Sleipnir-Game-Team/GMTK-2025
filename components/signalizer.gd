@@ -1,7 +1,9 @@
 extends Node
 
-signal damage_dealt(target, ammount)
-signal damage_received(dealer, ammount)
+@warning_ignore_start("unused_signal")
 
-signal cure_dealt(target, ammount)
-signal cure_received(dealer, ammount)
+signal damage_dealt(target: Node, ammount: int)
+signal damage_received(dealer: Node, ammount: int)
+
+signal cure_dealt(target: Node, ammount: int)
+signal cure_received(dealer: Node, ammount: int)

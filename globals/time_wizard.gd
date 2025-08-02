@@ -15,6 +15,8 @@ func _input(event: InputEvent) -> void:
 
 func rewind() -> void:
 	GameManager.pause()
+	load_state()
+	GameManager.resume()
 
 func save_state(root: Node) -> void:
 	origin_root = root
@@ -32,7 +34,6 @@ func load_state() -> void:
 		pack(node, time_capsule)
 		group_capsule[node.get_path().get_concatenated_names()] = node.get_groups()
 	
-	var parent: Node = origin_root.get_parent()
 	for child in origin_root.get_children():
 		origin_root.remove_child(child)
 		child.queue_free()
@@ -66,6 +67,8 @@ func unpack(main: Dictionary[String, PackedByteArray],
 		var node_to_use: = time_capsule if time_capsule.has(key) else main
 		var node: Node = bytes_to_var_with_objects(node_to_use[key])
 		node.name = path.get_name(path.get_name_count()-1)
+		node.unique_name_in_owner = bytes_to_var_with_objects(main[key]).unique_name_in_owner
+		node.owner = bytes_to_var_with_objects(main[key]).owner
 		
 		if group_capsule.has(key):
 			for group: StringName in group_capsule.get(key):

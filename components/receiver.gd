@@ -1,10 +1,10 @@
 extends Node
 
 
-func receive(data):
+func receive(data: Dictionary) -> void:
 	if data.has("interactiveEffects"):
-		for effect in data.interactiveEffects:
+		for effect: Callable in data.interactiveEffects:
 			effect.call(get_parent())
 	if data.has("effects"):
-		for effect in data.effects:
+		for effect: Callable in data.effects:
 			effect.call()

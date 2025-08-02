@@ -26,10 +26,10 @@ func _input(event: InputEvent) -> void:
 
 func format_content(content: String, actionType: String) -> void:
 	for linha in content.split("\n"):
-		var linhaDividida = linha.split(";")
-		var actionDict = {}
-		for item in linhaDividida:
-			var itemDividido = item.split("|")
+		var linhaDividida := linha.split(";")
+		var actionDict := {}
+		for item: String in linhaDividida:
+			var itemDividido := item.split("|")
 			actionDict[itemDividido[0]] = itemDividido[1]
 		if actionType == "cutscene":
 			cutsceneActions.append(actionDict)
