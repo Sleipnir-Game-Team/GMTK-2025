@@ -3,7 +3,7 @@ extends Control
 @onready var scene_image_texturerect: TextureRect = get_node("%scene_image")
 @onready var scene_text_label: RichTextLabel = get_node("%scene_text")
 @onready var info : String
-var actions = []
+var actions: Array = []
 
 func _ready():
 	UI_Controller.next_cutScene_request.connect(manage_scene)

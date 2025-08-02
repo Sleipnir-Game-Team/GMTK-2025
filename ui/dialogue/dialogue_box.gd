@@ -6,10 +6,10 @@ extends Control
 @onready var speech_richlabel: RichTextLabel= get_node("%speech")
 var speech: String
 var actions: Array = []
-@onready var timer: Timer = %Timer
+@onready var timer: Timer = get_node("%speech_velocity_timer")
 
 func _ready():
-	UI_Controller.manage_dialogue_box.connect(manage_dialogue)
+	UI_Controller.dialogue_request.connect(manage_dialogue)
 	#InkHandler.data_line.connect(manage_dialogue)
 	on_dialogue_request()
 	#timer.wait_time = tempo
