@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdb1s3rdo5dl1"
-path="res://.godot/imported/GRAMMY__.png-71eb53c25168baf1ed7e71379e125aac.ctex"
+uid="uid://dtert3nxy6bxb"
+path="res://.godot/imported/sprite_sheet_placeholder.png-5076f8762fb78182d7bad6edb728f250.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GRAMMY__.png"
-dest_files=["res://.godot/imported/GRAMMY__.png-71eb53c25168baf1ed7e71379e125aac.ctex"]
+source_file="res://assets/sprite_sheet_placeholder.png"
+dest_files=["res://.godot/imported/sprite_sheet_placeholder.png-5076f8762fb78182d7bad6edb728f250.ctex"]
 
 [params]
 

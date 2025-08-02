@@ -4,17 +4,21 @@ extends Area2D
 @onready var minimumSize = $Collision.shape.size.y
 
 @export var quick_speed = 1200
-@export var slow_speed = 50
+@export var slow_speed = 200
+
+var speed = 0
 
 var direction = 1
 
 func _process(delta):
-	if ($Collision.shape.size.y < minimumSize and direction == -1 
-		or $Collision.shape.size.y > maximumSize and direction == 1):
+	var shape_size = $Collision.shape.size.y
+	if (shape_size < minimumSize and direction == -1 
+		or shape_size > maximumSize and direction == 1):
 		direction *= -1
 		AudioManager.play_global("level.danger.smasher")
-	if $Collision.shape.size.y < minimumSize + 100:
-		$Collision.shape.size.y += slow_speed * delta * direction
+	if shape_size < 0.25 * maximumSize:
+		speed = slow_speed
 	else:
-		$Collision.shape.size.y += quick_speed * delta * direction
+		speed = quick_speed
+	$Collision.shape.size.y += speed * delta * direction
 	$Collision.position.y = $Collision.shape.size.y/2

@@ -4,17 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://dgw8jyei8vdy6" path="res://components/damage_area.tscn" id="2_esc0m"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="3_jlu5u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxwb0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esc0m"]
 
 [node name="Prensa" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_0gvv1")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
-shape = SubResource("RectangleShape2D_uxwb0")
+scale = Vector2(13.36, 1)
+shape = SubResource("RectangleShape2D_esc0m")
 
 [node name="End" type="Node2D" parent="."]
-position = Vector2(0, 222)
+position = Vector2(0, 764)
 
 [node name="DamageArea" parent="." instance=ExtResource("2_esc0m")]
 
