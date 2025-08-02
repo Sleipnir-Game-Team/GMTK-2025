@@ -6,26 +6,12 @@ extends Control
 var actions: Array = []
 
 func _ready():
-	UI_Controller.next_cutScene_request.connect(manage_scene)
+	UI_Controller.manage_cutscene_screen.connect(manage_scene)
+	onSceneRequest()
 
-func manage_attributes(attributes: Variant) -> void:
-	format_content(attributes["Content"])
-
-func format_content(content: String) -> void:
-	for linha in content.split("\n"):
-		var linhaDividida = linha.split(";")
-		var actionDict = {}
-		for item in linhaDividida:
-			var itemDividido = item.split("|")
-			actionDict[itemDividido[0]] = itemDividido[1]
-		actions.append(actionDict)
-
-func manage_scene() -> void:
-	var action = actions.pop_front()
-	print("tipo: ", action.type)
+func manage_scene(action: Dictionary) -> void:
 	match action.type:
 		"img":
-			print("image: ", action.url)
 			updateCutsceneImg(action.url)
 			onSceneRequest()
 		"txt":
@@ -38,7 +24,7 @@ func manage_scene() -> void:
 
 
 func onSceneRequest() -> void:
-	UI_Controller.next_cutScene_request.emit()
+	UI_Controller.scene_request.emit()
 
 func updateCutsceneImg(image: String) -> void:
 	%scene_image.texture = load(image)

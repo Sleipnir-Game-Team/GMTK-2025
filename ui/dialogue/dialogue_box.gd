@@ -9,26 +9,13 @@ var actions: Array = []
 @onready var timer: Timer = get_node("%speech_velocity_timer")
 
 func _ready():
-	UI_Controller.dialogue_request.connect(manage_dialogue)
+	UI_Controller.manage_dialogue_box.connect(manage_dialogue)
 	#InkHandler.data_line.connect(manage_dialogue)
 	on_dialogue_request()
 	#timer.wait_time = tempo
 	timer.start()
 
-func manage_attributes(attributes: Dictionary) -> void:
-	format_content(attributes["Content"])
-
-func format_content(content: String) -> void:
-	for linha in content.split("\n"):
-		var linhaDividida = linha.split(";")
-		var actionDict = {}
-		for item in linhaDividida:
-			var itemDividido = item.split("|")
-			actionDict[itemDividido[0]] = itemDividido[1]
-		actions.append(actionDict)
-
-func manage_dialogue() -> void:
-	var action = actions.pop_front()
+func manage_dialogue(action: Dictionary) -> void:
 	match action.type:
 		"name":
 			updateSpeakerName(action.content)
