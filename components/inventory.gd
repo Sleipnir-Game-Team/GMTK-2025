@@ -5,14 +5,17 @@ func _ready():
 		var node_1 = Item.new()
 		node_1.name = "1"
 		add_child(node_1)
+		
 	if !has_node("2"):
 		var node_2 = Item.new()
 		node_2.name = "2"
 		add_child(node_2)
+	
 	if !has_node("3"):
 		var node_3 = Item.new()
 		node_3.name = "3"
 		add_child(node_3)
+	
 	if !has_node("4"):
 		var node_4 = Item.new()
 		node_4.name = "4"

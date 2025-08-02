@@ -4,13 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://daill7lx175oy" path="res://components/receiver.tscn" id="2_rfe5m"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="3_qly61"]
 [ext_resource type="Script" uid="uid://cbhm6im8bgg6a" path="res://components/life.gd" id="4_rfe5m"]
-[ext_resource type="Script" path="res://components/inventory.gd" id="5_qly61"]
+[ext_resource type="Script" uid="uid://pt3hteik6iyr" path="res://components/inventory.gd" id="5_qly61"]
 [ext_resource type="Script" path="res://entities/teste.gd" id="6_qsoyl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(71, 136.25)
 
 [sub_resource type="Animation" id="Animation_rfe5m"]
+resource_local_to_scene = true
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
@@ -76,6 +77,7 @@ _data = {
 collision_mask = 2
 floor_snap_length = 0.0
 script = ExtResource("1_rfe5m")
+jump_coyote_time = 0.1
 knockback_duration = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -86,7 +88,7 @@ shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="Signalizer" parent="." instance=ExtResource("3_qly61")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["animations"]]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_qly61"),

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bi0nwileboayl"]
+[gd_scene load_steps=11 format=3 uid="uid://bi0nwileboayl"]
 
 [ext_resource type="Script" uid="uid://ceunm6ik2o4y4" path="res://main.gd" id="1_cxumw"]
+[ext_resource type="Script" uid="uid://d2udldsfg8yc1" path="res://level.gd" id="2_kek77"]
 [ext_resource type="PackedScene" uid="uid://bp3vd4kj37iij" path="res://entities/player.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btpewc3y00kox" path="res://entities/saw.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://cvgcvqwsxaxky" path="res://entities/laser.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" path="res://entities/laser.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="5_u5r6x"]
 [ext_resource type="PackedScene" path="res://entities/beartrap.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" path="res://entities/prensa.tscn" id="7_272bh"]
@@ -31,49 +32,52 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cxumw")
 
-[node name="Hud" parent="." instance=ExtResource("5_u5r6x")]
-layout_mode = 2
+[node name="Game" type="Node" parent="." groups=["game"]]
+script = ExtResource("2_kek77")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="Game"]
 position = Vector2(0, 1080)
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Game/StaticBody2D"]
 polygon = PackedVector2Array(0, 0, 2949, 0, 2949, -295, 3514, -295, 3514, -709, 4185, -709, 4190, 1437, 5, 1438, -86, 1438, -86, -1080, 0, -1080)
 
-[node name="Saw" parent="." instance=ExtResource("4_1bvp3")]
+[node name="Saw" parent="Game" instance=ExtResource("4_1bvp3")]
 position = Vector2(1343, 1071)
 scale = Vector2(11.156, 11.156)
 collision_layer = 0
 
-[node name="Player" parent="." instance=ExtResource("3_1bvp3")]
+[node name="Player" parent="Game" instance=ExtResource("3_1bvp3")]
 position = Vector2(939, 846)
 
-[node name="Laser" parent="." instance=ExtResource("5_lquwl")]
+[node name="Laser" parent="Game" instance=ExtResource("5_lquwl")]
 position = Vector2(110, 900)
 rotation = -0.449738
 scale = Vector2(1, 26.16)
 
-[node name="Beartrap" parent="." instance=ExtResource("6_7mycd")]
+[node name="Beartrap" parent="Game" instance=ExtResource("6_7mycd")]
 position = Vector2(491, 1062)
 scale = Vector2(9.83341, 4.09531)
 
-[node name="Prensa" parent="." instance=ExtResource("7_272bh")]
+[node name="Prensa" parent="Game" instance=ExtResource("7_272bh")]
 position = Vector2(1061, 639)
 
-[node name="End" parent="Prensa" index="1"]
+[node name="End" parent="Game/Prensa" index="1"]
 position = Vector2(0, 441)
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="Game"]
 curve = SubResource("Curve2D_272bh")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Game/Path2D"]
 position = Vector2(956, 774)
 rotation = -0.000580383
 script = ExtResource("8_5vw27")
 
-[node name="Camera2D" type="Camera2D" parent="Path2D/PathFollow2D"]
+[node name="Camera2D" type="Camera2D" parent="Game/Path2D/PathFollow2D"]
 rotation = -0.00624156
 
-[editable path="Prensa"]
+[node name="Hud" parent="." instance=ExtResource("5_u5r6x")]
+layout_mode = 2
+
+[editable path="Game/Prensa"]

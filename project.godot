@@ -30,6 +30,7 @@ AudioManager="*res://addons/sleipnir_audio/manager/audio_manager.gd"
 SleipnirMaestro="*res://addons/sleipnir_audio/music/sleipnir_maestro.tscn"
 Effects="*res://globals/effects.gd"
 ItemsList="*res://globals/item_list.gd"
+TimeWizard="*res://globals/time_wizard.gd"
 
 [debug]
 
@@ -51,6 +52,12 @@ project/assembly_name="Game Jam Plus 24 25"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/sleipnir_audio/plugin.cfg")
+
+[global_group]
+
+game="It's about the game"
+rewind="Rewindable entities"
+animations=""
 
 [input]
 
