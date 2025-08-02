@@ -18,6 +18,8 @@ signal healing_received(heal: int)
 
 func _ready() -> void:
 	invicibility_timer = Timer.new()
+	invicibility_timer.add_to_group("rewind_prone")
+	
 	if on_hit_invicibility_time > 0:
 		invicibility_timer.wait_time = on_hit_invicibility_time
 		invicibility_timer.timeout.connect(_on_invicibility_time_timeout)

@@ -56,8 +56,7 @@ enabled=PackedStringArray("res://addons/sleipnir_audio/plugin.cfg")
 [global_group]
 
 game="It's about the game"
-rewind="Rewindable entities"
-animations=""
+rewind_proof="Non-rewindable entities"
 
 [input]
 

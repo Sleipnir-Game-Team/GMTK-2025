@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnvip46wm1pdw"]
 
 [ext_resource type="Script" path="res://entities/prensa.gd" id="1_0gvv1"]
-[ext_resource type="PackedScene" path="res://components/damage_area.tscn" id="2_esc0m"]
+[ext_resource type="PackedScene" uid="uid://doqdxweydpikt" path="res://components/damage_area.tscn" id="2_esc0m"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="3_jlu5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxwb0"]
@@ -20,5 +20,3 @@ position = Vector2(0, 222)
 [node name="DamageArea" parent="." instance=ExtResource("2_esc0m")]
 
 [node name="Signalizer" parent="." instance=ExtResource("3_jlu5u")]
-
-[connection signal="body_entered" from="." to="DamageArea" method="_on_parent_body_entered"]

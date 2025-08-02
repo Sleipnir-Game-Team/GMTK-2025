@@ -1,6 +1,14 @@
 extends Node
 
 func _ready():
+	var current_buff_capsule := TimeWizard.load_buff()
+	for buff in current_buff_capsule:
+		var buff_script := load(buff)
+		var item := Permanente.new()
+		item.add_to_group("rewind_prone")
+		item.script = buff_script
+		add_child(item)
+		
 	if !has_node("1"):
 		var node_1 = Item.new()
 		node_1.name = "1"

@@ -84,7 +84,7 @@ var facing: int = 1
 var knockback_time: float = 0
 #endregion
 
-@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D if %CollisionShape2D else $CollisionShape2D  
 
 @onready var gravity_rise: float = _calculate_gravity_rise(jump_height_factor, jump_time_to_peak)
 @onready var gravity_fall: float = _calculate_gravity_fall(jump_height_factor, jump_time_to_descent)
@@ -94,8 +94,9 @@ var knockback_time: float = 0
 @onready var knockback_horizontal_speed: float = _calculate_knockback_horizontal_speed(knockback_width_factor, knockback_duration)
 @onready var knockback_speed: Vector2 = _calculate_knockback_speed(gravity_knockback, knockback_duration)
 
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
-@onready var life: Life = %Life
+@onready var animation_player: AnimationPlayer = %AnimationPlayer if %AnimationPlayer else $AnimationPlayer
+@onready var life: Life = %Life if %Life else $Life
+@onready var signalizer: Node = $Signalizer
 
 var knocked: bool = false
 var crouching: bool = false:
@@ -105,6 +106,9 @@ var crouching: bool = false:
 			animation_player.play("player/crouch")
 		else:
 			animation_player.play_backwards("player/crouch")
+
+func _ready() -> void:
+	signalizer.damage_received.connect(_on_signalizer_damage_received)
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	# Evitar dar o crouch quando já está em sprint

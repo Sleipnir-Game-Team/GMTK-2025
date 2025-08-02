@@ -1,12 +1,12 @@
 extends Node
 
 var rng = RandomNumberGenerator.new()
-@onready var inventory = GameManager.find_node("Inventory", get_parent())
 
 var chosen = []
 var type = null
 
 func _input(event: InputEvent) -> void:
+	var inventory = GameManager.find_node("Inventory", get_parent())
 	if event is InputEventKey and event.is_pressed():
 		match event.keycode:
 			KEY_8:
@@ -18,21 +18,21 @@ func _input(event: InputEvent) -> void:
 				for item in chosen:
 					print(item.resource_path.get_file())
 			KEY_U:
-				var lista = ItemsList.ativo
+				var lista = ItemsList.ativo.duplicate()
 				chosen = []
 				for i in range(3):
 					var chosen_pos = rng.randi_range(0, lista.size()-1)
 					chosen.append(lista.pop_at(chosen_pos))
 				type = Ativo
 			KEY_I:
-				var lista = ItemsList.consumivel
+				var lista = ItemsList.consumivel.duplicate()
 				chosen = []
 				for i in range(3):
 					var chosen_pos = rng.randi_range(0, lista.size()-1)
 					chosen.append(lista.pop_at(chosen_pos))
 				type = Consumivel
 			KEY_O:
-				var lista = ItemsList.permanente
+				var lista = ItemsList.permanente.duplicate()
 				chosen = []
 				for i in range(3):
 					var chosen_pos = rng.randi_range(0, lista.size()-1)
@@ -42,6 +42,7 @@ func _input(event: InputEvent) -> void:
 				var item = Item.new()
 				item.set_script(chosen[0])
 				if type == Permanente:
+					item.add_to_group("rewind_prone")
 					inventory.add_child(item)
 				else:
 					inventory.replace(1, item)
@@ -49,6 +50,7 @@ func _input(event: InputEvent) -> void:
 				var item = Item.new()
 				item.set_script(chosen[1])
 				if type == Permanente:
+					item.add_to_group("rewind_prone")
 					inventory.add_child(item)
 				else:
 					inventory.replace(2, item)
@@ -56,7 +58,7 @@ func _input(event: InputEvent) -> void:
 				var item = Item.new()
 				item.set_script(chosen[2])
 				if type == Permanente:
+					item.add_to_group("rewind_prone")
 					inventory.add_child(item)
 				else:
 					inventory.replace(3, item)
-		

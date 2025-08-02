@@ -1,7 +1,11 @@
 extends Node
 
 var origin_root: Node = null
-var origin_state: PackedScene = PackedScene.new()
+var origin_state: Dictionary[String, PackedByteArray] = {}
+
+var rewind_count: int = 0
+
+var buff_capsule: Array[String] = []
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
@@ -9,134 +13,79 @@ func _input(event: InputEvent) -> void:
 			KEY_CTRL:
 				load_state()
 
-
 func rewind() -> void:
 	GameManager.pause()
-	var game: Node = get_tree().get_first_node_in_group("game")
-	var rewindables: Array[Node] = get_tree().get_nodes_in_group("rewind")
-	for rw in rewindables:
-		game
 
 func save_state(root: Node) -> void:
-	if origin_root:
-		return
-		
-	var rewindables: Array[Node] = get_tree().get_nodes_in_group("rewind")
-	
-	for child in root.get_children():
-		change_owner(child, root)
-	
-	if origin_state.pack(root) == OK and ResourceSaver.save(origin_state, "res://teste.tscn") == OK:
-		print("Novo origin_state salvo")
-		origin_root = root
-		return
-	
-	push_error('Falhou ao salvar o origin_state')
+	origin_root = root
+	pack(root, origin_state)
 
 func load_state() -> void:
 	if origin_root == null:
 		return
+	rewind_count += 1
 	
-	if origin_state.can_instantiate():
-		var parent = origin_root.get_parent()
-		var past = origin_state.instantiate()
+	var group_capsule: Dictionary[String, Array] = {}
+	var time_capsule: Dictionary[String, PackedByteArray]= {}
+	var rewind_proof_nodes := get_tree().get_nodes_in_group("rewind_proof")
+	for node in rewind_proof_nodes:
+		pack(node, time_capsule)
+		group_capsule[node.get_path().get_concatenated_names()] = node.get_groups()
+	
+	var parent: Node = origin_root.get_parent()
+	for child in origin_root.get_children():
+		origin_root.remove_child(child)
+		child.queue_free()
+	
+	var new_present := unpack(origin_state, time_capsule, group_capsule)
+	
+	for child in new_present.get_children():
+		child.reparent(origin_root)
+	new_present.queue_free()
+
+func pack(start: Node, main: Dictionary[String, PackedByteArray]) -> void:
+	main[start.get_path().get_concatenated_names()] = var_to_bytes_with_objects(start)
+	for child in start.get_children():
+		if child.is_in_group("rewind_prone"):
+			prints("Yes Rico, Kaboom", child.name)
+			continue
+		pack(child, main)
+
+func unpack(main: Dictionary[String, PackedByteArray], 
+			time_capsule: Dictionary[String, PackedByteArray],
+			group_capsule: Dictionary[String, Array]
+			) -> Node:
+	var nodes_pile: Array[Node] = []
+	var path_pile: Array[NodePath] = []
+	
+	var keys:= main.keys()
+	keys.reverse()
+	
+	for key: String in keys:
+		var path: = NodePath(key)
+		var node_to_use: = time_capsule if time_capsule.has(key) else main
+		var node: Node = bytes_to_var_with_objects(node_to_use[key])
+		node.name = path.get_name(path.get_name_count()-1)
 		
-		parent.remove_child(origin_root)
-		past.name = origin_root.name
-		parent.add_child(past)
+		if group_capsule.has(key):
+			for group: StringName in group_capsule.get(key):
+				if not str(group).begins_with("_"):
+					node.add_to_group(group)
 		
-		origin_root.queue_free()
-		origin_root = past
-
-func change_owner(target: Node, root: Node)-> void:
-	if target.is_in_group("rewind_proof"):
-		return
+		while nodes_pile.size() > 0 and path == path_pile.back().slice(0, -1):
+			node.add_child(nodes_pile.pop_back())
+			path_pile.pop_back()
+		
+		nodes_pile.push_back(node)
+		path_pile.push_back(path)
 	
-	target.owner = root
-	for child in target.get_children():
-		change_owner(child, root)
+	return nodes_pile.pop_back()
 
 
-#region
-var MIDRUN_SAVE_FILE = "user://savegame.save" # I assume you are using this from the docs.
-var midrun_save_array: Dictionary
-func mid_run_save():
-	midrun_save_array.clear()
-	var root_level = get_node("/root/RootLevel")
-	var map_node = get_node("/root/RootLevel/GameLevel")
-	var save_ui_nodes = get_tree().get_nodes_in_group("PersistUI")
+func load_buff() -> Array[String]:
+	var dup := buff_capsule.duplicate()
+	buff_capsule = []
+	return dup
 
-	var save_object_nodes = get_tree().get_nodes_in_group("PersistObject")
-	for save_node in save_object_nodes:
-		if not save_node.is_inside_tree():
-			save_node.queue_free()
-		else:
-# I'm setting "map_node" as the owner of all of these nodes I want to persist
-# because this is the top of the tree that I'm going to be converting into my packed scene
-			if save_node != map_node:
-				save_node.owner = map_node
-
-# Now we're going to iterate through all the nodes I've said need to persist
-# and check if any of them have scripts attached.
-# If they do, then we want to copy the variables inside of that script - not just the exported ones
-# into a dictionary we can save and load later
-
-			var node_script: GDScript = save_node.get_script()
-			if node_script != null:
-				var node_variables = node_script.get_script_property_list()
-				var save_name = "path_" + str(save_node.get_path())
-				midrun_save_array[save_name] = {}
-# I've used the node path as a way to generate unique keys for the dictionary
-# I'm storing all this data in, and a way to know how to get it back out of the dictionary when we load it all
-				for variable in node_variables:
-					var variable_name = str(variable.name)
-# We're going to tell it not to save any variables that are nodes themselves -
-# This avoids recursion within the dictionary, which breaks the var2str
-# method we're going to use, and also allows the nodes to correctly set up their various onready var
-# references to other nodes when they're reinstantiated upon load
-# I don't have any so this is not an issue for me, keeping it anyway
-					if save_node.get(variable_name) is Node:
-						pass
-					midrun_save_array[save_name][variable_name] = var_to_str(save_node.get(variable_name))
-	
-	# Okay, now we've got our big chunky dictionary containing both the global variables and the (non-node) variables of every single node we intend to pack up that has a script attached to it, we're going to save it to a file
-	var file = FileAccess.open(MIDRUN_SAVE_FILE, FileAccess.WRITE)
-	file.store_var(midrun_save_array)
-	file.close()
-	
-	# Next is just to pack up the node at the top of it all that will retain things for us like position, visibility, etc, of our nodes, and save that as well, creating a snapshot of our scene
-	var packed_scene = PackedScene.new()
-	packed_scene.pack(map_node)
-	ResourceSaver.save(packed_scene, "res://saved_run.tscn") # They flipped these in Godot 4??
-
-func load_saved_run():
-	# The first part of the loading is pretty standard, we open up our save file as
-	# long as there's one to open, and we update the global game data script's global
-	# variables with what we saved previously
-	if not FileAccess.file_exists(MIDRUN_SAVE_FILE):
-		return
-	var save_game = FileAccess.open(MIDRUN_SAVE_FILE, FileAccess.READ)
-	midrun_save_array = save_game.get_var()
-	#removed the global data as I do not have that
-
-	# Now we load the PackedScene resource, creating, if you will, the skeleton of the scene we created a snapshot of, and laying it out on our scene tree first
-
-	var packed_scene = load("res://saved_run.tscn")
-	# Instance the scene
-	var loaded_scene = packed_scene.instance()
-	get_node("/root/RootLevel").add_child(loaded_scene)
-	# And now that we've got the skeleton, we're going to flesh it all out with those many custom variables we wanted to stay the same. We're going to open up their various scripts, referencing their dictionary entries by using their node path to determine what the key is in the dictionary.
-	var save_object_nodes = get_tree().get_nodes_in_group("PersistObject")
-
-	for save_node in save_object_nodes:
-		var node_script: GDScript = save_node.get_script()
-		if node_script != null:
-			var node_name = "path_" + str(save_node.get_path())
-			var node_data = midrun_save_array[node_name]
-			for variable in node_data.keys():
-				save_node.set(variable, str_to_var(node_data[variable]))
-# And we're done loading the script! If anything loads wonky, make sure you added all the nodes
-# you wanted to the group "Persist", or whatever label you're using, and check that none of your
-# re-instanced nodes are doing something in their ready function that you don't want them to do if
-# they're just being loaded from a save file
-#endregion
+func save_buff(buff_script: String) -> void:
+	buff_capsule.append(buff_script)
