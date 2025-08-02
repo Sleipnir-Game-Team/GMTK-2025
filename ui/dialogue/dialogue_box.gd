@@ -6,7 +6,7 @@ extends Control
 @onready var speech_richlabel: RichTextLabel= get_node("%speech")
 var speech: String
 var actions: Array = []
-@onready var timer: Timer = %Timer
+@onready var timer: Timer = get_node("%speech_velocity_timer")
 
 func _ready():
 	UI_Controller.manage_dialogue_box.connect(manage_dialogue)
@@ -15,20 +15,7 @@ func _ready():
 	#timer.wait_time = tempo
 	timer.start()
 
-func manage_attributes(attributes: Dictionary) -> void:
-	format_content(attributes["Content"])
-
-func format_content(content: String) -> void:
-	for linha in content.split("\n"):
-		var linhaDividida = linha.split(";")
-		var actionDict = {}
-		for item in linhaDividida:
-			var itemDividido = item.split("|")
-			actionDict[itemDividido[0]] = itemDividido[1]
-		actions.append(actionDict)
-
-func manage_dialogue() -> void:
-	var action = actions.pop_front()
+func manage_dialogue(action: Dictionary) -> void:
 	match action.type:
 		"name":
 			updateSpeakerName(action.content)

@@ -4,7 +4,8 @@ var stack: ScreenStack = ScreenStack.new()
 var pause_menu_on: bool = false
 signal manage_dialogue_box
 signal dialogue_request
-signal next_cutScene_request
+signal manage_cutscene_screen
+signal scene_request
 
 class ScreenStack:
 	var screens: Array[Node]  = []
@@ -66,9 +67,9 @@ func managePauseMenu() -> void:
 		Game_Manager.resume()
 		
 
-func processAction(attributes, action):
+func processAction(action):
 	match action:
 		"dialogue":
-			openScreen("res://ui/dialogue/dialogue_box.tscn", get_tree().root, attributes)
+			openScreen("res://ui/dialogue/dialogue_box.tscn", get_tree().root)
 		"cutscene":
-			openScreen("res://ui/cutscene/cutscene_screen.tscn", get_tree().root, attributes)
+			openScreen("res://ui/cutscene/cutscene_screen.tscn", get_tree().root)

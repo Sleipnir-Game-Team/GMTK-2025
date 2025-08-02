@@ -55,7 +55,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Timer" type="Timer" parent="CanvasLayer/VBoxContainer/MarginContainer/VBoxContainer/speech"]
+[node name="speech_velocity_timer" type="Timer" parent="CanvasLayer/VBoxContainer/MarginContainer/VBoxContainer/speech"]
+unique_name_in_owner = true
 wait_time = 0.1
 autostart = true
 

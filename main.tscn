@@ -1,21 +1,65 @@
-[gd_scene load_steps=11 format=3 uid="uid://bi0nwileboayl"]
+[gd_scene load_steps=23 format=4 uid="uid://bi0nwileboayl"]
 
 [ext_resource type="Script" uid="uid://ceunm6ik2o4y4" path="res://main.gd" id="1_cxumw"]
 [ext_resource type="Script" uid="uid://d2udldsfg8yc1" path="res://level.gd" id="2_kek77"]
 [ext_resource type="PackedScene" uid="uid://bp3vd4kj37iij" path="res://entities/player.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btpewc3y00kox" path="res://entities/saw.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" path="res://entities/laser.tscn" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://dtert3nxy6bxb" path="res://assets/sprite_sheet_placeholder.png" id="5_kek77"]
+[ext_resource type="PackedScene" uid="uid://cvgcvqwsxaxky" path="res://entities/laser.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="5_u5r6x"]
-[ext_resource type="PackedScene" path="res://entities/beartrap.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" path="res://entities/prensa.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://dnixi33jpc4vo" path="res://entities/beartrap.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://lr4m01xjpyjo" path="res://components/auto_path.gd" id="7_4c57u"]
+[ext_resource type="PackedScene" uid="uid://bevslu0c3rktv" path="res://entities/prensa.tscn" id="7_272bh"]
 [ext_resource type="Script" uid="uid://b6gpyus2ya60i" path="res://camera_path.gd" id="8_5vw27"]
 
 [sub_resource type="Curve2D" id="Curve2D_272bh"]
 bake_interval = 0.01
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 956, 774, 0, 0, 0, 0, 2679, 773, 0, 0, 0, 0, 3244, 526, 0, 0, 0, 0, 3932, 84)
+"points": PackedVector2Array(0, 0, 0, 0, 646, 850, 0, 0, 0, 0, 6270, 850, 0, 0, 0, 0, 6267, 1842, 0, 0, 0, 0, 651, 1842, 0, 0, 0, 0, 646, 2800, 0, 0, 0, 0, 5677, 2800, 0, 0, 0, 0, 5677, 3884, 0, 0, 0, 0, 646, 3900)
 }
-point_count = 4
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_4c57u"]
+_data = {
+"points": PackedVector2Array(-210.9, 0, 0, 0, 3835, 2586, 1.94872, -266.974, -1.94872, 266.974, 4145, 2842, 0, 0, 0, 0, 3856, 3066, -5.84615, 263.077, 5.84615, -263.077, 3543, 2830, 0, 0, 208.2, 0, 3835, 2584)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_efxa6"]
+_data = {
+"points": PackedVector2Array(-210.9, 0, 0, 0, 3683, 2586, 0, 0, 208.2, 0, 5750, 2586)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_dg77c"]
+_data = {
+"points": PackedVector2Array(-210.9, 0, 0, 0, 140, 2587, 0, 0, 208.2, 0, 5750, 2586)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_w48qg"]
+_data = {
+"points": PackedVector2Array(-210.9, 0, 0, 0, 140, 2587, 0, 0, 208.2, 0, 2496, 2584)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_vivmo"]
+_data = {
+"points": PackedVector2Array(-210.9, 0, 0, 0, 1791, 2581, 0, 0, 208.2, 0, 6287, 2580)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_ycdy4"]
+_data = {
+"points": PackedVector2Array(-210.9, 0, 0, 0, 3814, 2586, 0, 0, 208.2, 0, 3814, 3336)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
 
 [node name="Main" type="MarginContainer"]
 process_mode = 1
@@ -36,48 +80,335 @@ script = ExtResource("1_cxumw")
 script = ExtResource("2_kek77")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Game"]
+visible = false
 position = Vector2(0, 1080)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Game/StaticBody2D"]
-polygon = PackedVector2Array(0, 0, 2949, 0, 2949, -295, 3514, -295, 3514, -709, 4185, -709, 4190, 1437, 5, 1438, -86, 1438, -86, -1080, 0, -1080)
-
-[node name="Saw" parent="Game" instance=ExtResource("4_1bvp3")]
-position = Vector2(1343, 1071)
-scale = Vector2(11.156, 11.156)
-collision_layer = 0
+polygon = PackedVector2Array(0, 0, 2949, -1, 2949, -295, 3514, -295, 3514, -709, 4185, -709, 4190, 1437, 5, 1438, -86, 1438, -86, -1081, 0, -1081)
+disabled = true
 
 [node name="Player" parent="Game" instance=ExtResource("3_1bvp3")]
 position = Vector2(939, 846)
 
-[node name="Laser" parent="Game" instance=ExtResource("5_lquwl")]
-position = Vector2(110, 900)
-rotation = -0.449738
-scale = Vector2(1, 26.16)
-
-[node name="Beartrap" parent="Game" instance=ExtResource("6_7mycd")]
-position = Vector2(491, 1062)
-scale = Vector2(9.83341, 4.09531)
-
-[node name="Prensa" parent="Game" instance=ExtResource("7_272bh")]
-position = Vector2(1061, 639)
-
-[node name="End" parent="Game/Prensa" index="1"]
-position = Vector2(0, 441)
-
 [node name="Path2D" type="Path2D" parent="Game"]
+position = Vector2(-19, 54)
 curve = SubResource("Curve2D_272bh")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Game/Path2D"]
-position = Vector2(956, 774)
-rotation = -0.000580383
+position = Vector2(5677, 3235.05)
+rotation = 1.5708
+progress = 18656.3
 script = ExtResource("8_5vw27")
 
 [node name="Camera2D" type="Camera2D" parent="Game/Path2D/PathFollow2D"]
 rotation = -0.00624156
+zoom = Vector2(1.5, 1.5)
 
-[node name="Hud" parent="." instance=ExtResource("5_u5r6x")]
-layout_mode = 2
+[node name="Saws" type="Node2D" parent="Game"]
 
-[editable path="Game/Prensa"]
+[node name="Saw" parent="Game/Saws" instance=ExtResource("4_1bvp3")]
+position = Vector2(1914, 1180)
+scale = Vector2(12.916, 12.916)
+collision_layer = 0
+
+[node name="Saw2" parent="Game/Saws" instance=ExtResource("4_1bvp3")]
+position = Vector2(2310, 1166)
+scale = Vector2(15.516, 15.516)
+collision_layer = 0
+
+[node name="Saw5" parent="Game/Saws" instance=ExtResource("4_1bvp3")]
+position = Vector2(1855, 1537)
+scale = Vector2(-31.921, -31.921)
+collision_layer = 0
+
+[node name="Saw6" parent="Game/Saws" instance=ExtResource("4_1bvp3")]
+position = Vector2(668, 1587)
+scale = Vector2(-31.921, -31.921)
+collision_layer = 0
+
+[node name="Saw4" parent="Game/Saws" instance=ExtResource("4_1bvp3")]
+position = Vector2(6098, 1216)
+scale = Vector2(-20.9825, -20.9825)
+collision_layer = 0
+
+[node name="Saw8" parent="Game/Saws" instance=ExtResource("4_1bvp3")]
+position = Vector2(4677, 3079)
+scale = Vector2(-20.9825, -20.9825)
+collision_layer = 0
+
+[node name="Saw9" parent="Game/Saws" instance=ExtResource("4_1bvp3")]
+position = Vector2(5262, 2506)
+scale = Vector2(-37.9585, -37.9585)
+collision_layer = 0
+
+[node name="Path2D" type="Path2D" parent="Game/Saws"]
+curve = SubResource("Curve2D_4c57u")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Game/Saws/Path2D"]
+position = Vector2(3835, 2586)
+rotation = 0.69028
+script = ExtResource("7_4c57u")
+back_and_forth = false
+
+[node name="Saw7" parent="Game/Saws/Path2D/PathFollow2D" instance=ExtResource("4_1bvp3")]
+rotation = 3.14159
+scale = Vector2(20.9825, 20.9825)
+collision_layer = 0
+
+[node name="Path2D2" type="Path2D" parent="Game/Saws"]
+position = Vector2(-663, -1836)
+curve = SubResource("Curve2D_efxa6")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Game/Saws/Path2D2"]
+position = Vector2(3683, 2586)
+script = ExtResource("7_4c57u")
+speed = 30
+
+[node name="Saw7" parent="Game/Saws/Path2D2/PathFollow2D" instance=ExtResource("4_1bvp3")]
+rotation = 3.14159
+scale = Vector2(31.9329, 31.9329)
+collision_layer = 0
+
+[node name="Path2D3" type="Path2D" parent="Game/Saws"]
+position = Vector2(154, -588)
+curve = SubResource("Curve2D_dg77c")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Game/Saws/Path2D3"]
+position = Vector2(140, 2587)
+rotation = -0.000178253
+script = ExtResource("7_4c57u")
+speed = 40
+
+[node name="Saw7" parent="Game/Saws/Path2D3/PathFollow2D" instance=ExtResource("4_1bvp3")]
+rotation = 3.14159
+scale = Vector2(6.20847, 6.20847)
+collision_layer = 0
+
+[node name="Path2D5" type="Path2D" parent="Game/Saws"]
+position = Vector2(421, 1580)
+curve = SubResource("Curve2D_w48qg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Game/Saws/Path2D5"]
+position = Vector2(140, 2587)
+rotation = -0.00127334
+script = ExtResource("7_4c57u")
+speed = 40
+
+[node name="Saw7" parent="Game/Saws/Path2D5/PathFollow2D" instance=ExtResource("4_1bvp3")]
+rotation = 3.14159
+scale = Vector2(6.20847, 6.20847)
+collision_layer = 0
+
+[node name="Path2D4" type="Path2D" parent="Game/Saws"]
+position = Vector2(-60, 1270)
+curve = SubResource("Curve2D_vivmo")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Game/Saws/Path2D4"]
+position = Vector2(1791, 2581)
+rotation = -0.00022242
+script = ExtResource("7_4c57u")
+speed = 40
+
+[node name="Saw7" parent="Game/Saws/Path2D4/PathFollow2D" instance=ExtResource("4_1bvp3")]
+rotation = 3.14159
+scale = Vector2(17.4524, 17.4524)
+collision_layer = 0
+
+[node name="Lasers" type="Node2D" parent="Game"]
+
+[node name="Laser" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(5219, 635)
+rotation = -0.339167
+scale = Vector2(1.36371, 41.4756)
+
+[node name="Laser2" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(5627, 638)
+rotation = 0.123343
+scale = Vector2(1.36371, 41.4756)
+
+[node name="Laser3" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(3087, 1673)
+rotation = -0.339167
+scale = Vector2(1.36371, 41.4756)
+
+[node name="Laser4" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(3495, 1676)
+rotation = 0.123343
+scale = Vector2(1.36371, 41.4756)
+
+[node name="Laser5" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(2333, 1678)
+rotation = -0.339167
+scale = Vector2(1.36371, 41.4756)
+
+[node name="Laser6" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(2741, 1681)
+rotation = 0.123343
+scale = Vector2(1.36371, 41.4756)
+
+[node name="Laser7" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(3574, 3692)
+rotation = -0.339167
+scale = Vector2(1.53424, 56.7495)
+
+[node name="Laser8" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(3982, 3695)
+rotation = 0.123343
+scale = Vector2(1.53424, 56.7495)
+
+[node name="Laser9" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(2601, 3719)
+rotation = -0.339167
+scale = Vector2(1.53424, 56.7495)
+
+[node name="Laser10" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(3009, 3722)
+rotation = 0.123343
+scale = Vector2(1.53424, 56.7495)
+
+[node name="Laser11" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(1668, 3738)
+rotation = -0.339167
+scale = Vector2(1.53424, 56.7495)
+
+[node name="Laser12" parent="Game/Lasers" instance=ExtResource("5_lquwl")]
+position = Vector2(2076, 3741)
+rotation = 0.123343
+scale = Vector2(1.53424, 56.7495)
+
+[node name="Path2D3" type="Path2D" parent="Game/Lasers"]
+position = Vector2(-3813, -265)
+curve = SubResource("Curve2D_ycdy4")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Game/Lasers/Path2D3"]
+position = Vector2(3814, 2586)
+rotation = 1.5708
+script = ExtResource("7_4c57u")
+speed = 30
+
+[node name="Laser" parent="Game/Lasers/Path2D3/PathFollow2D" instance=ExtResource("5_lquwl")]
+position = Vector2(-0.000150847, -3451)
+rotation = -1.57079
+scale = Vector2(346.32, 1)
+
+[node name="Beartraps" type="Node2D" parent="Game"]
+
+[node name="Beartrap" parent="Game/Beartraps" instance=ExtResource("6_7mycd")]
+position = Vector2(294, 3034)
+scale = Vector2(16.1134, 4.09531)
+
+[node name="Collision" parent="Game/Beartraps/Beartrap/ActivatedArea" index="0"]
+position = Vector2(0, -37.2435)
+scale = Vector2(1, 1)
+
+[node name="Beartrap2" parent="Game/Beartraps" instance=ExtResource("6_7mycd")]
+position = Vector2(843, 3034)
+scale = Vector2(16.1534, 4.09531)
+
+[node name="Collision" parent="Game/Beartraps/Beartrap2/ActivatedArea" index="0"]
+position = Vector2(0, -37.2435)
+scale = Vector2(1, 1)
+
+[node name="Beartrap3" parent="Game/Beartraps" instance=ExtResource("6_7mycd")]
+position = Vector2(2380, 3034)
+scale = Vector2(21.9134, 4.09531)
+
+[node name="Collision" parent="Game/Beartraps/Beartrap3/ActivatedArea" index="0"]
+position = Vector2(0, -37.2435)
+scale = Vector2(1, 1)
+
+[node name="Beartrap4" parent="Game/Beartraps" instance=ExtResource("6_7mycd")]
+position = Vector2(3325, 3924)
+scale = Vector2(15.9934, 4.09531)
+
+[node name="Collision" parent="Game/Beartraps/Beartrap4/ActivatedArea" index="0"]
+position = Vector2(0, -37.2435)
+scale = Vector2(1, 1)
+
+[node name="Beartrap6" parent="Game/Beartraps" instance=ExtResource("6_7mycd")]
+position = Vector2(2365, 3924)
+scale = Vector2(18.4734, 4.09531)
+
+[node name="Collision" parent="Game/Beartraps/Beartrap6/ActivatedArea" index="0"]
+position = Vector2(0, -37.2435)
+scale = Vector2(1, 1)
+
+[node name="Beartrap5" parent="Game/Beartraps" instance=ExtResource("6_7mycd")]
+position = Vector2(1157, 3929)
+scale = Vector2(17.1534, 4.09531)
+
+[node name="Collision" parent="Game/Beartraps/Beartrap5/ActivatedArea" index="0"]
+position = Vector2(0, -37.2435)
+scale = Vector2(1, 1)
+
+[node name="Prensas" type="Node2D" parent="Game"]
+
+[node name="Prensa" parent="Game/Prensas" instance=ExtResource("7_272bh")]
+position = Vector2(5085, 1278)
+
+[node name="Collision" parent="Game/Prensas/Prensa" index="0"]
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="Prensa2" parent="Game/Prensas" instance=ExtResource("7_272bh")]
+position = Vector2(4197, 1275)
+
+[node name="Collision" parent="Game/Prensas/Prensa2" index="0"]
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Prensa3" parent="Game/Prensas" instance=ExtResource("7_272bh")]
+position = Vector2(4648, 1278)
+
+[node name="Collision" parent="Game/Prensas/Prensa3" index="0"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Prensa4" parent="Game/Prensas" instance=ExtResource("7_272bh")]
+position = Vector2(1712, 2165)
+
+[node name="Collision" parent="Game/Prensas/Prensa4" index="0"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="End" parent="Game/Prensas/Prensa4" index="1"]
+position = Vector2(0, 905)
+
+[node name="Prensa5" parent="Game/Prensas" instance=ExtResource("7_272bh")]
+position = Vector2(2162, 2160)
+
+[node name="Collision" parent="Game/Prensas/Prensa5" index="0"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="End" parent="Game/Prensas/Prensa5" index="1"]
+position = Vector2(0, 912)
+
+[node name="Prensa6" parent="Game/Prensas" instance=ExtResource("7_272bh")]
+position = Vector2(2612, 2165)
+
+[node name="Collision" parent="Game/Prensas/Prensa6" index="0"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="End" parent="Game/Prensas/Prensa6" index="1"]
+position = Vector2(0, 905)
+
+[node name="Prensa7" parent="Game/Prensas" instance=ExtResource("7_272bh")]
+position = Vector2(3108, 2165)
+
+[node name="Collision" parent="Game/Prensas/Prensa7" index="0"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="End" parent="Game/Prensas/Prensa7" index="1"]
+position = Vector2(0, 908)
+
+[editable path="Game/Beartraps/Beartrap"]
+[editable path="Game/Beartraps/Beartrap2"]
+[editable path="Game/Beartraps/Beartrap3"]
+[editable path="Game/Beartraps/Beartrap4"]
+[editable path="Game/Beartraps/Beartrap6"]
+[editable path="Game/Beartraps/Beartrap5"]
+[editable path="Game/Prensas/Prensa"]
+[editable path="Game/Prensas/Prensa2"]
+[editable path="Game/Prensas/Prensa3"]
+[editable path="Game/Prensas/Prensa4"]
+[editable path="Game/Prensas/Prensa5"]
+[editable path="Game/Prensas/Prensa6"]
+[editable path="Game/Prensas/Prensa7"]

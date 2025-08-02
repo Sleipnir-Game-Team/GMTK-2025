@@ -8,6 +8,7 @@
 size = Vector2(20, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+size = Vector2(20, 94.4869)
 
 [node name="Beartrap" type="Area2D"]
 script = ExtResource("1_7v1yc")
