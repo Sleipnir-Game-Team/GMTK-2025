@@ -2,17 +2,17 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://fmwg7x6y7fwg"
-path="res://.godot/imported/level.danger.electric.loop.mp3-fb287643e6ebc7b34d0f8a4181260c51.mp3str"
+uid="uid://c8km4wq4icqx"
+path="res://.godot/imported/level.danger.electric.loop.mp3-b013173d3dc77cf08a05d8c94ad5b7b2.mp3str"
 
 [deps]
 
-source_file="res://Assets/sounds/level/level.danger.electric.loop.mp3"
-dest_files=["res://.godot/imported/level.danger.electric.loop.mp3-fb287643e6ebc7b34d0f8a4181260c51.mp3str"]
+source_file="res://assets/sounds/level/level.danger.electric.loop.mp3"
+dest_files=["res://.godot/imported/level.danger.electric.loop.mp3-b013173d3dc77cf08a05d8c94ad5b7b2.mp3str"]
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

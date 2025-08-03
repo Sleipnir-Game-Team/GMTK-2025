@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://hmb2m710tivn"
-path="res://.godot/imported/player.dash3.mp3-74f21161c77efeb60eb1b3dea3987c4e.mp3str"
+uid="uid://bh0fmjaqkh245"
+path="res://.godot/imported/player.dash3.mp3-ae1829fb1510182bf524831c27c33a4f.mp3str"
 
 [deps]
 
-source_file="res://Assets/sounds/player/player.dash3.mp3"
-dest_files=["res://.godot/imported/player.dash3.mp3-74f21161c77efeb60eb1b3dea3987c4e.mp3str"]
+source_file="res://assets/sounds/player/player.dash3.mp3"
+dest_files=["res://.godot/imported/player.dash3.mp3-ae1829fb1510182bf524831c27c33a4f.mp3str"]
 
 [params]
 

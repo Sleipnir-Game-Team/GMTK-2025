@@ -65,7 +65,10 @@ var jump_coyote_counter: float = 0
 @export var dash_duration: float = 0.15
 
 var dash_time_left: float = 0.0
-var facing: int = 1
+var facing: int = 1:
+	set(new_value):
+		$Sprite2D.flip_h = new_value < 0 
+		facing = new_value
 #endregion
 
 @export_group("Knockback", "knockback")
@@ -98,17 +101,22 @@ var knockback_time: float = 0
 @onready var life: Life = $Life
 @onready var signalizer: Node = $Signalizer
 
+var locked = false
+
+
 var knocked: bool = false
 var crouching: bool = false:
 	set(_crouching):
 		crouching = _crouching
 		if crouching:
-			animation_player.play("player/crouch")
+			animation_player.play_animation("player/crouch")
 		else:
-			animation_player.play_backwards("player/crouch")
+			animation_player.next_anim = "idle"
+			animation_player.play_animation("player/crouch", -1, false)
 
 func _ready() -> void:
 	signalizer.damage_received.connect(_on_signalizer_damage_received)
+	animation_player.play_animation("idle")
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	# Evitar dar o crouch quando já está em sprint
@@ -167,6 +175,16 @@ func _physics_process(delta: float) -> void:
 		# Direção do Input do usuário
 		var input_axis := Input.get_axis("player_left", "player_right")
 		
+		var just_arrived = jump_coyote_counter < jump_coyote_time
+		if is_on_floor():
+			if input_axis != 0 and (animation_player.current_animation == "idle" or just_arrived):
+				if Input.is_action_pressed("player_sprint"):
+					animation_player.play_animation("run")
+				else:
+					animation_player.play_animation("walk")
+			elif input_axis == 0 and (animation_player.current_animation in ["run", "walk", "loop", "crouch_walk"] or just_arrived):
+				animation_player.play_animation("idle")
+		
 		var target_speed := movement_walking_speed
 		
 		if jump_boosted and input_axis == facing:
@@ -174,7 +192,8 @@ func _physics_process(delta: float) -> void:
 			target_speed = jump_dash_boost
 		else:
 			jump_boosted = false
-			facing = int(input_axis)
+			if input_axis != 0:
+				facing = int(input_axis)
 			
 			if crouching:
 				# Agachado ignora o sprint
@@ -202,6 +221,7 @@ func jump() -> void:
 	jump_buffer = 0
 	jump_coyote_counter = 0
 	velocity.y = jump_speed
+	animation_player.play_animation("jump")
 
 func boosted_jump() -> void:
 	jump_boosted = true

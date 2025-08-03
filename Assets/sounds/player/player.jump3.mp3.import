@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://c3cdgv2hiq43r"
-path="res://.godot/imported/player.jump3.mp3-cb3b54e083a9aa752fbf45c4d42d3240.mp3str"
+uid="uid://bd3q4y8rdjb4t"
+path="res://.godot/imported/player.jump3.mp3-71834d008baccf721c86aadadcc5e3ae.mp3str"
 
 [deps]
 
-source_file="res://Assets/sounds/player/player.jump3.mp3"
-dest_files=["res://.godot/imported/player.jump3.mp3-cb3b54e083a9aa752fbf45c4d42d3240.mp3str"]
+source_file="res://assets/sounds/player/player.jump3.mp3"
+dest_files=["res://.godot/imported/player.jump3.mp3-71834d008baccf721c86aadadcc5e3ae.mp3str"]
 
 [params]
 
