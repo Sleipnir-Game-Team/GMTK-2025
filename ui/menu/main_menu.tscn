@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5cwvqaharjej"]
+[gd_scene load_steps=5 format=3 uid="uid://c5cwvqaharjej"]
 
 [ext_resource type="Script" uid="uid://dpucr8oj7t463" path="res://ui/menu/main_menu.gd" id="1_5p82l"]
+[ext_resource type="FontFile" uid="uid://cu7jcpoku12tc" path="res://ui/fonts/OCR-a___.ttf" id="2_gvx18"]
+[ext_resource type="Theme" uid="uid://btofbsk47r5b3" path="res://ui/Themes/Old_PC_Theme.tres" id="3_4gkdq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yc8k7"]
+font = ExtResource("2_gvx18")
+font_size = 60
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -12,77 +18,70 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5p82l")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 3
+color = Color(0, 0, 0, 1)
 
-[node name="left_blank_space" type="Control" parent="GridContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="content_container" type="VBoxContainer" parent="GridContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
+text = "WHAT DOESN'T KILL YOU..."
+label_settings = SubResource("LabelSettings_yc8k7")
 
-[node name="label_container" type="VBoxContainer" parent="GridContainer/content_container"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="GridContainer/content_container"]
-layout_mode = 2
-theme_override_constants/margin_left = 300
-theme_override_constants/margin_right = 300
-
-[node name="button_container" type="VBoxContainer" parent="GridContainer/content_container/MarginContainer"]
+[node name="button_container" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="play_button" type="Button" parent="GridContainer/content_container/MarginContainer/button_container"]
+[node name="play_button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/button_container"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Jogar"
+size_flags_vertical = 4
+theme = ExtResource("3_4gkdq")
+text = "PLAY"
+alignment = 0
 
-[node name="options_button" type="Button" parent="GridContainer/content_container/MarginContainer/button_container"]
+[node name="options_button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/button_container"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Configuração"
+size_flags_vertical = 4
+theme = ExtResource("3_4gkdq")
+text = "OPTIONS"
+alignment = 0
 
-[node name="credits_button" type="Button" parent="GridContainer/content_container/MarginContainer/button_container"]
+[node name="credits_button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/button_container"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Créditos"
+size_flags_vertical = 4
+theme = ExtResource("3_4gkdq")
+text = "CREDITS"
+alignment = 0
 
-[node name="quit_button" type="Button" parent="GridContainer/content_container/MarginContainer/button_container"]
+[node name="quit_button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/button_container"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Sair"
+size_flags_vertical = 4
+theme = ExtResource("3_4gkdq")
+text = "QUIT"
+alignment = 0
 
-[node name="mid_down_blank_space" type="VBoxContainer" parent="GridContainer/content_container"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="right_blank_space" type="Control" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[connection signal="pressed" from="GridContainer/content_container/MarginContainer/button_container/play_button" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="GridContainer/content_container/MarginContainer/button_container/options_button" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="GridContainer/content_container/MarginContainer/button_container/credits_button" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="GridContainer/content_container/MarginContainer/button_container/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/options_button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/credits_button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/quit_button" to="." method="_on_quit_button_pressed"]
