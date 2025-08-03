@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2y4r1tanyjo"
-path="res://.godot/imported/RUN_LOOP_0002.png-6f70e55bfb0c45e99fbde9ce4e4cf72c.ctex"
+path="res://.godot/imported/RUN_LOOP_0002.png-41545abba617da0e099879e48b303ec8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/G.A.R.U/RUN_LOOP_0002.png"
-dest_files=["res://.godot/imported/RUN_LOOP_0002.png-6f70e55bfb0c45e99fbde9ce4e4cf72c.ctex"]
+source_file="res://assets/G.A.R.U/RUN_LOOP_0002.png"
+dest_files=["res://.godot/imported/RUN_LOOP_0002.png-41545abba617da0e099879e48b303ec8.ctex"]
 
 [params]
 

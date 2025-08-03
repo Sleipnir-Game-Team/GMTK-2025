@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dhethq8p82xi4" path="res://entities/beartrap.gd" id="1_7v1yc"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="1_c130s"]
 [ext_resource type="PackedScene" uid="uid://doqdxweydpikt" path="res://components/damage_area.tscn" id="2_7v1yc"]
-[ext_resource type="AudioStream" uid="uid://cq5ygpdm1s4y6" path="res://assets/sounds/level/level.danger.fire1.mp3" id="4_ti4xe"]
-[ext_resource type="AudioStream" uid="uid://ducpewittkqsm" path="res://assets/sounds/level/level.danger.fire2.mp3" id="5_g43go"]
-[ext_resource type="AudioStream" uid="uid://0aokftfdlcby" path="res://assets/sounds/level/level.danger.fire3.mp3" id="6_6t0l6"]
+[ext_resource type="AudioStream" uid="uid://2qi2vlppg72d" path="res://assets/sounds/level/level.danger.fire1.mp3" id="4_ti4xe"]
+[ext_resource type="AudioStream" uid="uid://cbm0g2dwcy0jh" path="res://assets/sounds/level/level.danger.fire2.mp3" id="5_g43go"]
+[ext_resource type="AudioStream" uid="uid://ddrd4ea7mhlvq" path="res://assets/sounds/level/level.danger.fire3.mp3" id="6_6t0l6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
 size = Vector2(20, 10)

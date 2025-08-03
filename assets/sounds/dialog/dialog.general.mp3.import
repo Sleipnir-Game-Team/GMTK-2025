@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://38oxcl0en6nk"
-path="res://.godot/imported/dialog.general.mp3-a0626e4ab067007164caa7526eb77111.mp3str"
+uid="uid://b2lcoj6w2ga5h"
+path="res://.godot/imported/dialog.general.mp3-152c98cc14550216d9d5b56319c42f7e.mp3str"
 
 [deps]
 
-source_file="res://Assets/sounds/dialog/dialog.general.mp3"
-dest_files=["res://.godot/imported/dialog.general.mp3-a0626e4ab067007164caa7526eb77111.mp3str"]
+source_file="res://assets/sounds/dialog/dialog.general.mp3"
+dest_files=["res://.godot/imported/dialog.general.mp3-152c98cc14550216d9d5b56319c42f7e.mp3str"]
 
 [params]
 
