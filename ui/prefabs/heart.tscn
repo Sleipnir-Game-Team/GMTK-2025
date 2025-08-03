@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://buj6wxi7u46if"]
+
+[ext_resource type="Texture2D" uid="uid://cbg2n40m1lqa" path="res://Assets/Bola_de_gas.png" id="1_fjv32"]
+
+[node name="Health_Bar" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart1" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_fjv32")
+expand_mode = 3
+
+[node name="Heart2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_fjv32")
+expand_mode = 3
+
+[node name="Heart3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_fjv32")
+expand_mode = 3

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bpokmbhp0ibkt"
-path="res://.godot/imported/ui.button.hover5.mp3-418280f186eb1624c14071dcd97b59a1.mp3str"
+path="res://.godot/imported/ui.button.hover5.mp3-970510e4b3215ed94d055068464da9ed.mp3str"
 
 [deps]
 
-source_file="res://assets/sounds/ui/ui.button.hover5.mp3"
-dest_files=["res://.godot/imported/ui.button.hover5.mp3-418280f186eb1624c14071dcd97b59a1.mp3str"]
+source_file="res://Assets/sounds/ui/ui.button.hover5.mp3"
+dest_files=["res://.godot/imported/ui.button.hover5.mp3-970510e4b3215ed94d055068464da9ed.mp3str"]
 
 [params]
 
