@@ -48,11 +48,27 @@ var origin_root: Node = null
 var origin_state: Dictionary[String, Node] = {}
 
 ## Quantidade de resets ocorridos
-var rewind_count: int = 0
+var rewind_count: int = 0:
+	set(value):
+		rewind_count = value
+		# ATTENTION DEVS, melhorar por favor
+		if value > 5 && value < 10: 
+			world_state = 1 # neutro
+		elif value > 10:              
+			world_state = 2 # fudido
+		else:
+			world_state = 0 # deboa
+	get:
+		return rewind_count
+
+## Estado do Mundo, para facilitar audio e visual
+var world_state: int = 0
 
 ## Vetor auxiliar para reaplicar efeitos de itens permanentes no jogador depois dele ser resetado.
 var buff_capsule: Array[String] = []
 var _all_buffs: Array[String] = []
+
+
 
 func _ready() -> void:
 	# Só processa quando pausado

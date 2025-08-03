@@ -174,7 +174,6 @@ func _physics_process(delta: float) -> void:
 	if not _dashing():
 		# Direção do Input do usuário
 		var input_axis := Input.get_axis("player_left", "player_right")
-		
 		var just_arrived = jump_coyote_counter < jump_coyote_time
 		if is_on_floor():
 			if input_axis != 0 and (animation_player.current_animation == "idle" or just_arrived):

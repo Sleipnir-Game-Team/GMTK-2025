@@ -7,24 +7,28 @@ var actions: Array = []
 
 func _ready():
 	UI_Controller.manage_cutscene_screen.connect(manage_scene)
-	onSceneRequest()
+	SceneRequest()
 
 func manage_scene(action: Dictionary) -> void:
 	match action.type:
 		"img":
 			updateCutsceneImg(action.url)
-			onSceneRequest()
+			SceneRequest()
 		"txt":
 			updateCutsceneTxt(action.text)
-			onSceneRequest()
+			SceneRequest()
 		"wait":
 			pass
 		"end":
 			UI_Controller.freeScreen()
+			UI_Controller.scene_end.emit()
 
 
-func onSceneRequest() -> void:
+func SceneRequest() -> void:
 	UI_Controller.scene_request.emit()
+	
+func SceneEnd() -> void:
+	UI_Controller.scene_end.emit()
 
 func updateCutsceneImg(image: String) -> void:
 	%scene_image.texture = load(image)
@@ -35,4 +39,4 @@ func updateCutsceneTxt(text: String) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventKey:
 		if event.is_pressed():
-			onSceneRequest()
+			SceneRequest()

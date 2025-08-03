@@ -4,6 +4,8 @@ enum masks{
 	PLAYER_MASK = 1
 }
 
+var cutscene = []
+
 ## Quantas camadas de pause tem
 ##  0 - O jogo não está pausado
 ## +1 - O jogo está pausado por essa quantidade de fontes
@@ -35,6 +37,10 @@ func win_game() -> void:
 func game_over() -> void:
 	UI_Controller.changeScreen("res://ui/menu/game_over_menu.tscn", get_tree().root)
 
+func _input(event):
+	if event is InputEventKey and event.is_pressed():
+		if event.is_action("ui_accept"):
+			progress_cutscene()
 
 func save_game(buffs: Array[String]) -> void:
 	var save_file := FileAccess.open("user://savegame.save", FileAccess.WRITE)
@@ -64,7 +70,40 @@ func load_game() -> void:
 			inventory.add_child(saved)
 
 func start_game() -> void:
-	UI_Controller.changeScreen("res://main.tscn", get_tree().root)
+	UI_Controller.scene_end.connect(
+		UI_Controller.openScreen.bind("res://main.tscn", get_tree().root)
+		, ConnectFlags.CONNECT_ONE_SHOT)
+	cutscene = [
+		{"type": "txt", "text": "A.R.C.A. is a lab that uses atomic power to make all kinds of machinery"},
+		{"type": "img", "url": "res://assets/Art assets/INTRO_1.jpg"},
+		{"type": "wait"},
+		{"type": "txt", "text": "Everything that doesn't work there is quickly trown into a dumpster"},
+		{"type": "img", "url": "res://assets/Art assets/INTRO_2.jpg"},
+		{"type": "wait"},
+		{"type": "txt", "text": "Except that when they threw a time machine, the radiation made it work, but not in the intended way"},
+		{"type": "img", "url": "res://assets/Art assets/INTRO_3.jpg"},
+		{"type": "wait"},
+		{"type": "txt", "text": "It teared repeatedly the fabric of time and turned the dumpster into a death room"},
+		{"type": "wait"},
+		{"type": "txt", "text": "The only one that can withstand the machine's radiation and save everyone is G.A.R.U."},
+		{"type": "img", "url": "res://assets/Art assets/INTRO_4.jpg"},
+		{"type": "wait"},
+		{"type": "txt", "text": "Who is determined to complete any given mission."},
+		{"type": "wait"},
+		{"type": "end"},
+	]
+	UI_Controller.freeScreen()
+	run_cutscene()
+	
+func run_cutscene():
+	UI_Controller.processAction("cutscene")
+	UI_Controller.scene_request.connect(progress_cutscene)
+	progress_cutscene()
+
+func progress_cutscene():
+	var action = cutscene.pop_front()
+	print(action)
+	UI_Controller.manage_cutscene_screen.emit(action)
 
 ## Tenta carregar um save, se houver
 func start_or_load_game() -> void:

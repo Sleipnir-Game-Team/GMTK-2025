@@ -8,6 +8,7 @@ signal dialogue_request
 
 signal manage_cutscene_screen
 signal scene_request
+signal scene_end
 
 signal select_augment
 signal discard_augment

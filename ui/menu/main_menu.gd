@@ -6,6 +6,14 @@ func _ready() -> void:
 	else:
 		SleipnirMaestro.load_song("menu",false,0,false)
 		SleipnirMaestro.play()
+	
+	if FileAccess.file_exists("user://savegame.save"):
+		$CanvasLayer/MarginContainer/Save.visible = true
+		$CanvasLayer/MarginContainer/NoSave.visible = false
+	else:
+		$CanvasLayer/MarginContainer/Save.visible = false
+		$CanvasLayer/MarginContainer/NoSave.visible = true
+	
 	UI_Controller.stack.screens.append(self)
 
 

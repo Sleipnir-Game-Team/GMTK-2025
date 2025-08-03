@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1ile2edthh5v"
-path="res://.godot/imported/CROUCH_0003.png-c87b41ed3eb0892e68a974063a32d5cb.ctex"
+uid="uid://c0m4pgkqv5npu"
+path="res://.godot/imported/INTRO_4.jpg-526fd95f6626701637ea65fae6941c7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/G.A.R.U/CROUCH_0003.png"
-dest_files=["res://.godot/imported/CROUCH_0003.png-c87b41ed3eb0892e68a974063a32d5cb.ctex"]
+source_file="res://assets/Art assets/INTRO_4.jpg"
+dest_files=["res://.godot/imported/INTRO_4.jpg-526fd95f6626701637ea65fae6941c7b.ctex"]
 
 [params]
 

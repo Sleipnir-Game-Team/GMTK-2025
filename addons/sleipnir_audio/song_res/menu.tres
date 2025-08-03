@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="SongData" load_steps=5 format=3 uid="uid://bt240gen11rye"]
 
-[ext_resource type="AudioStream" uid="uid://bbhs06677t6p6" path="res://Assets/music/menu/menu_intro.mp3" id="1_5eky4"]
+[ext_resource type="AudioStream" uid="uid://dwxio4mule0gs" path="res://assets/music/menu/menu_intro.mp3" id="1_5eky4"]
 [ext_resource type="Script" uid="uid://dogxqur5hw3mf" path="res://addons/sleipnir_audio/music/maestro_core/song_data.gd" id="1_jksiw"]
-[ext_resource type="AudioStream" uid="uid://cnv7bdfjjqcj2" path="res://Assets/music/menu/menu_loop.mp3" id="2_b5qsc"]
+[ext_resource type="AudioStream" uid="uid://ck6hbhnibnn2w" path="res://assets/music/menu/menu_loop.mp3" id="2_b5qsc"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jksiw"]
 clip_count = 2
