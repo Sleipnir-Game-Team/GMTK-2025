@@ -2,11 +2,11 @@ extends Node
 
 
 func _ready() -> void:
-	match SleipnirMaestro.load_song("level",true):
-		OK:
-			pass
-		_:
-			pass
+	#match SleipnirMaestro.load_song("level",true):
+		#OK:
+			#pass
+		#_:
+			#pass
 	TimeWizard.snapshot(self)
 
 func _enter_tree() -> void:
