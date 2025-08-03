@@ -22,4 +22,3 @@ func heal(target: Node, dealer: Node, ammount: int) -> void:
 func add_hp(target: Node, _source, ammount: int) -> void:
 	GameManager.find_node("Life", target).max_life += ammount
 	GameManager.find_node("Life", target).entity_life += ammount
-	

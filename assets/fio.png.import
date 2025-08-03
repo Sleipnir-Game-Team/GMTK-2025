@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpq0wggjtjnwj"
-path="res://.godot/imported/fio.png-c904c0000298c75b480dff98035634a1.ctex"
+path="res://.godot/imported/fio.png-f1f8c829c5efd510e33766361c46ca5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/fio.png"
-dest_files=["res://.godot/imported/fio.png-c904c0000298c75b480dff98035634a1.ctex"]
+source_file="res://assets/fio.png"
+dest_files=["res://.godot/imported/fio.png-f1f8c829c5efd510e33766361c46ca5c.ctex"]
 
 [params]
 

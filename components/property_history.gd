@@ -9,11 +9,16 @@ class_name PropertyHistory
 ## { node: Node, subpath: NodePath, abs_key: NodePath }
 var _targets: Array[Dictionary] = []
 
+var _time_acummulator: float = 0
+
 func _ready() -> void:
 	_build_targets()
-	print(_targets)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	_time_acummulator += delta
+	if _time_acummulator < 1 / TimeWizard.SAMPLE_HZ:
+		return
+	_time_acummulator -= delta
 	for t in _targets:
 		var node: Node = t.node
 		if node:

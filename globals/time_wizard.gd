@@ -8,12 +8,21 @@ const HISTORY_SECONDS: int = 30
 ## Quantos ticks são salvos por segundo (60 = Engine.physics_ticks_per_second)
 const SAMPLE_HZ: int = 60
 
+## O rewind é sempre pelo menos essa constante vezes mais rápido que o jogo normal
+const MIN_REWIND_MULTIPLIER: float = 1.5
+
 ## Flag se está voltando o historico ou não
 var _rewinding: bool = false
 
-
 ## Quantidade máxima de ticks no histórico
 var _max_samples: int = HISTORY_SECONDS * SAMPLE_HZ
+
+## Quantos frames usar por tick de rewind (1 = velocidade normal)
+var _rewind_speed: float = 1.5
+var _tick_budget: float = 0.0
+var _use_duration: bool = false
+var _duration_clamped: bool = false
+var _rewind_deadline_msec: int = 0
 
 ## Histórico global.
 ## Cada elemento é um dicionário representando um tick do histórico.
@@ -54,35 +63,65 @@ func _ready() -> void:
 	
 	rewind_finished.connect(_on_rewind_finished)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not _rewinding:
 		return
 	
-	# Rewind acabou
 	if _count <= 0:
-		_rewinding = false
-		rewind_finished.emit()
+		_finish_rewind()
 		return
 	
-	# Aplica o tick mais recente
-	var step: Dictionary = _samples[_write_index]
-	if step != null:
-		for key: NodePath in step:
-			var result := get_node_and_resource(key)
-			var node: Node = result[0]
-			var property_path: NodePath = result[2]
-			
-			if node and property_path != ^"":
-				node.set_indexed(property_path, step[key])
+	if _use_duration and not _duration_clamped:
+		_rewind_speed = _speed_to_hit_deadline()
 	
-	_samples[_write_index] = null
-	_write_index = (_write_index - 1 + _max_samples) % _max_samples
-	_count -= 1
+	_tick_budget += _rewind_speed
+	
+	var ticks := int(_tick_budget)
+	if ticks <= 0:
+		return
+	if ticks > _count:
+		ticks = _count
+	
+	var final_index := (_write_index - (ticks - 1) + _max_samples) % _max_samples
+	_apply_history_tick(final_index)
+	
+	for i in range(ticks):
+		var idx := (_write_index - i + _max_samples) % _max_samples
+		_samples[idx] = null
+	
+	_write_index = (_write_index - ticks + _max_samples) % _max_samples
+	_count -= ticks
+	_tick_budget -= float(ticks)
+
 
 #region REWIND (tick-por-tick)
-func rewind() -> void:
+func rewind(time_to_rewind: float = -1.0) -> void:
 	GameManager.pause()
 	_rewinding = true
+	_tick_budget = 0.0
+	_use_duration = false
+	_duration_clamped = false
+
+	if time_to_rewind > 0.0 and _count > 0:
+		var physics_hz := float(Engine.physics_ticks_per_second)
+		var desired_tpf := float(_count) / time_to_rewind / physics_hz
+		var min_tpf := _min_ticks_per_frame()
+	
+		_duration_clamped = desired_tpf < min_tpf
+		_rewind_speed = max(desired_tpf, min_tpf)
+	
+		_use_duration = not _duration_clamped
+		_rewind_deadline_msec = Time.get_ticks_msec() + int(time_to_rewind * 1000.0)
+
+	print(Time.get_ticks_msec() / 1000.0)
+
+func _finish_rewind() -> void:
+	_rewinding = false
+	_tick_budget = 0.0
+	_use_duration = false
+	_duration_clamped = false
+	print(Time.get_ticks_msec() / 1000.0)
+	rewind_finished.emit()
 
 ## Cada nó "PropertyHistory" chama essa função para salvar seus dados na historia global.
 ## Usamos um único dicionário por physics_frame, mesmo que a função seja chamada múltipla vezes.
@@ -101,6 +140,37 @@ func add_sample(prop_path: NodePath, value: Variant) -> void:
 func _on_rewind_finished() -> void:
 	restore()
 	GameManager.resume()
+
+func _apply_history_tick(index: int) -> void:
+	# Apenas aplica (sem mexer em índices/contadores)
+	var step: Dictionary = _samples[index]
+	if step != null:
+		for key: NodePath in step:
+			var result := get_node_and_resource(key)
+			var node: Node = result[0]
+			var property_path: NodePath = result[2]
+			if node and property_path != ^"":
+				node.set_indexed(property_path, step[key])
+#endregion
+
+#region REWIND TIMING
+func _baseline_ticks_per_frame() -> float:
+	# 1× playback = samples consumed at the rate they were recorded
+	return float(SAMPLE_HZ) / float(Engine.physics_ticks_per_second)
+
+func _min_ticks_per_frame() -> float:
+	return MIN_REWIND_MULTIPLIER * _baseline_ticks_per_frame()
+
+func _speed_to_hit_deadline() -> float:
+	var ms_left := _rewind_deadline_msec - Time.get_ticks_msec()
+	if ms_left <= 0:
+		# We’re late: finish this frame.
+		return 1e9
+	var seconds_left := float(ms_left) / 1000.0
+	var physics_hz := float(Engine.physics_ticks_per_second)
+	var desired_tpf := float(_count) / seconds_left / physics_hz
+	return max(desired_tpf, _min_ticks_per_frame())
+
 #endregion
 
 #region SNAPSHOT/RESTORE (reset imediato)

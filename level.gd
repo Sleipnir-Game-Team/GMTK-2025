@@ -13,4 +13,4 @@ func _child_added(child: Node) -> void:
 		print("Child has been added, connecting rewind")
 		child.start()
 		print(child.time_left)
-		child.timeout.connect(TimeWizard.rewind)
+		child.timeout.connect(TimeWizard.rewind.bind(5))
