@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://g7nk3ny77pb5"
-path="res://.godot/imported/level.danger.radioactive.loop.mp3-b7c3e9dc71103b7b94ac4d61b8e3caec.mp3str"
+path="res://.godot/imported/level.danger.radioactive.loop.mp3-fdcb3945b646de1b645ebb5733198596.mp3str"
 
 [deps]
 
-source_file="res://Assets/sounds/level/level.danger.radioactive.loop.mp3"
-dest_files=["res://.godot/imported/level.danger.radioactive.loop.mp3-b7c3e9dc71103b7b94ac4d61b8e3caec.mp3str"]
+source_file="res://assets/sounds/level/level.danger.radioactive.loop.mp3"
+dest_files=["res://.godot/imported/level.danger.radioactive.loop.mp3-fdcb3945b646de1b645ebb5733198596.mp3str"]
 
 [params]
 

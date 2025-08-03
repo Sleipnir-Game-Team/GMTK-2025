@@ -8,6 +8,58 @@ enum masks{
 
 var cutscene = []
 
+var tutorial = [
+		{"type": "name", "content": "Dr. Macedo"},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Macedo_1.png"},
+		{"type": "txt", "content": "I see that you coudn't get there yet"},
+		{"type": "wait"},
+		{"type": "name", "content": "G.A.R.U."},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Garu_sad.png"},
+		{"type": "txt", "content": "Garu...."},
+		{"type": "wait"},
+		{"type": "name", "content": "Dr. Macedo"},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Macedo_2.png"},
+		{"type": "txt", "content": "No need for sorry, we already predicted that your mission would be turbulent at best"},
+		{"type": "wait"},
+		{"type": "txt", "content": "Dr. Marocas worked in some improvement discs, it could assist you"},
+		{"type": "wait"},
+		{"type": "name", "content": "G.A.R.U."},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Garu_salute.png"},
+		{"type": "txt", "content": "Garu!!"},
+		{"type": "wait"},
+		{"type": "name", "content": "Dr. Macedo"},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Macedo_1.png"},
+		{"type": "txt", "content": "Finishing the discs is a hard work that takes time, thing that we don't have much"},
+		{"type": "wait"},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Macedo_2.png"},
+		{"type": "txt", "content": "So we will prepare some discs and let you decide which we finish"},
+		{"type": "wait"},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Macedo_3.png"},
+		{"type": "txt", "content": "The other ones we will keep working on for future repetitions"},
+		{"type": "wait"},
+		{"type": "name", "content": "G.A.R.U."},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Garu_sad.png"},
+		{"type": "txt", "content": "Garu?"},
+		{"type": "wait"},
+		{"type": "name", "content": "Dr. Macedo"},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Macedo_3.png"},
+		{"type": "txt", "content": "If you think some discs are useless you can just tell us and we will trash him and start working on another"},
+		{"type": "wait"},
+		{"type": "name", "content": "G.A.R.U."},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Garu_ok.png"},
+		{"type": "txt", "content": "Garu"},
+		{"type": "wait"},
+		{"type": "name", "content": "Dr. Macedo"},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Macedo_3.png"},
+		{"type": "txt", "content": "Okay, but choose fast, remember time is of the essence"},
+		{"type": "wait"},
+		{"type": "name", "content": "G.A.R.U."},
+		{"type": "img", "content": "res://assets/Dialogue/Png/Garu_salute.png"},
+		{"type": "txt", "content": "Garu!!!"},
+		{"type": "wait"},
+		{"type": "end"}
+	]
+
 ## Quantas camadas de pause tem
 ##  0 - O jogo não está pausado
 ## +1 - O jogo está pausado por essa quantidade de fontes
@@ -118,6 +170,18 @@ func start_run():
 			var chosen_pos := rng.randi_range(0, lista.size()-1)
 			chosen.append(lista.pop_at(chosen_pos))
 		UI_Controller.processAction("augment", chosen)
+		if TimeWizard.rewind_count == 1:
+			var tutorial_copy = tutorial
+			UI_Controller.dialogue_end.connect(GameManager.resume)
+			UI_Controller.dialogue_request.connect(progress_dialogue)
+			UI_Controller.processAction("dialogue")
+			
+
+
+func progress_dialogue():
+	var action = tutorial.pop_front()
+	UI_Controller.manage_dialogue_box.emit(action)
+
 
 ## Tenta carregar um save, se houver
 func start_or_load_game() -> void:

@@ -5,6 +5,7 @@ var pause_menu_on: bool = false
 
 signal manage_dialogue_box
 signal dialogue_request
+signal dialogue_end
 
 signal manage_cutscene_screen
 signal scene_request

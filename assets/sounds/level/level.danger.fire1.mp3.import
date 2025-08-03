@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://2qi2vlppg72d"
-path="res://.godot/imported/level.danger.fire1.mp3-519115fabe3c8088392297c4cd02cb69.mp3str"
+path="res://.godot/imported/level.danger.fire1.mp3-3549693c7e2a0f1a8dc1c76082b19a4f.mp3str"
 
 [deps]
 
-source_file="res://Assets/sounds/level/level.danger.fire1.mp3"
-dest_files=["res://.godot/imported/level.danger.fire1.mp3-519115fabe3c8088392297c4cd02cb69.mp3str"]
+source_file="res://assets/sounds/level/level.danger.fire1.mp3"
+dest_files=["res://.godot/imported/level.danger.fire1.mp3-3549693c7e2a0f1a8dc1c76082b19a4f.mp3str"]
 
 [params]
 

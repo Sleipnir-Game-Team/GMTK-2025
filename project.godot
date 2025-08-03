@@ -22,15 +22,15 @@ config/size/mode=3
 GameManager="*res://globals/game_manager.gd"
 Logger="*res://addons/log_and_error/logger.gd"
 UI_Controller="*res://ui/controller/ui_controller.gd"
-Game_Manager="*res://globals/game_manager.gd"
 Config_Handler="*res://globals/config_handler.gd"
 JsonHandler="*res://globals/json_handler.gd"
-Effects="*res://globals/effects.gd"
-ItemsList="*res://globals/item_list.gd"
 SfxGlobals="*res://addons/sleipnir_audio/sfx/sfx_globals.tscn"
 AudioManager="*res://addons/sleipnir_audio/manager/audio_manager.gd"
 SleipnirMaestro="*res://addons/sleipnir_audio/music/sleipnir_maestro.tscn"
+Effects="*res://globals/effects.gd"
+ItemsList="*res://globals/item_list.gd"
 TimeWizard="*res://globals/time_wizard.gd"
+Game_Manager="*res://globals/game_manager.gd"
 
 [debug]
 

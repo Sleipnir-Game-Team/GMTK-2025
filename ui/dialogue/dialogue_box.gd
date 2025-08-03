@@ -36,6 +36,7 @@ func manage_dialogue(action: Dictionary) -> void:
 			pass
 		"end":
 			UI_Controller.freeScreen()
+			UI_Controller.dialogue_end.emit()
 
 func on_dialogue_request() -> void:
 	UI_Controller.dialogue_request.emit()
@@ -52,7 +53,8 @@ func _input(event: InputEvent) -> void:
 			on_dialogue_request()
 
 func write_speech(text: String) -> void:
-	speech = text.substr(0, len(speech) + 1)
-	%speech.text = speech
-	if %speech.text == text:
-		timer.timeout.disconnect(write_speech)
+	%speech.text = text
+	#.substr(0, len(speech) + 1)
+	#%speech.text = speech
+	#if %speech.text == text:
+		#timer.timeout.disconnect(write_speech)

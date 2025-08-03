@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dholaxat88igv"
-path="res://.godot/imported/player.dash4.mp3-a1c19fe068225206efc2a0ce4e93f945.mp3str"
+path="res://.godot/imported/player.dash4.mp3-7cd694627edfbf5506e8e46ee968fdaf.mp3str"
 
 [deps]
 
-source_file="res://Assets/sounds/player/player.dash4.mp3"
-dest_files=["res://.godot/imported/player.dash4.mp3-a1c19fe068225206efc2a0ce4e93f945.mp3str"]
+source_file="res://assets/sounds/player/player.dash4.mp3"
+dest_files=["res://.godot/imported/player.dash4.mp3-7cd694627edfbf5506e8e46ee968fdaf.mp3str"]
 
 [params]
 

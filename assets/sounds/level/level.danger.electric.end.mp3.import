@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://1wkauq2b37wy"
-path="res://.godot/imported/level.danger.electric.end.mp3-fae3bf949b567dd01dc8f116a619f270.mp3str"
+path="res://.godot/imported/level.danger.electric.end.mp3-fa77e9954afab2df8965fa96b98cd0ae.mp3str"
 
 [deps]
 
-source_file="res://Assets/sounds/level/level.danger.electric.end.mp3"
-dest_files=["res://.godot/imported/level.danger.electric.end.mp3-fae3bf949b567dd01dc8f116a619f270.mp3str"]
+source_file="res://assets/sounds/level/level.danger.electric.end.mp3"
+dest_files=["res://.godot/imported/level.danger.electric.end.mp3-fa77e9954afab2df8965fa96b98cd0ae.mp3str"]
 
 [params]
 
