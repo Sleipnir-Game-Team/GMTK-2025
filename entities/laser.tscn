@@ -1,10 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvgcvqwsxaxky"]
+[gd_scene load_steps=8 format=3 uid="uid://cvgcvqwsxaxky"]
 
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="1_byvr5"]
 [ext_resource type="Script" uid="uid://blcpq5ywbr1ce" path="res://entities/laser.gd" id="1_pwb0i"]
 [ext_resource type="PackedScene" uid="uid://doqdxweydpikt" path="res://components/damage_area.tscn" id="2_pwb0i"]
+[ext_resource type="AudioStream" uid="uid://c8km4wq4icqx" path="res://assets/sounds/level/level.danger.electric.loop.mp3" id="4_fgm52"]
+[ext_resource type="AudioStream" uid="uid://1wkauq2b37wy" path="res://assets/sounds/level/level.danger.electric.end.mp3" id="5_0udvh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sbgf"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_odv88"]
+clip_count = 2
+clip_0/name = &"loop"
+clip_0/stream = ExtResource("4_fgm52")
+clip_0/auto_advance = 0
+clip_1/name = &"end"
+clip_1/stream = ExtResource("5_0udvh")
+clip_1/auto_advance = 0
 
 [node name="Laser" type="Area2D"]
 script = ExtResource("1_pwb0i")
@@ -26,4 +37,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="lightning" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamInteractive_odv88")
+max_distance = 100.0
 bus = &"sfx"
