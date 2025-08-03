@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq1fgaqo2cobd"
-path="res://.godot/imported/Powerup2_normal.png-f2b06f86eefdbf8b6e5735b0e4b23cdd.ctex"
+uid="uid://cdacsvf6rxrfb"
+path="res://.godot/imported/Powerup2_normal.png-dd4d3c70fcecfcd98045554206d0637c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Art assets/Powerup2_normal.png"
-dest_files=["res://.godot/imported/Powerup2_normal.png-f2b06f86eefdbf8b6e5735b0e4b23cdd.ctex"]
+source_file="res://Assets/Art assets/Powerup2_normal.png"
+dest_files=["res://.godot/imported/Powerup2_normal.png-dd4d3c70fcecfcd98045554206d0637c.ctex"]
 
 [params]
 

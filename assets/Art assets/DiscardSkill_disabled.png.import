@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsr1ofi3okun1"
-path="res://.godot/imported/DiscardSkill_disabled.png-cbac5d647fdb4f068647032f2fe58200.ctex"
+uid="uid://cthd27y4e6g8n"
+path="res://.godot/imported/DiscardSkill_disabled.png-fea21304899f4f6be10cc809fc2382ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Art assets/DiscardSkill_disabled.png"
-dest_files=["res://.godot/imported/DiscardSkill_disabled.png-cbac5d647fdb4f068647032f2fe58200.ctex"]
+source_file="res://Assets/Art assets/DiscardSkill_disabled.png"
+dest_files=["res://.godot/imported/DiscardSkill_disabled.png-fea21304899f4f6be10cc809fc2382ff.ctex"]
 
 [params]
 

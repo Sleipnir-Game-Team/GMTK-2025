@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://slmbu5lp2tkp"
-path="res://.godot/imported/level.danger.radioactive.end.mp3-bc76425189385c26f90f7d4db4a8ecc9.mp3str"
+uid="uid://dnotp41qv0dxf"
+path="res://.godot/imported/level.danger.radioactive.end.mp3-329d338f91ce624f99fa28fedf003c6f.mp3str"
 
 [deps]
 
-source_file="res://assets/sounds/level/level.danger.radioactive.end.mp3"
-dest_files=["res://.godot/imported/level.danger.radioactive.end.mp3-bc76425189385c26f90f7d4db4a8ecc9.mp3str"]
+source_file="res://Assets/sounds/level/level.danger.radioactive.end.mp3"
+dest_files=["res://.godot/imported/level.danger.radioactive.end.mp3-329d338f91ce624f99fa28fedf003c6f.mp3str"]
 
 [params]
 
