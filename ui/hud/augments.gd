@@ -1,6 +1,6 @@
 extends Control
 
-@onready var Augment_Left: TextureButton = get_node("%Augment_Left")
+@onready var Augment_Left: TextureButton = $CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container/Augment_Left
 @onready var Augment_Middle: TextureButton = get_node("%Augment_Middle")
 @onready var Augment_Right: TextureButton = get_node("%Augment_Right")
 @onready var Discard_Button_Left: TextureButton = get_node("%Discard_Button_Left")
@@ -15,15 +15,22 @@ extends Control
 var chosen_aguments: Array
 var button_augment_sprites: Array
 var button_labels: Array
-var button_descriptions
+var button_descriptions: Array
 var discarded_aguments: Array
 
 func _ready():
+	Augment_Left.pressed.connect(_on_augment_left_pressed)
+	Augment_Middle.pressed.connect(_on_augment_middle_pressed)
+	
 	button_augment_sprites = [Augment_Left, Augment_Middle, Augment_Right]
 	button_labels = [Augment_Left_Label, Augment_Middle_Label, Augment_Right_Label]
 	button_descriptions = [Augment_Left_Description, Augment_Middle_Description, Augment_Right_Description]
 	place_aguments()
 	
+	
+func teste():
+	print("teste")
+
 func _process(delta):
 	if discarded_aguments.size() == 3:
 		UI_Controller.freeScreen()

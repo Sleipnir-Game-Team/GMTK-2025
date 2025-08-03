@@ -1,6 +1,7 @@
 extends Control
 
 @onready var health_bar: HBoxContainer = get_node("%Health_Bar")
+@onready var inventory: HBoxContainer = get_node("%inventory")
 var max_health
 var current_life
 
@@ -33,8 +34,20 @@ func hurt_life(dealer, value) -> void:
 		if value <= health_bar.get_child_count():
 			health_bar.get_children()[-1].queue_free()
 
-func place_item(item):
+func place_item(item, slot_name):
 	var item_box = VBoxContainer.new()
 	var item_label = Label.new()
-	var item_key = item.key
-	var item_sprite = item.sprite
+	var item_sprite = TextureRect.new()
+	var item_key = Label.new()
+	item_label.theme = load("res://ui/Themes/Old_PC_Theme.tres")
+	item_label.text = item.name
+	#item_sprite.texture = item.sprite
+	item_key.text = slot_name
+	print("label: ", item_label.text)
+	print("key: ", item_key.text)
+	item_box.add_child(item_label)
+	#item_box.add_child(item_sprite)
+	item_box.add_child(item_key)
+	inventory.add_child(item_box)
+	
+	

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csbw7ybn8cbf8"
-path="res://.godot/imported/incinerator.png-db19f5ce4def71ff7bc36d08dd78d583.ctex"
+path="res://.godot/imported/incinerator.png-412164c69e839ecc71b5aa3f4d65c3db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/incinerator.png"
-dest_files=["res://.godot/imported/incinerator.png-db19f5ce4def71ff7bc36d08dd78d583.ctex"]
+source_file="res://Assets/incinerator.png"
+dest_files=["res://.godot/imported/incinerator.png-412164c69e839ecc71b5aa3f4d65c3db.ctex"]
 
 [params]
 

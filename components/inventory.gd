@@ -35,10 +35,11 @@ func switch(slotNumber1: int, slotNumber2: int) -> void:
 	node2.name = first
 	node1.name = second
 
-func replace(slotNumber: int, item: Item) -> void:
+func replace(slotNumber: int, item) -> void:
 	var new_name := str(slotNumber)
 	var target: Node = get_node(new_name)
 	item.name = new_name
+	inventory_place_button.emit(item, str(slotNumber))
 	target.replace_by(item)
 
 func trigger_buffs(buff_capsule: Array[String]) -> void:
@@ -47,7 +48,6 @@ func trigger_buffs(buff_capsule: Array[String]) -> void:
 		var item := Permanente.new()
 		item.add_to_group("rewind_prone")
 		item.script = buff_script
-		inventory_place_button.emit(item)
 		add_child(item)
 
 func _input(event: InputEvent) -> void:

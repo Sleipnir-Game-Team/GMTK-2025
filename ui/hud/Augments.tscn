@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" uid="uid://c7hegiwxdjvxg" path="res://ui/hud/augments.gd" id="1_xya57"]
 [ext_resource type="Theme" uid="uid://btofbsk47r5b3" path="res://ui/Themes/Old_PC_Theme.tres" id="2_n4pts"]
-[ext_resource type="Texture2D" uid="uid://ictdsskxpq1b" path="res://assets/Art assets/DiscardSkill_Normal.png" id="3_vhtfr"]
-[ext_resource type="Texture2D" uid="uid://b0f336inwi5sb" path="res://assets/Art assets/DiscardSkill_Pressed.png" id="4_7c40p"]
-[ext_resource type="Texture2D" uid="uid://bmo1yi033bld" path="res://assets/Art assets/DiscardSkill_Hover.png" id="5_7qdqc"]
-[ext_resource type="Texture2D" uid="uid://cnf7sf6uajknk" path="res://assets/Art assets/DiscardSkill_disabled.png" id="7_7c40p"]
+[ext_resource type="Texture2D" uid="uid://ictdsskxpq1b" path="res://Assets/Art assets/DiscardSkill_Normal.png" id="3_vhtfr"]
+[ext_resource type="Texture2D" uid="uid://b0f336inwi5sb" path="res://Assets/Art assets/DiscardSkill_Pressed.png" id="4_7c40p"]
+[ext_resource type="Texture2D" uid="uid://bmo1yi033bld" path="res://Assets/Art assets/DiscardSkill_Hover.png" id="5_7qdqc"]
+[ext_resource type="Texture2D" uid="uid://cnf7sf6uajknk" path="res://Assets/Art assets/DiscardSkill_disabled.png" id="7_7c40p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a6qov"]
 font_size = 50
 
 [node name="Augments" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,6 +114,7 @@ stretch_mode = 5
 [node name="Augment_Left_Description" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
+autowrap_mode = 3
 
 [node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container"]
 custom_minimum_size = Vector2(0, 100)
@@ -181,6 +183,7 @@ stretch_mode = 5
 [node name="Augment_Middle_Description" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
+autowrap_mode = 3
 
 [node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container"]
 custom_minimum_size = Vector2(0, 100)
@@ -249,6 +252,7 @@ stretch_mode = 5
 [node name="Augment_Right_Description" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
+autowrap_mode = 3
 
 [node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container"]
 custom_minimum_size = Vector2(0, 100)
@@ -295,6 +299,7 @@ text = "PASS"
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
+[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container/Augment_Left" to="." method="teste"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container/Augment_Left" to="." method="_on_augment_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container/Control/Discard_Button_Left" to="." method="_on_discard_button_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container/Augment_Middle" to="." method="_on_augment_middle_pressed"]

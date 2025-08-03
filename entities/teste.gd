@@ -32,7 +32,7 @@ func _input(event: InputEvent) -> void:
 				chosen = []
 				for i in range(3):
 					var chosen_pos := rng.randi_range(0, lista.size()-1)
-					chosen.append(lista.pop_at(chosen_pos))
+					chosen.append(lista.pop_at(chosen_pos).script)
 				type = Ativo
 			KEY_I:
 				var lista := ItemsList.consumivel.duplicate()
