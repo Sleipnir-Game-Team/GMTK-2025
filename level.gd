@@ -19,3 +19,5 @@ func _child_added(child: Node) -> void:
 		print("Child has been added, connecting rewind")
 		child.start()
 		child.timeout.connect(rewind_invocation)
+	elif child.name == "Player":
+		GameManager.find_node("Life", child).death.connect(rewind_invocation)

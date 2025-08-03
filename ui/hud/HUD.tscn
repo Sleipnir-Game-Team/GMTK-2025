@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbi5oq1h8iiaf"]
 
 [ext_resource type="Script" uid="uid://cgtjko8vmjiwl" path="res://ui/hud/hud.gd" id="1_t580i"]
-[ext_resource type="Texture2D" uid="uid://dghaorf4kk8i3" path="res://Assets/Bola_de_gas.png" id="2_fdx20"]
+[ext_resource type="Texture2D" uid="uid://ch1elobny46ax" path="res://Assets/Bola_de_gas.png" id="2_fdx20"]
 
 [sub_resource type="Theme" id="Theme_nknrp"]
 
