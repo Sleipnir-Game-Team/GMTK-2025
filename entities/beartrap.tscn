@@ -50,3 +50,4 @@ one_shot = true
 
 [node name="flame" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_1xtoy")
+max_distance = 100.0
