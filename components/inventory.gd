@@ -1,5 +1,7 @@
 extends Node
 
+signal inventory_place_button
+
 func _ready() -> void:
 	var current_buff_capsule := TimeWizard.load_buff()
 	trigger_buffs(current_buff_capsule)
@@ -45,6 +47,7 @@ func trigger_buffs(buff_capsule: Array[String]) -> void:
 		var item := Permanente.new()
 		item.add_to_group("rewind_prone")
 		item.script = buff_script
+		inventory_place_button.emit(item)
 		add_child(item)
 
 func _input(event: InputEvent) -> void:

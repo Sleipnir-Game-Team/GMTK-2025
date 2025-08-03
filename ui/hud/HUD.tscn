@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbi5oq1h8iiaf"]
+[gd_scene load_steps=3 format=3 uid="uid://dbi5oq1h8iiaf"]
 
-[ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_t580i"]
-[ext_resource type="Texture2D" uid="uid://ch1elobny46ax" path="res://assets/Bola_de_gas.png" id="2_fdx20"]
+[ext_resource type="Script" uid="uid://cgtjko8vmjiwl" path="res://ui/hud/hud.gd" id="1_t580i"]
 
 [sub_resource type="Theme" id="Theme_nknrp"]
 
@@ -23,34 +22,33 @@ script = ExtResource("1_t580i")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="top_container" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(555, 0)
+custom_minimum_size = Vector2(555, 200)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 mouse_filter = 2
 theme_override_constants/margin_left = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/top_container"]
 layout_mode = 2
 
-[node name="Health_Bar" type="TextureProgressBar" parent="CanvasLayer/VBoxContainer/top_container/HBoxContainer"]
+[node name="Health_Bar" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/top_container/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-max_value = 3.0
-value = 3.0
-texture_progress = ExtResource("2_fdx20")
 
 [node name="gameplay_space" type="Control" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(810, 0)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
+
+[node name="bottom_container" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/bottom_container"]
+layout_mode = 2

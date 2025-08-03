@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bxoutg5828m3v"]
 
-[ext_resource type="Script" path="res://ui/hud/augments.gd" id="1_xya57"]
+[ext_resource type="Script" uid="uid://c7hegiwxdjvxg" path="res://ui/hud/augments.gd" id="1_xya57"]
 [ext_resource type="Theme" uid="uid://btofbsk47r5b3" path="res://ui/Themes/Old_PC_Theme.tres" id="2_n4pts"]
-[ext_resource type="Texture2D" uid="uid://q15yluqmrp6g" path="res://assets/Art assets/DiscardSkill_Normal.png" id="3_vhtfr"]
-[ext_resource type="Texture2D" uid="uid://dsvtg0x6rj5qn" path="res://assets/Art assets/DiscardSkill_Pressed.png" id="4_7c40p"]
-[ext_resource type="Texture2D" uid="uid://b6mvnglasbu4" path="res://assets/Art assets/DiscardSkill_Hover.png" id="5_7qdqc"]
-[ext_resource type="Texture2D" uid="uid://cthd27y4e6g8n" path="res://assets/Art assets/DiscardSkill_disabled.png" id="7_7c40p"]
+[ext_resource type="Texture2D" uid="uid://ictdsskxpq1b" path="res://Assets/Art assets/DiscardSkill_Normal.png" id="3_vhtfr"]
+[ext_resource type="Texture2D" uid="uid://b0f336inwi5sb" path="res://Assets/Art assets/DiscardSkill_Pressed.png" id="4_7c40p"]
+[ext_resource type="Texture2D" uid="uid://bmo1yi033bld" path="res://Assets/Art assets/DiscardSkill_Hover.png" id="5_7qdqc"]
+[ext_resource type="Texture2D" uid="uid://cnf7sf6uajknk" path="res://Assets/Art assets/DiscardSkill_disabled.png" id="7_7c40p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a6qov"]
 font_size = 50

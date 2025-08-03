@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dc55almw3h2wd"
-path="res://.godot/imported/CROUCH_0013.png-656060a0c6ff6d2411617004371a2ba9.ctex"
+path="res://.godot/imported/CROUCH_0013.png-1d111688fdb7881c41f01c11fac7c79f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/G.A.R.U/CROUCH_0013.png"
-dest_files=["res://.godot/imported/CROUCH_0013.png-656060a0c6ff6d2411617004371a2ba9.ctex"]
+source_file="res://Assets/G.A.R.U/CROUCH_0013.png"
+dest_files=["res://.godot/imported/CROUCH_0013.png-1d111688fdb7881c41f01c11fac7c79f.ctex"]
 
 [params]
 
