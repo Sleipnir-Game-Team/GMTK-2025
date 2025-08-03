@@ -9,14 +9,19 @@ extends Control
 @onready var Augment_Left_Label: Label = get_node("%Augment_Left_Label")
 @onready var Augment_Middle_Label: Label = get_node("%Augment_Middle_Label")
 @onready var Augment_Right_Label: Label = get_node("%Augment_Right_Label")
+@onready var Augment_Left_Description: Label = get_node("%Augment_Left_Description")
+@onready var Augment_Middle_Description: Label = get_node("%Augment_Middle_Description")
+@onready var Augment_Right_Description: Label = get_node("%Augment_Right_Description")
 var chosen_aguments: Array
-var button_augments: Array
+var button_augment_sprites: Array
 var button_labels: Array
+var button_descriptions
 var discarded_aguments: Array
 
 func _ready():
-	button_augments = [Augment_Left, Augment_Middle, Augment_Right]
+	button_augment_sprites = [Augment_Left, Augment_Middle, Augment_Right]
 	button_labels = [Augment_Left_Label, Augment_Middle_Label, Augment_Right_Label]
+	button_descriptions = [Augment_Left_Description, Augment_Middle_Description, Augment_Right_Description]
 	place_aguments()
 	
 func _process(delta):
@@ -28,21 +33,16 @@ func manage_attributes(chosen) -> void:
 
 func place_aguments() -> void:
 	for i in range(3):
-		var augment = chosen_aguments[i].resource_path.get_file().split('.')[0]
-		var button = button_augments[i]
-		var label = button_labels[i]
-		label.text = augment
-		set_button_sprite(augment, button)
+		button_labels[i].text = chosen_aguments[i].name
+		#button_augment_sprites[i].texture = load(chosen_aguments[i].images)
+		set_sprites(button_augment_sprites[i], chosen_aguments[i].images)
+		button_descriptions.text = chosen_aguments[i].description
 
-func set_button_sprite(augment: String, button: TextureButton) -> void:
-	button.set_texture_normal(load("res://Assets/Bola_de_gas.png"))
-	button.set_texture_hover(load("res://Assets/Lixao_sprite_sheet.png"))
-	button.set_texture_pressed(load("res://Assets/GRAMMY__.png"))
-	button.set_texture_disabled(load("res://Assets/lixos.png"))
-	#button.set_texture_normal(load("res://Assets/%s_normal.png" % [augment]))
-	#button.set_texture_hover(load("res://Assets/%s_hover.png" % [augment]))
-	#button.set_texture_pressed(load("res://Assets/%s_pressed.png" % [augment]))
-	#button.set_texture_disabled(load("res://Assets/%s_disabled.png" % [augment]))
+func set_sprites(button: TextureButton, images: Dictionary) -> void:
+	button.texture_normal = images["normal"]
+	button.texture_hover = images["hover"]
+	button.texture_pressed = images["pressed"]
+	button.texture_disabled = images["disabled"]
 
 func _on_discard_button_left_pressed():
 	Discard_Button_Left.disabled = true

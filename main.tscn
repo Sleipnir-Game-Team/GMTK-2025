@@ -15,7 +15,6 @@
 [ext_resource type="Shader" uid="uid://cim17h2sque81" path="res://electric.gdshader" id="11_w48qg"]
 [ext_resource type="Texture2D" uid="uid://dp3u4qpm5qgns" path="res://assets/lixo.png" id="11_ycdy4"]
 [ext_resource type="Shader" uid="uid://b4y6smry6h0rm" path="res://incinerador.gdshader" id="12_074og"]
-[ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="12_dg77c"]
 [ext_resource type="Texture2D" uid="uid://dt7ml6qu5ktys" path="res://assets/incinerator.png" id="13_cegan"]
 [ext_resource type="Texture2D" uid="uid://2cmpljsv3ess" path="res://assets/lixos.png" id="13_w48qg"]
 [ext_resource type="Shader" uid="uid://dbqmixfcqbj46" path="res://fire.gdshader" id="14_074og"]

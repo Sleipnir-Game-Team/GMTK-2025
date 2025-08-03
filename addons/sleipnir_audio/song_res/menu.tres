@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="SongData" load_steps=5 format=3 uid="uid://bt240gen11rye"]
+
+[ext_resource type="AudioStream" uid="uid://bbhs06677t6p6" path="res://Assets/music/menu/menu_intro.mp3" id="1_5eky4"]
+[ext_resource type="Script" uid="uid://dogxqur5hw3mf" path="res://addons/sleipnir_audio/music/maestro_core/song_data.gd" id="1_jksiw"]
+[ext_resource type="AudioStream" uid="uid://cnv7bdfjjqcj2" path="res://Assets/music/menu/menu_loop.mp3" id="2_b5qsc"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jksiw"]
+clip_count = 2
+clip_0/name = &"intro"
+clip_0/stream = ExtResource("1_5eky4")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"loop"
+clip_1/stream = ExtResource("2_b5qsc")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+}
+}
+
+[resource]
+script = ExtResource("1_jksiw")
+BPM = 0
+BeatsPerBar = 4
+MainClips = SubResource("AudioStreamInteractive_jksiw")
+TriggerClips = Array[Resource]([])
+default_first_section = "ambient"
+default_track_transition = 0
+fade_mode = 0
+fade_beats = 0
+metadata/_custom_type_script = "uid://dogxqur5hw3mf"

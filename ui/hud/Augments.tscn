@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxoutg5828m3v"]
+[gd_scene load_steps=8 format=3 uid="uid://bxoutg5828m3v"]
 
 [ext_resource type="Script" uid="uid://c7hegiwxdjvxg" path="res://ui/hud/augments.gd" id="1_xya57"]
-[ext_resource type="Texture2D" uid="uid://c83cckv3g407y" path="res://Assets/lixo.png" id="2_ah8e2"]
-[ext_resource type="Texture2D" uid="uid://btn86lwpnx2q5" path="res://Assets/lixos.png" id="3_c1gr5"]
+[ext_resource type="Theme" uid="uid://btofbsk47r5b3" path="res://ui/Themes/Old_PC_Theme.tres" id="2_n4pts"]
+[ext_resource type="Texture2D" uid="uid://q15yluqmrp6g" path="res://Assets/Art assets/DiscardSkill_Normal.png" id="3_vhtfr"]
+[ext_resource type="Texture2D" uid="uid://dsvtg0x6rj5qn" path="res://Assets/Art assets/DiscardSkill_Pressed.png" id="4_7c40p"]
+[ext_resource type="Texture2D" uid="uid://b6mvnglasbu4" path="res://Assets/Art assets/DiscardSkill_Hover.png" id="5_7qdqc"]
+[ext_resource type="Texture2D" uid="uid://cthd27y4e6g8n" path="res://Assets/Art assets/DiscardSkill_disabled.png" id="7_7c40p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a6qov"]
 font_size = 50
@@ -24,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.458824, 0.458824, 0.458824, 0.392157)
+color = Color(0, 0, 0, 0.372549)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -32,6 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_n4pts")
 theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 200
@@ -61,7 +65,7 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Escolha seu Agument"
+text = "PICK AN AUGMENT"
 label_settings = SubResource("LabelSettings_a6qov")
 
 [node name="Augment_Box" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
@@ -72,93 +76,204 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Left_Augment_Container" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
+[node name="aug_panel" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Augment_Left_Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Left_Augment_Container"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.529412)
+
+[node name="Left_Augment_Container" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Augment_Left_Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Augment_Left" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Left_Augment_Container"]
+[node name="Augment_Left" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+ignore_texture_size = true
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Left_Augment_Container"]
+[node name="Augment_Left_Description" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Discard_Button_Left" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Left_Augment_Container/MarginContainer"]
+[node name="Discard_Button_Left" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container/Control"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -50.0
+offset_right = 182.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("2_ah8e2")
-texture_disabled = ExtResource("3_c1gr5")
+texture_normal = ExtResource("3_vhtfr")
+texture_pressed = ExtResource("4_7c40p")
+texture_hover = ExtResource("5_7qdqc")
+texture_disabled = ExtResource("7_7c40p")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Control2" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Middle_Augment_Container" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
+[node name="aug_panel2" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Augment_Middle_Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Middle_Augment_Container"]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.529412)
+
+[node name="Middle_Augment_Container" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Augment_Middle_Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Augment_Middle" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Middle_Augment_Container"]
+[node name="Augment_Middle" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+ignore_texture_size = true
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Middle_Augment_Container"]
+[node name="Augment_Middle_Description" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Discard_Button_Middle" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Middle_Augment_Container/MarginContainer"]
+[node name="Discard_Button_Middle" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container/Control"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -50.0
+offset_right = 182.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("2_ah8e2")
-texture_disabled = ExtResource("3_c1gr5")
+texture_normal = ExtResource("3_vhtfr")
+texture_pressed = ExtResource("4_7c40p")
+texture_hover = ExtResource("5_7qdqc")
+texture_disabled = ExtResource("7_7c40p")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Control3" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Right_Augment_Container" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
+[node name="Control6" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Augment_Right_Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Right_Augment_Container"]
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.529412)
+
+[node name="Right_Augment_Container" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Augment_Right_Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Augment_Right" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Right_Augment_Container"]
+[node name="Augment_Right" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+ignore_texture_size = true
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Right_Augment_Container"]
+[node name="Augment_Right_Description" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Discard_Button_Right" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Right_Augment_Container/MarginContainer"]
+[node name="Discard_Button_Right" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container/Control"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -50.0
+offset_right = 182.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("2_ah8e2")
-texture_disabled = ExtResource("3_c1gr5")
+texture_normal = ExtResource("3_vhtfr")
+texture_pressed = ExtResource("4_7c40p")
+texture_hover = ExtResource("5_7qdqc")
+texture_disabled = ExtResource("7_7c40p")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Control4" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box"]
@@ -174,16 +289,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 30
-text = "Passar"
+text = "PASS"
 
 [node name="Control3" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Left_Augment_Container/Augment_Left" to="." method="_on_augment_left_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Left_Augment_Container/MarginContainer/Discard_Button_Left" to="." method="_on_discard_button_left_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Middle_Augment_Container/Augment_Middle" to="." method="_on_augment_middle_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Middle_Augment_Container/MarginContainer/Discard_Button_Middle" to="." method="_on_discard_button_middle_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Right_Augment_Container/Augment_Right" to="." method="_on_augment_right_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Right_Augment_Container/MarginContainer/Discard_Button_Right" to="." method="_on_discard_button_right_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container/Augment_Left" to="." method="_on_augment_left_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel/Left_Augment_Container/Control/Discard_Button_Left" to="." method="_on_discard_button_left_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container/Augment_Middle" to="." method="_on_augment_middle_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/aug_panel2/Middle_Augment_Container/Control/Discard_Button_Middle" to="." method="_on_discard_button_middle_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container/Augment_Right" to="." method="_on_augment_right_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Augment_Box/Control6/Right_Augment_Container/Control/Discard_Button_Right" to="." method="_on_discard_button_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Pass_Button" to="." method="_on_pass_button_pressed"]

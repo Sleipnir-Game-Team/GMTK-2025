@@ -3,6 +3,9 @@ extends Control
 @onready var resolution_dropbox: = get_node("%resolution_dropbox")
 @onready var window_mode_dropbox: = get_node("%window_mode_dropbox")
 @onready var volume_master_slider: = %volume_master_slider
+@onready var master_value: = get_node("%master_value")
+@onready var music_value: = get_node("%music_value")
+@onready var sfx_value: = get_node("%sfx_value")
 @onready var volume_music_slider: = %volume_music_slider
 @onready var volume_sfx_slider: = %volume_sfx_slider
 @onready var mute_checkbox: = %mute_checkbox
@@ -35,6 +38,7 @@ func _on_volume_master_slider_value_changed(value: float) -> void:
 	mute_checkbox.button_pressed = false
 	AudioManager.play_global("ui.slider.tick")
 	Config_Handler.change_master_volume(value)
+	master_value.text = str(value)
 	
 
 func _on_volume_master_slider_drag_ended(value_changed: bool) -> void:
@@ -45,6 +49,7 @@ func _on_volume_master_slider_drag_ended(value_changed: bool) -> void:
 func _on_volume_music_slider_value_changed(value: float) -> void:
 	AudioManager.play_global("ui.slider.tick")
 	Config_Handler.change_music_volume(value)
+	master_value.text = str(value)
 
 
 func _on_volume_music_slider_drag_ended(value_changed: bool) -> void:
@@ -55,6 +60,7 @@ func _on_volume_music_slider_drag_ended(value_changed: bool) -> void:
 func _on_volume_sfx_slider_value_changed(value:float) -> void:
 	AudioManager.play_global("ui.slider.tick")
 	Config_Handler.change_sfx_volume(value)
+	master_value.text = str(value)
 	
 
 func _on_volume_sfx_slider_drag_ended(value_changed: bool) -> void:

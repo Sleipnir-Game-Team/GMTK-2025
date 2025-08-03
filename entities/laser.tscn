@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="1_byvr5"]
 [ext_resource type="Script" uid="uid://blcpq5ywbr1ce" path="res://entities/laser.gd" id="1_pwb0i"]
-[ext_resource type="PackedScene" uid="uid://doqdxweydpikt" path="res://components/damage_area.tscn" id="2_pwb0i"]
+[ext_resource type="PackedScene" uid="uid://dgw8jyei8vdy6" path="res://components/damage_area.tscn" id="2_pwb0i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sbgf"]
 
@@ -24,3 +24,6 @@ one_shot = true
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="lightning" type="AudioStreamPlayer2D" parent="."]
+bus = &"sfx"

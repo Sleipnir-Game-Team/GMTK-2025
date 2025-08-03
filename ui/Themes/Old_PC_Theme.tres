@@ -1,0 +1,127 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://btofbsk47r5b3"]
+
+[ext_resource type="FontFile" uid="uid://cu7jcpoku12tc" path="res://ui/fonts/OCR-a___.ttf" id="1_negw5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwwsd"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h06bk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anfhn"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0.87451, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rykyt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inkbk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.188235, 0.686275, 0.184314, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qs1l"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_negw5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2igm"]
+bg_color = Color(0, 0.87451, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8xhl"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0da"]
+bg_color = Color(0, 0, 0, 1)
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_negw5")
+Button/styles/disabled = SubResource("StyleBoxFlat_dwwsd")
+Button/styles/focus = SubResource("StyleBoxFlat_h06bk")
+Button/styles/hover = SubResource("StyleBoxFlat_anfhn")
+Button/styles/normal = SubResource("StyleBoxFlat_rykyt")
+Button/styles/pressed = SubResource("StyleBoxFlat_inkbk")
+CheckBox/font_sizes/font_size = 30
+CheckBox/fonts/font = ExtResource("1_negw5")
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_negw5")
+MenuBar/fonts/font = ExtResource("1_negw5")
+OptionButton/fonts/font = ExtResource("1_negw5")
+TabBar/fonts/font = ExtResource("1_negw5")
+TabBar/styles/tab_selected = SubResource("StyleBoxFlat_2qs1l")
+TabContainer/colors/font_selected_color = Color(0, 0, 0, 1)
+TabContainer/fonts/font = ExtResource("1_negw5")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_negw5")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_e2igm")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_r8xhl")
+TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_bm0da")
