@@ -2,7 +2,7 @@ extends Area2D
 
 var good_end = [
 	{"type": "txt", "text": "On return to the lab, G.A.R.U. was received with praises"},
-	{"type": "img", "url": "res://assets/Art assets/ENDING_2A.jpg"},
+	{"type": "img", "url": "res://assets/Art_assets/ENDING_2A.jpg"},
 	{"type": "wait"},
 	{"type": "txt", "text": "He was awarded by the scientists as the great time hero"},
 	{"type": "wait"},
@@ -13,7 +13,7 @@ var good_end = [
 
 var normal_end = [
 	{"type": "txt", "text": "On return to the lab G.A.R.U saw the scientists worried"},
-	{"type": "img", "url": "res://assets/Art assets/ENDING_2B.jpg"},
+	{"type": "img", "url": "res://assets/Art_assets/ENDING_2B.jpg"},
 	{"type": "wait"},
 	{"type": "txt", "text": '"Time is fixed, but the impact is already done" they said'},
 	{"type": "wait"},
@@ -26,12 +26,12 @@ var normal_end = [
 
 var bad_end = [
 	{"type": "txt", "text": "On return to the lab G.A.R.U. saw the scientists frozen"},
-	{"type": "img", "url": "res://assets/Art assets/ENDING_2C.jpg"},
+	{"type": "img", "url": "res://assets/Art_assets/ENDING_2C.jpg"},
 	{"type": "wait"},
 	{"type": "txt", "text": "They were up, with their eyes wide open, but no sound exited their mouths"},
 	{"type": "wait"},
 	{"type": "txt", "text": "G.A.R.U. stayed there waiting for his next order"},
-	{"type": "img", "url": "res://assets/Art assets/ENDING_3C.jpg"},
+	{"type": "img", "url": "res://assets/Art_assets/ENDING_3C.jpg"},
 	{"type": "wait"},
 	{"type": "txt", "text": "It never came"},
 	{"type": "wait"},
@@ -50,7 +50,7 @@ func on_body_entered(body):
 	,ConnectFlags.CONNECT_ONE_SHOT)
 	var end = [
 		{"type": "txt", "text": "The time machine was turned off and the fabric of time was saved"},
-		{"type": "img", "url": "res://assets/Art assets/ENDING_1.jpg"},
+		{"type": "img", "url": "res://assets/Art_assets/ENDING_1.jpg"},
 		{"type": "wait"},
 		{"type": "wait"}
 	]
