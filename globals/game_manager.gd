@@ -63,7 +63,17 @@ func load_game() -> void:
 			saved.name = "%s" % [index+1]
 			inventory.add_child(saved)
 
-func start_or_load_game() -> void:
+func start_game() -> void:
 	UI_Controller.changeScreen("res://main.tscn", get_tree().root)
+
+## Tenta carregar um save, se houver
+func start_or_load_game() -> void:
+	start_game()
 	if FileAccess.file_exists("user://savegame.save"):
 		load_game()
+
+func delete_save() -> void:
+	var dir := DirAccess.open("user://")
+	
+	if dir.file_exists("savegame.save"):
+		dir.remove("savegame.save")

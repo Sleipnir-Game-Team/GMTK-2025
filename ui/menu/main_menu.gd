@@ -10,10 +10,17 @@ func _ready() -> void:
 
 
 ## Função que roda quando você aperta o botão de "jogar"
+## CONTINUA DE UM SAVE SE EXISTIR
 func _on_play_button_pressed() -> void:
 	AudioManager.play_global("ui.button.click")
-	#UI_Controller.changeScreen("res://main.tscn", get_tree().root)
 	GameManager.start_or_load_game()
+
+## TODO ADICIONAR O BOTÃO
+## DELETA O SAVE SE EXISTIR, INICIA UM JOGO NOVO
+func _on_play_new_button_pressed() -> void:
+	GameManager.delete_save()
+	GameManager.start_game()
+
 
 ## Função que roda quando você aperta o botão de "opções"
 func _on_options_button_pressed() -> void:

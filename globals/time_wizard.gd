@@ -114,7 +114,6 @@ func rewind(time_to_rewind: float = -1.0) -> void:
 		_use_duration = not _duration_clamped
 		_rewind_deadline_msec = Time.get_ticks_msec() + int(time_to_rewind * 1000.0)
 
-
 func _finish_rewind() -> void:
 	_rewinding = false
 	_tick_budget = 0.0

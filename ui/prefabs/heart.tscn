@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://buj6wxi7u46if"]
 
-[ext_resource type="Texture2D" uid="uid://cbg2n40m1lqa" path="res://Assets/Bola_de_gas.png" id="1_fjv32"]
+[ext_resource type="Texture2D" uid="uid://ch1elobny46ax" path="res://Assets/Bola_de_gas.png" id="1_fjv32"]
 
 [node name="Health_Bar" type="HBoxContainer"]
 anchors_preset = 15
