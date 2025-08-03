@@ -1,6 +1,119 @@
-[gd_scene load_steps=2 format=3 uid="uid://lg6kuv3fkktu"]
+[gd_scene load_steps=49 format=3 uid="uid://lg6kuv3fkktu"]
 
 [ext_resource type="Script" uid="uid://dh70xcu1lubbi" path="res://addons/sleipnir_audio/sfx/sfx_globals.gd" id="1_p5jl5"]
+[ext_resource type="Script" uid="uid://ccc8q5f8jlgth" path="res://addons/sleipnir_audio/sfx/soundqueue.gd" id="2_rkeyg"]
+[ext_resource type="AudioStream" uid="uid://dty82pcsdrshp" path="res://assets/sounds/ui/ui.button.click1.mp3" id="3_0lhd4"]
+[ext_resource type="AudioStream" uid="uid://cgewscod6vt58" path="res://assets/sounds/ui/ui.button.click2.mp3" id="4_ieycu"]
+[ext_resource type="AudioStream" uid="uid://df1hxxqglqhg3" path="res://assets/sounds/ui/ui.button.click3.mp3" id="5_w7erw"]
+[ext_resource type="AudioStream" uid="uid://bv38d7xbdbqts" path="res://assets/sounds/ui/ui.button.click4.mp3" id="6_r3qsx"]
+[ext_resource type="AudioStream" uid="uid://kctu2aem6egv" path="res://assets/sounds/ui/ui.button.disabled1.mp3" id="7_jlak3"]
+[ext_resource type="AudioStream" uid="uid://vruw28hhgubd" path="res://assets/sounds/ui/ui.button.disabled2.mp3" id="8_bkgn2"]
+[ext_resource type="AudioStream" uid="uid://dbmd4arrsajkc" path="res://assets/sounds/ui/ui.button.disabled3.mp3" id="9_vheuc"]
+[ext_resource type="AudioStream" uid="uid://boef2kaqv1cw6" path="res://assets/sounds/ui/ui.button.hover1.mp3" id="10_0dtap"]
+[ext_resource type="AudioStream" uid="uid://bafvsu5kdqoaw" path="res://assets/sounds/ui/ui.button.hover2.mp3" id="11_ckpkr"]
+[ext_resource type="AudioStream" uid="uid://ciegxcesdgaaa" path="res://assets/sounds/ui/ui.button.hover3.mp3" id="12_f2sv2"]
+[ext_resource type="AudioStream" uid="uid://colvywwlnrp3j" path="res://assets/sounds/ui/ui.button.hover4.mp3" id="13_73338"]
+[ext_resource type="AudioStream" uid="uid://bpokmbhp0ibkt" path="res://assets/sounds/ui/ui.button.hover5.mp3" id="14_0n0we"]
+[ext_resource type="AudioStream" uid="uid://d0gogxdh4w0u7" path="res://assets/sounds/ui/ui.button.hover6.mp3" id="15_pq4ig"]
+[ext_resource type="AudioStream" uid="uid://cmbyigvftebjw" path="res://assets/sounds/ui/ui.button.hover7.mp3" id="16_gq20e"]
+[ext_resource type="AudioStream" uid="uid://bwepvjmnqr51j" path="res://assets/sounds/ui/ui.popup.close1.mp3" id="17_8wnqm"]
+[ext_resource type="AudioStream" uid="uid://byl4wpd2h5w6v" path="res://assets/sounds/ui/ui.slider.tick1.mp3" id="17_mupgl"]
+[ext_resource type="AudioStream" uid="uid://bapmnslqyxdyj" path="res://assets/sounds/ui/ui.screen.back1.mp3" id="17_vheuc"]
+[ext_resource type="AudioStream" uid="uid://q4x7u751qxyx" path="res://assets/sounds/ui/ui.screen.back2.mp3" id="18_0dtap"]
+[ext_resource type="AudioStream" uid="uid://chf5aw5fhnk0d" path="res://assets/sounds/ui/ui.slider.tick2.mp3" id="18_em1qn"]
+[ext_resource type="AudioStream" uid="uid://dbfldxtj6463h" path="res://assets/sounds/ui/ui.popup.close2.mp3" id="18_gecna"]
+[ext_resource type="AudioStream" uid="uid://dqpwphsc18pay" path="res://assets/sounds/ui/ui.screen.back3.mp3" id="19_ckpkr"]
+[ext_resource type="AudioStream" uid="uid://sfeeskd1nrtv" path="res://assets/sounds/ui/ui.popup.close3.mp3" id="19_mupgl"]
+[ext_resource type="AudioStream" uid="uid://b3tg5eepu1e26" path="res://assets/sounds/ui/ui.slider.tick3.mp3" id="19_rwqlb"]
+[ext_resource type="AudioStream" uid="uid://y2vnswyglcsi" path="res://assets/sounds/ui/ui.popup.close4.mp3" id="20_em1qn"]
+[ext_resource type="AudioStream" uid="uid://418ktf7tjtby" path="res://assets/sounds/ui/ui.screen.back4.mp3" id="20_f2sv2"]
+[ext_resource type="AudioStream" uid="uid://chv5fji5yvs2x" path="res://assets/sounds/ui/ui.screen.pause1.mp3" id="21_gq20e"]
+[ext_resource type="AudioStream" uid="uid://dpj5eeui8f0ve" path="res://assets/sounds/ui/ui.popup.open1.mp3" id="21_w7erw"]
+[ext_resource type="AudioStream" uid="uid://bvx5liwo2i8ji" path="res://assets/sounds/ui/ui.screen.pause2.mp3" id="22_8wnqm"]
+[ext_resource type="AudioStream" uid="uid://dkn08w1fc1ihx" path="res://assets/sounds/ui/ui.popup.open2.mp3" id="22_r3qsx"]
+[ext_resource type="AudioStream" uid="uid://bn81vsc531jng" path="res://assets/sounds/ui/ui.screen.pause3.mp3" id="23_gecna"]
+[ext_resource type="AudioStream" uid="uid://c4ssllvfah3mr" path="res://assets/sounds/ui/ui.popup.open3.mp3" id="23_jlak3"]
+[ext_resource type="AudioStream" uid="uid://qednmfuaak3s" path="res://assets/sounds/ui/ui.screen.resume1.mp3" id="24_mupgl"]
+[ext_resource type="AudioStream" uid="uid://b0oxu1f73p6h0" path="res://assets/sounds/ui/ui.screen.resume2.mp3" id="25_em1qn"]
+[ext_resource type="AudioStream" uid="uid://c1bhnqksd1n5u" path="res://assets/sounds/ui/ui.screen.resume3.mp3" id="26_rwqlb"]
+[ext_resource type="AudioStream" uid="uid://brdiwmnml86y1" path="res://assets/sounds/ui/ui.screen.resume4.mp3" id="27_k41d7"]
+[ext_resource type="AudioStream" uid="uid://d23lasw5y7oku" path="res://assets/sounds/dialog/dialog.general.mp3" id="38_em1qn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rwqlb"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("3_0lhd4")
+stream_1/stream = ExtResource("4_ieycu")
+stream_2/stream = ExtResource("5_w7erw")
+stream_3/stream = ExtResource("6_r3qsx")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k41d7"]
+random_pitch = 1.3
+streams_count = 3
+stream_0/stream = ExtResource("7_jlak3")
+stream_1/stream = ExtResource("8_bkgn2")
+stream_2/stream = ExtResource("9_vheuc")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jounw"]
+random_pitch = 1.2
+streams_count = 7
+stream_0/stream = ExtResource("10_0dtap")
+stream_1/stream = ExtResource("11_ckpkr")
+stream_2/stream = ExtResource("12_f2sv2")
+stream_3/stream = ExtResource("13_73338")
+stream_4/stream = ExtResource("14_0n0we")
+stream_5/stream = ExtResource("15_pq4ig")
+stream_6/stream = ExtResource("16_gq20e")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e8w78"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("17_mupgl")
+stream_1/stream = ExtResource("18_em1qn")
+stream_2/stream = ExtResource("19_rwqlb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_73338"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("17_vheuc")
+stream_1/stream = ExtResource("18_0dtap")
+stream_2/stream = ExtResource("19_ckpkr")
+stream_3/stream = ExtResource("20_f2sv2")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ixofu"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("21_gq20e")
+stream_1/stream = ExtResource("22_8wnqm")
+stream_2/stream = ExtResource("23_gecna")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_movbn"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("24_mupgl")
+stream_1/stream = ExtResource("25_em1qn")
+stream_2/stream = ExtResource("26_rwqlb")
+stream_3/stream = ExtResource("27_k41d7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k0x1h"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("17_8wnqm")
+stream_1/stream = ExtResource("18_gecna")
+stream_2/stream = ExtResource("19_mupgl")
+stream_3/stream = ExtResource("20_em1qn")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bkgn2"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("21_w7erw")
+stream_1/stream = ExtResource("22_r3qsx")
+stream_2/stream = ExtResource("23_jlak3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_610pb"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("38_em1qn")
 
 [node name="SfxGlobals" type="Node"]
 script = ExtResource("1_p5jl5")
@@ -11,4 +124,100 @@ script = ExtResource("1_p5jl5")
 
 [node name="button" type="Node" parent="ui"]
 
+[node name="click" type="Node" parent="ui/button"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/button/click"]
+stream = SubResource("AudioStreamRandomizer_rwqlb")
+bus = &"sfx"
+
+[node name="disabled" type="Node" parent="ui/button"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/button/disabled"]
+stream = SubResource("AudioStreamRandomizer_k41d7")
+bus = &"sfx"
+
+[node name="hover" type="Node" parent="ui/button"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/button/hover"]
+stream = SubResource("AudioStreamRandomizer_jounw")
+bus = &"sfx"
+
 [node name="slider" type="Node" parent="ui"]
+
+[node name="tick" type="Node" parent="ui/slider"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/slider/tick"]
+stream = SubResource("AudioStreamRandomizer_e8w78")
+bus = &"sfx"
+
+[node name="screen" type="Node" parent="ui"]
+
+[node name="back" type="Node" parent="ui/screen"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/screen/back"]
+stream = SubResource("AudioStreamRandomizer_73338")
+bus = &"sfx"
+
+[node name="pause" type="Node" parent="ui/screen"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/screen/pause"]
+stream = SubResource("AudioStreamRandomizer_ixofu")
+bus = &"sfx"
+
+[node name="resume" type="Node" parent="ui/screen"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/screen/resume"]
+stream = SubResource("AudioStreamRandomizer_movbn")
+bus = &"sfx"
+
+[node name="popup" type="Node" parent="ui"]
+
+[node name="close" type="Node" parent="ui/popup"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/popup/close"]
+stream = SubResource("AudioStreamRandomizer_k0x1h")
+bus = &"sfx"
+
+[node name="open" type="Node" parent="ui/popup"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ui/popup/open"]
+stream = SubResource("AudioStreamRandomizer_bkgn2")
+bus = &"sfx"
+
+[node name="dialog" type="Node" parent="."]
+
+[node name="general" type="Node" parent="dialog"]
+script = ExtResource("2_rkeyg")
+Count = 3
+metadata/_custom_type_script = "uid://ccc8q5f8jlgth"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="dialog/general"]
+stream = SubResource("AudioStreamRandomizer_610pb")
+bus = &"sfx"
