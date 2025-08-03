@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://53ka1brdqd3s"]
+[gd_scene load_steps=12 format=3 uid="uid://53ka1brdqd3s"]
 
 [ext_resource type="Theme" uid="uid://btofbsk47r5b3" path="res://ui/Themes/Old_PC_Theme.tres" id="1_1tj2a"]
 [ext_resource type="Script" uid="uid://d0iiya4fh64h6" path="res://ui/menu/options_menu.gd" id="1_flr5y"]
 [ext_resource type="Script" uid="uid://davml8xhgm4wi" path="res://ui/menu/resolution_dropbox.gd" id="3_bvd68"]
 [ext_resource type="PackedScene" uid="uid://1hnco7yhjexd" path="res://ui/buttons/input_button.tscn" id="3_xo33c"]
 [ext_resource type="Script" uid="uid://cxuyu0oepg5yi" path="res://ui/menu/input_settings.gd" id="4_5nt2n"]
+[ext_resource type="AudioStream" uid="uid://dpj5eeui8f0ve" path="res://assets/sounds/ui/ui.popup.open1.mp3" id="6_bor34"]
+[ext_resource type="AudioStream" uid="uid://dkn08w1fc1ihx" path="res://assets/sounds/ui/ui.popup.open2.mp3" id="7_ymeeq"]
+[ext_resource type="AudioStream" uid="uid://c4ssllvfah3mr" path="res://assets/sounds/ui/ui.popup.open3.mp3" id="8_6spep"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4flhf"]
 font_size = 100
@@ -14,6 +17,13 @@ shadow_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_n72c1"]
 font_size = 40
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gn3ia"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("6_bor34")
+stream_1/stream = ExtResource("7_ymeeq")
+stream_2/stream = ExtResource("8_6spep")
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
@@ -424,6 +434,13 @@ size_flags_horizontal = 3
 text = "BACK"
 alignment = 0
 
+[node name="AudioOpen" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_gn3ia")
+bus = &"sfx"
+
+[connection signal="tab_button_pressed" from="CanvasLayer/MarginContainer/VBoxContainer/TabContainer" to="." method="_on_tab_button_pressed"]
+[connection signal="tab_changed" from="CanvasLayer/MarginContainer/VBoxContainer/TabContainer" to="." method="_on_tab_changed"]
+[connection signal="tab_hovered" from="CanvasLayer/MarginContainer/VBoxContainer/TabContainer" to="." method="_on_tab_hovered"]
 [connection signal="item_selected" from="CanvasLayer/MarginContainer/VBoxContainer/TabContainer/VIDEO/VBoxContainer/resolution/resolution_dropbox/resolution_dropbox" to="." method="_on_resolution_dropbox_item_selected"]
 [connection signal="item_selected" from="CanvasLayer/MarginContainer/VBoxContainer/TabContainer/VIDEO/VBoxContainer/window_mode/window_mode_dropbox/window_mode_dropbox" to="." method="_on_window_mode_dropbox_item_selected"]
 [connection signal="drag_ended" from="CanvasLayer/MarginContainer/VBoxContainer/TabContainer/AUDIO/audio_options/volume_master/volume_master_slider/volume_master_slider" to="." method="_on_volume_master_slider_drag_ended"]

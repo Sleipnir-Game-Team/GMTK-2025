@@ -44,3 +44,7 @@ func _on_credits_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	AudioManager.play_global("ui.button.click")
 	get_tree().quit() # Fecha a aplicação
+
+
+func _on_button_mouse_entered() -> void:
+	$CanvasLayer/MarginContainer/VBoxContainer/button_container/AudioStreamPlayer.play()

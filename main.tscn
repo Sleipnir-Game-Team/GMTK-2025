@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://bi0nwileboayl"]
+[gd_scene load_steps=61 format=4 uid="uid://bi0nwileboayl"]
 
 [ext_resource type="Script" uid="uid://ceunm6ik2o4y4" path="res://main.gd" id="1_cxumw"]
 [ext_resource type="Script" uid="uid://d2udldsfg8yc1" path="res://level.gd" id="2_kek77"]
@@ -21,6 +21,9 @@
 [ext_resource type="Shader" uid="uid://dbqmixfcqbj46" path="res://fire.gdshader" id="14_074og"]
 [ext_resource type="Script" uid="uid://r0mi4fa1xpfp" path="res://fim.gd" id="19_getpj"]
 [ext_resource type="Texture2D" uid="uid://bjl2llmk2iaxv" path="res://assets/machine.png" id="20_82xsv"]
+[ext_resource type="AudioStream" uid="uid://chv5fji5yvs2x" path="res://assets/sounds/ui/ui.screen.pause1.mp3" id="20_ryguw"]
+[ext_resource type="AudioStream" uid="uid://bvx5liwo2i8ji" path="res://assets/sounds/ui/ui.screen.pause2.mp3" id="21_d13ii"]
+[ext_resource type="AudioStream" uid="uid://bn81vsc531jng" path="res://assets/sounds/ui/ui.screen.pause3.mp3" id="22_1u8w0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yaehf"]
 texture = ExtResource("5_4c57u")
@@ -381,6 +384,12 @@ sources/0 = SubResource("TileSetAtlasSource_efxa6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryguw"]
 size = Vector2(382, 382)
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0odxb"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("20_ryguw")
+stream_1/stream = ExtResource("21_d13ii")
+stream_2/stream = ExtResource("22_1u8w0")
 
 [node name="Main" type="MarginContainer"]
 process_mode = 1
@@ -1152,6 +1161,11 @@ texture = ExtResource("20_82xsv")
 
 [node name="Player" parent="Game" instance=ExtResource("3_1bvp3")]
 position = Vector2(235, 1081)
+
+[node name="AudioPause" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_0odxb")
+bus = &"sfx"
 
 [editable path="Game/Beartraps/Beartrap"]
 [editable path="Game/Beartraps/Beartrap2"]

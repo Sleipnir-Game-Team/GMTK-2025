@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://bp3vd4kj37iij"]
+[gd_scene load_steps=142 format=3 uid="uid://bp3vd4kj37iij"]
 
 [ext_resource type="Script" uid="uid://y2higcsr86v" path="res://entities/movement.gd" id="1_rfe5m"]
 [ext_resource type="PackedScene" uid="uid://daill7lx175oy" path="res://components/receiver.tscn" id="2_rfe5m"]
@@ -94,10 +94,13 @@
 [ext_resource type="Texture2D" uid="uid://d37jn5nftc4bs" path="res://assets/G.A.R.U/JUMP_0013.png" id="89_maxkg"]
 [ext_resource type="Texture2D" uid="uid://dika40pjemkwr" path="res://assets/G.A.R.U/JUMP_0014.png" id="90_k6bya"]
 [ext_resource type="Texture2D" uid="uid://kswk3mnoxb7m" path="res://assets/G.A.R.U/JUMP_0015.png" id="91_4lobt"]
-[ext_resource type="Texture2D" uid="uid://bcdskv4d87jd8" path="res://assets/G.A.R.U/CROUCH_0000.png" id="92_5ai2r"]
-[ext_resource type="Texture2D" uid="uid://pm7rtfn50ovb" path="res://assets/G.A.R.U/CROUCH_0001.png" id="93_8tfjm"]
-[ext_resource type="Texture2D" uid="uid://dwpjagijliccm" path="res://assets/G.A.R.U/CROUCH_0002.png" id="94_jl1ti"]
-[ext_resource type="Texture2D" uid="uid://b1ile2edthh5v" path="res://assets/G.A.R.U/CROUCH_0003.png" id="95_kg37s"]
+[ext_resource type="AudioStream" uid="uid://drqo43culsewf" path="res://assets/sounds/player/player.run.start.mp3" id="92_4lobt"]
+[ext_resource type="Texture2D" uid="uid://0w726baa6wfr" path="res://assets/G.A.R.U/CROUCH_0000.png" id="92_5ai2r"]
+[ext_resource type="AudioStream" uid="uid://ph7drc52g3e8" path="res://assets/sounds/player/player.walk.start.mp3" id="92_8tfjm"]
+[ext_resource type="Texture2D" uid="uid://8w2wj20k6pdp" path="res://assets/G.A.R.U/CROUCH_0001.png" id="93_8tfjm"]
+[ext_resource type="AudioStream" uid="uid://dm4bqcriao3li" path="res://assets/sounds/player/player.walk.loop.mp3" id="93_jl1ti"]
+[ext_resource type="Texture2D" uid="uid://bwxh7lxp33vog" path="res://assets/G.A.R.U/CROUCH_0002.png" id="94_jl1ti"]
+[ext_resource type="Texture2D" uid="uid://jnx7j6yskwjh" path="res://assets/G.A.R.U/CROUCH_0003.png" id="95_kg37s"]
 [ext_resource type="Texture2D" uid="uid://bismrlwtlbqi3" path="res://assets/G.A.R.U/CROUCH_0004.png" id="96_fe7ug"]
 [ext_resource type="Texture2D" uid="uid://cockdrpvcd8e3" path="res://assets/G.A.R.U/CROUCH_0005.png" id="97_3pkaf"]
 [ext_resource type="Texture2D" uid="uid://die4n3m36w0f5" path="res://assets/G.A.R.U/CROUCH_0006.png" id="98_vd56o"]
@@ -107,6 +110,19 @@
 [ext_resource type="Texture2D" uid="uid://dwa0wkm0xe61n" path="res://assets/G.A.R.U/CROUCH_0010.png" id="102_5ujml"]
 [ext_resource type="Texture2D" uid="uid://c6gmhvvpjgy10" path="res://assets/G.A.R.U/CROUCH_0011.png" id="103_y5bql"]
 [ext_resource type="Script" uid="uid://b0x7i2kth3cup" path="res://components/animations.gd" id="104_6doyo"]
+[ext_resource type="AudioStream" uid="uid://c5q0nkrd0dhhb" path="res://assets/sounds/player/player.dash1.mp3" id="108_rihsv"]
+[ext_resource type="AudioStream" uid="uid://ddni4qmlu4rs2" path="res://assets/sounds/player/player.dash2.mp3" id="109_7oy8c"]
+[ext_resource type="Shader" uid="uid://d2ckkmk80jb61" path="res://entities/outline.gdshader" id="110_8tfjm"]
+[ext_resource type="AudioStream" uid="uid://bh0fmjaqkh245" path="res://assets/sounds/player/player.dash3.mp3" id="110_mpg53"]
+[ext_resource type="AudioStream" uid="uid://dholaxat88igv" path="res://assets/sounds/player/player.dash4.mp3" id="111_f3cdc"]
+[ext_resource type="AudioStream" uid="uid://dmyjinjlun1kf" path="res://assets/sounds/player/player.hit.light1.mp3" id="114_etyr6"]
+[ext_resource type="AudioStream" uid="uid://cxx7xg6we2oob" path="res://assets/sounds/player/player.jump1.mp3" id="115_etyr6"]
+[ext_resource type="AudioStream" uid="uid://eprwy8r2js56" path="res://assets/sounds/player/player.hit.light2.mp3" id="115_maxkg"]
+[ext_resource type="AudioStream" uid="uid://ce8li1j1v12xy" path="res://assets/sounds/player/player.hit.light3.mp3" id="116_k6bya"]
+[ext_resource type="AudioStream" uid="uid://duw1ebhayvdw4" path="res://assets/sounds/player/player.jump2.mp3" id="116_maxkg"]
+[ext_resource type="AudioStream" uid="uid://bd3q4y8rdjb4t" path="res://assets/sounds/player/player.jump3.mp3" id="117_k6bya"]
+[ext_resource type="AudioStream" uid="uid://bqoj1njpoowaj" path="res://assets/sounds/player/player.jump4.mp3" id="118_4lobt"]
+[ext_resource type="AudioStream" uid="uid://dehv4yfvs13ef" path="res://assets/sounds/player/player.run.loop.mp3" id="120_4lobt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(61, 112)
@@ -240,6 +256,21 @@ tracks/1/keys = {
 "method": &"play_animation"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioRunLoop")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("120_4lobt")
+}],
+"times": PackedFloat32Array(0.0666667)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_4tits"]
 resource_name = "walk"
@@ -257,6 +288,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("66_p4p1i"), ExtResource("67_6pmdu"), ExtResource("68_c67cl"), ExtResource("69_s3cya"), ExtResource("70_5kacd"), ExtResource("71_j6sc1"), ExtResource("72_fvfpn"), ExtResource("73_ibyy5"), ExtResource("74_24jkf"), ExtResource("75_jx1pv")]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioWalkLoop")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("93_jl1ti")
+}],
+"times": PackedFloat32Array(0.0666667)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qly61"]
 _data = {
@@ -314,6 +360,78 @@ _data = {
 &"crouch": SubResource("Animation_e4p34")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jl1ti"]
+shader = ExtResource("110_8tfjm")
+shader_parameter/outline_color = Color(0.86478, 0.76013, 0.118609, 1)
+shader_parameter/outline_size = 0.0
+shader_parameter/alpha_threshold = 0.8
+shader_parameter/outline_samples = 4
+shader_parameter/shade_color = Color(1, 1, 1, 0)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nh1th"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("108_rihsv")
+stream_1/stream = ExtResource("109_7oy8c")
+stream_2/stream = ExtResource("110_mpg53")
+stream_3/stream = ExtResource("111_f3cdc")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4lobt"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("114_etyr6")
+stream_1/stream = ExtResource("115_maxkg")
+stream_2/stream = ExtResource("116_k6bya")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5ai2r"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("115_etyr6")
+stream_1/stream = ExtResource("116_maxkg")
+stream_2/stream = ExtResource("117_k6bya")
+stream_3/stream = ExtResource("118_4lobt")
+
+[sub_resource type="Animation" id="Animation_8tfjm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jl1ti"]
+_data = {
+&"RESET": SubResource("Animation_8tfjm")
+}
+
+[sub_resource type="Animation" id="Animation_kg37s"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fe7ug"]
+_data = {
+&"invincibility": SubResource("Animation_kg37s")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 floor_snap_length = 0.0
@@ -345,5 +463,42 @@ script = ExtResource("5_qly61")
 script = ExtResource("6_qsoyl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jl1ti")
 scale = Vector2(0.257624, 0.257624)
 texture = ExtResource("7_6nm46")
+
+[node name="AudioDash" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_nh1th")
+bus = &"sfx"
+
+[node name="AudioDamaged" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_4lobt")
+bus = &"sfx"
+
+[node name="AudioJump" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_5ai2r")
+bus = &"sfx"
+
+[node name="AudioWalkStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("92_8tfjm")
+volume_db = -2.5
+bus = &"sfx"
+
+[node name="AudioWalkLoop" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+bus = &"sfx"
+
+[node name="AudioRunStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("92_4lobt")
+bus = &"sfx"
+
+[node name="AudioRunLoop" type="AudioStreamPlayer" parent="."]
+volume_db = -4.0
+bus = &"sfx"
+
+[node name="InvisFrames" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jl1ti"),
+&"player": SubResource("AnimationLibrary_fe7ug")
+}

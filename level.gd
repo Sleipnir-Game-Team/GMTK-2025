@@ -17,7 +17,7 @@ func _enter_tree() -> void:
 func _child_added(child: Node) -> void:
 	if child is Timer:
 		print("Child has been added, connecting rewind")
-		child.start()
+		child.start(TimeWizard.level_time_limit)
 		child.timeout.connect(rewind_invocation)
 	elif child.name == "Player":
 		GameManager.find_node("Life", child).death.connect(rewind_invocation)

@@ -69,6 +69,7 @@ var buff_capsule: Array[String] = []
 var _all_buffs: Array[String] = []
 
 
+var level_time_limit: float = 80
 
 func _ready() -> void:
 	# Só processa quando pausado
