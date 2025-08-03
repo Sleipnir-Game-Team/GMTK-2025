@@ -54,6 +54,9 @@ var rewind_count: int = 0
 var buff_capsule: Array[String] = []
 var _all_buffs: Array[String] = []
 
+
+var level_time_limit: float = 80
+
 func _ready() -> void:
 	# Só processa quando pausado
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED

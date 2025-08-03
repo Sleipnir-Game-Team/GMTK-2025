@@ -1,4 +1,4 @@
 extends Ativo
 
 func use() -> void:
-	print("You farted one time")
+	Effects.hold(player, self)

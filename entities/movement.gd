@@ -42,6 +42,12 @@ var jump_boosted: bool = false
 
 ## Contador de tempo de coyote time.
 var jump_coyote_counter: float = 0
+
+var jump_double_count: int = 0:
+	set(_jump_double_count):
+		jump_double_count = _jump_double_count
+		_set_enable_outline(jump_double_count > 0)
+			
 #endregion
 
 @export_group("Movement", "movement")
@@ -98,12 +104,14 @@ var knockback_time: float = 0
 @onready var knockback_speed: Vector2 = _calculate_knockback_speed(gravity_knockback, knockback_duration)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var invis_frames: AnimationPlayer = $InvisFrames
 @onready var life: Life = $Life
 @onready var signalizer: Node = $Signalizer
+@onready var sprite: Sprite2D = $Sprite2D
 
 var locked = false
 
-
+var holding: bool = false
 var knocked: bool = false
 var crouching: bool = false:
 	set(_crouching):
@@ -116,9 +124,23 @@ var crouching: bool = false:
 
 func _ready() -> void:
 	signalizer.damage_received.connect(_on_signalizer_damage_received)
+	life.damage_received.connect(func (_ammount): $AudioDamaged.play())
+	life.damage_received.connect(func (_ammount): invis_frames.play("player/invincibility"))
+	life.invicibility_timer.timeout.connect(invis_frames.play.bind("RESET"))
 	animation_player.play_animation("idle")
 
+func _invis(_ammount: float):
+	invis_frames.play("player/invincibility")
+
 func _unhandled_key_input(event: InputEvent) -> void:
+	if holding and (
+		event.is_action("player_crouch") or
+		event.is_action("player_jump") or
+		event.is_action("player_left") or
+		event.is_action("player_right")
+		):
+		holding = false 
+	
 	# Evitar dar o crouch quando já está em sprint
 	if event.is_action_pressed("player_crouch"):
 		crouching = true
@@ -130,12 +152,15 @@ func _physics_process(delta: float) -> void:
 		knockback_time -= delta
 		if not knocked:
 			knockback()
-		else:
+		elif not holding:
 			velocity.y += gravity_knockback * delta
 		move_and_slide()
 		return
 	else:
 		knocked = false
+	
+	if holding:
+		return
 	
 	var g := gravity_rise
 	if _falling():
@@ -179,8 +204,10 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			if input_axis != 0 and (animation_player.current_animation == "idle" or just_arrived):
 				if Input.is_action_pressed("player_sprint"):
+					$AudioRunStart.play()
 					animation_player.play_animation("run")
 				else:
+					$AudioWalkStart.play()
 					animation_player.play_animation("walk")
 			elif input_axis == 0 and (animation_player.current_animation in ["run", "walk", "loop", "crouch_walk"] or just_arrived):
 				animation_player.play_animation("idle")
@@ -218,6 +245,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func jump() -> void:
+	$AudioJump.play()
+	if not is_on_floor() and not jump_coyote_counter > 0:
+		jump_double_count -= 1
 	jump_buffer = 0
 	jump_coyote_counter = 0
 	velocity.y = jump_speed
@@ -230,26 +260,34 @@ func boosted_jump() -> void:
 	velocity.x = facing * jump_dash_boost
 	jump()
 
-func dash() -> void:
-	dash_time_left = dash_duration
+func dash(modifier: float = 1) -> void:
+	$AudioDash.play()
+	dash_time_left = dash_duration * modifier
 	jump_boost_buffer = dash_duration + jump_boost_grace_period
 
 func knockback() -> void:
 	knocked = true
+	holding = false
 	dash_time_left = 0
 	velocity = knockback_speed
+
+func hold() -> void:
+	holding = true
 
 func _dashing() -> bool:
 	return dash_time_left > 0
 
 func _can_jump() -> bool:
-	return _jump_buffered() and ((is_on_floor() and not _dashing()) or jump_coyote_counter > 0)
+	return _jump_buffered() and (((is_on_floor() or _can_double_jump()) and not _dashing()) or jump_coyote_counter > 0)
 
 func _can_jump_boost() -> bool:
 	return jump_boost_buffer > 0
 
 func _jump_buffered() -> bool:
 	return jump_buffer > 0
+
+func _can_double_jump() -> bool:
+	return jump_double_count >= 1
 
 func _falling() -> bool:
 	return velocity.y > 0
@@ -261,6 +299,12 @@ func _get_character_height_world() -> float:
 func _get_character_width_world() -> float:
 	var local_width := collision_shape_2d.shape.get_rect().size.x
 	return local_width * collision_shape_2d.global_scale.x
+
+func _set_enable_outline(enabled: bool) -> void:
+	sprite.get_material().set_shader_parameter(
+		"outline_size",
+		 9.5 if enabled else 0
+	)
 
 #region JUMP Auxiliary Functions
 func _target_jump_height_px(height_factor: float) -> float:
@@ -297,6 +341,9 @@ func _calculate_knockback_speed(gravity: float, duration: float) -> Vector2:
 #endregion
 
 func _on_signalizer_damage_received(dealer: Area2D, _ammount: int) -> void:
+	if life.invincibility:
+		return
+		
 	var dir := signi(int((global_position - dealer.global_position).x))
 	knockback_speed.x = knockback_horizontal_speed * dir
 	knockback_time = knockback_duration

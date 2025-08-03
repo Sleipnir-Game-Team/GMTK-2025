@@ -37,3 +37,7 @@ func _on_quit_button_pressed() -> void:
 ## Função que roda quando você pausa o jogo
 func localPause() -> void:
 	UI_Controller.managePauseMenu()
+
+
+func _on_button_mouse_entered() -> void:
+	$AudioStreamPlayer.play()

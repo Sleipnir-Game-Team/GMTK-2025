@@ -1,10 +1,10 @@
-[gd_scene load_steps=57 format=4 uid="uid://bi0nwileboayl"]
+[gd_scene load_steps=61 format=4 uid="uid://bi0nwileboayl"]
 
 [ext_resource type="Script" uid="uid://ceunm6ik2o4y4" path="res://main.gd" id="1_cxumw"]
 [ext_resource type="Script" uid="uid://d2udldsfg8yc1" path="res://level.gd" id="2_kek77"]
 [ext_resource type="PackedScene" uid="uid://bp3vd4kj37iij" path="res://entities/player.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btpewc3y00kox" path="res://entities/saw.tscn" id="4_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://mkpj683hfpha" path="res://assets/Lixao_sprite_sheet.png" id="5_4c57u"]
+[ext_resource type="Texture2D" uid="uid://daixnnp4ki0s7" path="res://assets/Lixao_sprite_sheet.png" id="5_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cvgcvqwsxaxky" path="res://entities/laser.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dnixi33jpc4vo" path="res://entities/beartrap.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://ch1elobny46ax" path="res://assets/Bola_de_gas.png" id="6_efxa6"]
@@ -13,12 +13,15 @@
 [ext_resource type="Script" uid="uid://0el5i2vexh36" path="res://components/property_history.gd" id="10_efxa6"]
 [ext_resource type="Texture2D" uid="uid://d3had0lfjeg2r" path="res://assets/fio.png" id="10_yaehf"]
 [ext_resource type="Shader" uid="uid://cim17h2sque81" path="res://electric.gdshader" id="11_w48qg"]
-[ext_resource type="Texture2D" uid="uid://jlvu05v3le3d" path="res://assets/lixo.png" id="11_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://bf6bt54io6awl" path="res://assets/lixo.png" id="11_ycdy4"]
 [ext_resource type="Shader" uid="uid://b4y6smry6h0rm" path="res://incinerador.gdshader" id="12_074og"]
 [ext_resource type="PackedScene" uid="uid://dbi5oq1h8iiaf" path="res://ui/hud/HUD.tscn" id="12_dg77c"]
-[ext_resource type="Texture2D" uid="uid://cfvgkis5hhgv0" path="res://assets/incinerator.png" id="13_cegan"]
-[ext_resource type="Texture2D" uid="uid://cp0hxfqath0lr" path="res://assets/lixos.png" id="13_w48qg"]
+[ext_resource type="Texture2D" uid="uid://csbw7ybn8cbf8" path="res://assets/incinerator.png" id="13_cegan"]
+[ext_resource type="Texture2D" uid="uid://kx7f1jq27vwi" path="res://assets/lixos.png" id="13_w48qg"]
 [ext_resource type="Shader" uid="uid://dbqmixfcqbj46" path="res://fire.gdshader" id="14_074og"]
+[ext_resource type="AudioStream" uid="uid://chv5fji5yvs2x" path="res://assets/sounds/ui/ui.screen.pause1.mp3" id="20_ryguw"]
+[ext_resource type="AudioStream" uid="uid://bvx5liwo2i8ji" path="res://assets/sounds/ui/ui.screen.pause2.mp3" id="21_d13ii"]
+[ext_resource type="AudioStream" uid="uid://bn81vsc531jng" path="res://assets/sounds/ui/ui.screen.pause3.mp3" id="22_1u8w0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yaehf"]
 texture = ExtResource("5_4c57u")
@@ -376,6 +379,13 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_efxa6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0odxb"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("20_ryguw")
+stream_1/stream = ExtResource("21_d13ii")
+stream_2/stream = ExtResource("22_1u8w0")
 
 [node name="Main" type="MarginContainer"]
 process_mode = 1
@@ -1135,6 +1145,11 @@ texture = ExtResource("13_w48qg")
 position = Vector2(6102, 1216)
 scale = Vector2(2.04, 2.04)
 texture = ExtResource("6_efxa6")
+
+[node name="AudioPause" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_0odxb")
+bus = &"sfx"
 
 [editable path="Game/Player"]
 [editable path="Game/Beartraps/Beartrap"]

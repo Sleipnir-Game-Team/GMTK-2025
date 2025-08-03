@@ -1,20 +1,13 @@
 extends Node
 
 @export var damage: int = 1
+@onready var parent: Area2D = get_parent()
+@onready var data: Dictionary[String, Variant] = {
+	"damage": damage,
+	"interactiveEffects": [Effects.damage.bind(parent, damage)]
+}
 
-func _ready() -> void:
-	var parent: Area2D = get_parent()
-	parent.body_entered.connect(_on_parent_body_entered)
-
-func _on_parent_body_entered(body: Node) -> void:
-	if body.has_node("Receiver"):
+func _physics_process(_delta: float) -> void:
+	for body in parent.get_overlapping_bodies():
 		var receiver: Node = GameManager.find_node("Receiver", body)
-		
-		var data: Dictionary[String, Variant] = {}
-		data.damage = damage
-		
-		data.interactiveEffects = [
-			Effects.damage.bind(get_parent(), data.damage),
-		]
-		
 		receiver.receive(data)

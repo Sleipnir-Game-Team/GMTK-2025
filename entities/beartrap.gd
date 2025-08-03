@@ -34,6 +34,6 @@ func _on_cooldown_timeout():
 
 
 func _on_warmup_timeout() -> void:
-	%flame.play()
+	$flame.play()
 	$ActivatedArea/Collision.disabled = false
 	$Duration.start()

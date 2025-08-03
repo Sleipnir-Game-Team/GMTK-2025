@@ -13,6 +13,7 @@ extends Control
 
 
 func _ready() -> void:
+	print('ue')
 	Config_Handler.window_mode_changed.connect(_on_window_mode_changed)
 	var window_mode : Variant = Config_Handler.get_setting("video", "window_mode")
 	var window_resolution := [Config_Handler.get_setting("video", "width"), Config_Handler.get_setting("video", "height")]
@@ -79,6 +80,20 @@ func _on_button_pressed() -> void:
 	
 
 func _on_back_button_pressed() -> void:
+	AudioManager.play_global("ui.popup.close")
 	AudioManager.play_global("ui.screen.back")
 	UI_Controller.freeScreen()
 	
+
+
+func _on_tab_button_pressed(tab: int) -> void:
+	AudioManager.play_global("ui.button.disabled")
+	
+
+
+func _on_tab_hovered(tab: int) -> void:
+	AudioManager.play_global("ui.button.hover")
+
+
+func _on_tab_changed(tab: int) -> void:
+	AudioManager.play_global("ui.button.click")
