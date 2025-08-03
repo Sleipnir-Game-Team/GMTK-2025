@@ -3,17 +3,17 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cj4qbp10lh71f"
-path="res://.godot/imported/full.mp3-06b70c82cc56aa947abb4b8437657dad.mp3str"
+path="res://.godot/imported/full.mp3-ff4f9e4a00196672af486b4730431597.mp3str"
 
 [deps]
 
-source_file="res://Assets/music/level/full.mp3"
-dest_files=["res://.godot/imported/full.mp3-06b70c82cc56aa947abb4b8437657dad.mp3str"]
+source_file="res://assets/music/level/full.mp3"
+dest_files=["res://.godot/imported/full.mp3-ff4f9e4a00196672af486b4730431597.mp3str"]
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
-bpm=0
+bpm=140.0
 beat_count=0
 bar_beats=4

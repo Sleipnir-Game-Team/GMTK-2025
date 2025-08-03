@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bb4bcndv1yi75"
-path="res://.godot/imported/Powerup2_hover.png-fbc7876aa044c73aa4edd7b712e11285.ctex"
+path="res://.godot/imported/Powerup2_hover.png-f2b24ce76dd5a3cd57eccd186048fe09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art assets/Powerup2_hover.png"
-dest_files=["res://.godot/imported/Powerup2_hover.png-fbc7876aa044c73aa4edd7b712e11285.ctex"]
+source_file="res://assets/Art assets/Powerup2_hover.png"
+dest_files=["res://.godot/imported/Powerup2_hover.png-f2b24ce76dd5a3cd57eccd186048fe09.ctex"]
 
 [params]
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SongData" load_steps=3 format=3 uid="uid://da2xt0ccduw5x"]
+
+[ext_resource type="AudioStream" uid="uid://cj4qbp10lh71f" path="res://assets/music/level/full.mp3" id="1_6cli2"]
+[ext_resource type="Script" uid="uid://dogxqur5hw3mf" path="res://addons/sleipnir_audio/music/maestro_core/song_data.gd" id="1_v4usl"]
+
+[resource]
+script = ExtResource("1_v4usl")
+BPM = 0
+BeatsPerBar = 4
+MainClips = ExtResource("1_6cli2")
+TriggerClips = Array[Resource]([])
+metadata/_custom_type_script = "uid://dogxqur5hw3mf"

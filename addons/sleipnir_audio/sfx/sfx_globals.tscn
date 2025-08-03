@@ -37,7 +37,7 @@
 [ext_resource type="AudioStream" uid="uid://b0oxu1f73p6h0" path="res://assets/sounds/ui/ui.screen.resume2.mp3" id="25_em1qn"]
 [ext_resource type="AudioStream" uid="uid://c1bhnqksd1n5u" path="res://assets/sounds/ui/ui.screen.resume3.mp3" id="26_rwqlb"]
 [ext_resource type="AudioStream" uid="uid://brdiwmnml86y1" path="res://assets/sounds/ui/ui.screen.resume4.mp3" id="27_k41d7"]
-[ext_resource type="AudioStream" uid="uid://d23lasw5y7oku" path="res://assets/sounds/dialog/dialog.general.mp3" id="38_em1qn"]
+[ext_resource type="AudioStream" uid="uid://38oxcl0en6nk" path="res://assets/sounds/dialog/dialog.general.mp3" id="38_em1qn"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rwqlb"]
 random_pitch = 1.2
