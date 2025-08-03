@@ -105,6 +105,12 @@ func progress_cutscene():
 	print(action)
 	UI_Controller.manage_cutscene_screen.emit(action)
 
+func start_run():
+	if TimeWizard.rewind_count != 1:
+		GameManager.resume()
+	if TimeWizard.rewind_count != 0:
+		UI_Controller.processAction("augment")
+
 ## Tenta carregar um save, se houver
 func start_or_load_game() -> void:
 	start_game()

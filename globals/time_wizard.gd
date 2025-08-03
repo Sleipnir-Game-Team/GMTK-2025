@@ -155,7 +155,7 @@ func add_sample(prop_path: NodePath, value: Variant) -> void:
 func _on_rewind_finished() -> void:
 	restore()
 	GameManager.save_game(_all_buffs)
-	GameManager.resume()
+	GameManager.start_run()
 
 func _apply_history_tick(index: int) -> void:
 	# Apenas aplica (sem mexer em índices/contadores)

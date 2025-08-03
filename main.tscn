@@ -1149,7 +1149,7 @@ scale = Vector2(2.04, 2.04)
 texture = ExtResource("6_efxa6")
 
 [node name="Area2D" type="Area2D" parent="Game"]
-position = Vector2(1389, -3093)
+position = Vector2(29, 2)
 script = ExtResource("19_getpj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Area2D"]

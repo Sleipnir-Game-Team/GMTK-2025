@@ -39,6 +39,10 @@ func _ready():
 	body_entered.connect(on_body_entered)
 	
 func on_body_entered(body):
+	GameManager.delete_save()
+	UI_Controller.scene_end.connect(
+		UI_Controller.openScreen.bind("res://ui/menu/main_menu.tscn", get_tree().root)
+	,ConnectFlags.CONNECT_ONE_SHOT)
 	var end = [
 		{"type": "txt", "text": "The time machine was turned off and the fabric of time was saved"},
 		{"type": "img", "url": "res://assets/Art assets/INTRO_1.jpg"},
@@ -52,5 +56,6 @@ func on_body_entered(body):
 		2:
 			end += bad_end
 	GameManager.cutscene = end
+	UI_Controller.freeScreen()
 	GameManager.run_cutscene()
 	

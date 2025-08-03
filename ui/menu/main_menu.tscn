@@ -86,13 +86,6 @@ theme = ExtResource("3_4gkdq")
 text = "OPTIONS"
 alignment = 0
 
-[node name="credits_button" type="Button" parent="CanvasLayer/MarginContainer/NoSave/button_container"]
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("3_4gkdq")
-text = "CREDITS"
-alignment = 0
-
 [node name="quit_button" type="Button" parent="CanvasLayer/MarginContainer/NoSave/button_container"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -136,13 +129,6 @@ theme = ExtResource("3_4gkdq")
 text = "OPTIONS"
 alignment = 0
 
-[node name="credits_button" type="Button" parent="CanvasLayer/MarginContainer/Save/button_container"]
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("3_4gkdq")
-text = "CREDITS"
-alignment = 0
-
 [node name="quit_button" type="Button" parent="CanvasLayer/MarginContainer/Save/button_container"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -150,24 +136,14 @@ theme = ExtResource("3_4gkdq")
 text = "QUIT"
 alignment = 0
 
+[node name="CanvasLayer_MarginContainer_VBoxContainer_button_container#AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_yime1")
+bus = &"sfx"
+
 [connection signal="pressed" from="CanvasLayer/MarginContainer/NoSave/button_container/play_button" to="." method="_on_play_new_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/NoSave/button_container/options_button" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/NoSave/button_container/credits_button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/NoSave/button_container/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Save/button_container/play_button" to="." method="_on_play_new_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Save/button_container/load_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Save/button_container/options_button" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/Save/button_container/credits_button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Save/button_container/quit_button" to="." method="_on_quit_button_pressed"]
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/MarginContainer/VBoxContainer/button_container"]
-stream = SubResource("AudioStreamRandomizer_yime1")
-bus = &"sfx"
-
-[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/play_button" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/play_button" to="." method="_on_play_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/options_button" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/options_button" to="." method="_on_options_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/credits_button" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/credits_button" to="." method="_on_credits_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/quit_button" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/button_container/quit_button" to="." method="_on_quit_button_pressed"]
