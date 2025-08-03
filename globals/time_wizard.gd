@@ -45,7 +45,7 @@ var _last_frame_id: int = -1
 var origin_root: Node = null
 
 ## Dicionário que contém o snapshot do jogo
-var origin_state: Dictionary[String, PackedByteArray] = {}
+var origin_state: Dictionary[String, Node] = {}
 
 ## Quantidade de resets ocorridos
 var rewind_count: int = 0
@@ -63,7 +63,7 @@ func _ready() -> void:
 	
 	rewind_finished.connect(_on_rewind_finished)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not _rewinding:
 		return
 	
@@ -113,14 +113,12 @@ func rewind(time_to_rewind: float = -1.0) -> void:
 		_use_duration = not _duration_clamped
 		_rewind_deadline_msec = Time.get_ticks_msec() + int(time_to_rewind * 1000.0)
 
-	print(Time.get_ticks_msec() / 1000.0)
 
 func _finish_rewind() -> void:
 	_rewinding = false
 	_tick_budget = 0.0
 	_use_duration = false
 	_duration_clamped = false
-	print(Time.get_ticks_msec() / 1000.0)
 	rewind_finished.emit()
 
 ## Cada nó "PropertyHistory" chama essa função para salvar seus dados na historia global.
@@ -184,7 +182,7 @@ func restore() -> void:
 	rewind_count += 1
 	
 	var group_capsule: Dictionary[String, Array] = {}
-	var time_capsule: Dictionary[String, PackedByteArray] = {}
+	var time_capsule: Dictionary[String, Node] = {}
 	var rewind_proof_nodes := get_tree().get_nodes_in_group("rewind_proof")
 	for node in rewind_proof_nodes:
 		pack(node, time_capsule)
@@ -199,16 +197,29 @@ func restore() -> void:
 		child.reparent(origin_root)
 	new_present.queue_free()
 
-func pack(start: Node, main: Dictionary[String, PackedByteArray]) -> void:
-	main[start.get_path().get_concatenated_names()] = var_to_bytes_with_objects(start)
+
+func pack(start: Node, main: Dictionary[String, Node]) -> void:
+	var key := start.get_path().get_concatenated_names()
+	
+	var template: Node = start.duplicate()
+	
+	while template.get_child_count() > 0:
+		var ch := template.get_child(0)
+		template.remove_child(ch)
+		ch.queue_free()
+	
+	main[key] = template
+	
 	for child in start.get_children():
 		if child.is_in_group("rewind_prone"):
 			continue
 		pack(child, main)
 
-func unpack(main: Dictionary[String, PackedByteArray],
-			time_capsule: Dictionary[String, PackedByteArray],
-			group_capsule: Dictionary[String, Array]) -> Node:
+func unpack(
+		main: Dictionary[String, Node],
+		time_capsule: Dictionary[String, Node],
+		group_capsule: Dictionary[String, Array]
+	) -> Node:
 	var nodes_pile: Array[Node] = []
 	var path_pile: Array[NodePath] = []
 	
@@ -217,21 +228,34 @@ func unpack(main: Dictionary[String, PackedByteArray],
 	
 	for key: String in keys:
 		var path := NodePath(key)
-		var node_to_use := time_capsule if time_capsule.has(key) else main
-		var node: Node = bytes_to_var_with_objects(node_to_use[key])
+	
+		var source_template: Node = time_capsule[key] if time_capsule.has(key) else main[key]
+		if not is_instance_valid(source_template):
+			push_warning("Snapshot template was invalid for key: %s" % key)
+			continue
+	
+		var node: Node = source_template.duplicate()
+	
+		while node.get_child_count() > 0:
+			var ch := node.get_child(0)
+			node.remove_child(ch)
+			ch.queue_free()
+	
 		node.name = path.get_name(path.get_name_count() - 1)
-		node.unique_name_in_owner = bytes_to_var_with_objects(main[key]).unique_name_in_owner
-		node.owner = bytes_to_var_with_objects(main[key]).owner
-		
+		var ref_in_main: Node = main[key]
+		if is_instance_valid(ref_in_main):
+			node.unique_name_in_owner = ref_in_main.unique_name_in_owner
+			node.owner = ref_in_main.owner
+	
 		if group_capsule.has(key):
 			for group: StringName in group_capsule.get(key):
 				if not str(group).begins_with("_"):
 					node.add_to_group(group)
-		
+	
 		while nodes_pile.size() > 0 and path == path_pile.back().slice(0, -1):
 			node.add_child(nodes_pile.pop_back())
 			path_pile.pop_back()
-		
+	
 		nodes_pile.push_back(node)
 		path_pile.push_back(path)
 	
