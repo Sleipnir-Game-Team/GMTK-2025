@@ -36,7 +36,7 @@ func place_aguments() -> void:
 		button_labels[i].text = chosen_aguments[i].name
 		#button_augment_sprites[i].texture = load(chosen_aguments[i].images)
 		set_sprites(button_augment_sprites[i], chosen_aguments[i].images)
-		button_descriptions.text = chosen_aguments[i].description
+		button_descriptions[i].text = chosen_aguments[i].description
 
 func set_sprites(button: TextureButton, images: Dictionary) -> void:
 	button.texture_normal = images["normal"]

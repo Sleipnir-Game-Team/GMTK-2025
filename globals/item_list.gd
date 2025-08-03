@@ -1,21 +1,92 @@
 extends Node
 
 var ativo := [
-	preload("res://item/ativo/air_hold.gd"),
-	preload("res://item/ativo/double_jump.gd"),
-	preload("res://item/ativo/extra_dash.gd"),
+	{
+		"name": "Air Hold",
+		"script": preload("res://item/ativo/air_hold.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup1_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup1_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup1_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"Hold yourself in the air until you move"
+	},{
+		"name": "Double Jump",
+		"script": preload("res://item/ativo/double_jump.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup1_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup1_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup1_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"After using this you can do one double jump"
+	},{
+		"name": "Dash",
+		"script": preload("res://item/ativo/extra_dash.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup1_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup1_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup1_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"You can dash one time wherever you are"},
 ]
 
-var consumivel := [
-	preload("res://item/consumivel/invulnerable.gd"),
-	preload("res://item/consumivel/double_life.gd"),
-	preload("res://item/consumivel/ethereal_fart_3.gd"),
-	preload("res://item/consumivel/ethereal_fart_4.gd")
-]
+var consumivel := [{
+		"name": "Invulnerability",
+		"script": preload("res://item/consumivel/invulnerable.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup2_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup2_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup2_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"Obtain temporary invulnerability"},{
+		"name": "Dash",
+		"script": preload("res://item/consumivel/double_life.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup2_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup2_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup2_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"You can dash one time wherever you are"}]
 
-var permanente := [
-	preload("res://item/permanente/health_cd.gd"),
-	preload("res://item/permanente/invicible_time.gd"),
-	preload("res://item/permanente/player_speed.gd"),
-	preload("res://item/permanente/level_time.gd"),
-]
+var permanente := [{
+		"name": "Vida Extra",
+		"script": preload("res://item/permanente/health_cd.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup3_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup3_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup3_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"Receba vida permanente"},{
+		"name": "Invencivel",
+		"script": preload("res://item/permanente/invicible_time.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup3_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup3_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup3_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"Fique mais tempo invencivel ao tomar dano"},{
+		"name": "Velocidade",
+		"script": preload("res://item/permanente/player_speed.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup3_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup3_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup3_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"Receba velocidade permanente"},{
+		"name": "Tempo",
+		"script": preload("res://item/permanente/level_time.gd"),
+		"images":{
+			"hover":preload("res://assets/Art assets/Powerup3_hover.png"),
+			"normal":preload("res://assets/Art assets/Powerup3_normal.png"),
+			"pressed":preload("res://assets/Art assets/Powerup3_pressed.png"),
+			"disabled":preload("res://assets/Art assets/Powerup_disabled.png")
+		},
+		"description":"Aumente o limite de tempo um pouco"}]

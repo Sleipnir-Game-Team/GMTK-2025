@@ -1,5 +1,7 @@
 extends Node
 
+var rng := RandomNumberGenerator.new()
+
 enum masks{
 	PLAYER_MASK = 1
 }
@@ -109,7 +111,13 @@ func start_run():
 	if TimeWizard.rewind_count != 1:
 		GameManager.resume()
 	if TimeWizard.rewind_count != 0:
-		UI_Controller.processAction("augment")
+		var chosen = []
+		var lista := ItemsList.ativo.duplicate() + ItemsList.consumivel.duplicate() + ItemsList.permanente.duplicate()
+		chosen = []
+		for i in range(3):
+			var chosen_pos := rng.randi_range(0, lista.size()-1)
+			chosen.append(lista.pop_at(chosen_pos))
+		UI_Controller.processAction("augment", chosen)
 
 ## Tenta carregar um save, se houver
 func start_or_load_game() -> void:
