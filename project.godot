@@ -22,7 +22,6 @@ config/size/mode=3
 GameManager="*res://globals/game_manager.gd"
 Logger="*res://addons/log_and_error/logger.gd"
 UI_Controller="*res://ui/controller/ui_controller.gd"
-Game_Manager="*res://globals/game_manager.gd"
 Config_Handler="*res://globals/config_handler.gd"
 JsonHandler="*res://globals/json_handler.gd"
 SfxGlobals="*res://addons/sleipnir_audio/sfx/sfx_globals.tscn"
@@ -56,7 +55,9 @@ enabled=PackedStringArray("res://addons/sleipnir_audio/plugin.cfg")
 [global_group]
 
 game="It's about the game"
-rewind_proof="Non-rewindable entities"
+rewind_proof="Should stay the same when travelling back in time "
+rewind_prone="Should be destroyed when travelling back in time"
+rewind_detailed="Should replay saved properties backwards when travelling back in time"
 
 [input]
 

@@ -2,7 +2,7 @@ extends Node
 
 
 func _ready() -> void:
-	TimeWizard.save_state(self)
+	TimeWizard.snapshot(self)
 
 func _enter_tree() -> void:
 	print("Connecting child added")

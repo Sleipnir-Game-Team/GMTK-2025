@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7j53bd4r1mhp"]
+
+[ext_resource type="Script" uid="uid://0el5i2vexh36" path="res://components/property_history.gd" id="1_d770w"]
+
+[node name="PropertyHistory" type="Node" groups=["rewind_detailed"]]
+script = ExtResource("1_d770w")
