@@ -2,13 +2,8 @@ extends Node
 
 func _ready() -> void:
 	var current_buff_capsule := TimeWizard.load_buff()
-	for buff in current_buff_capsule:
-		var buff_script := load(buff)
-		var item := Permanente.new()
-		item.add_to_group("rewind_prone")
-		item.script = buff_script
-		add_child(item)
-		
+	trigger_buffs(current_buff_capsule)
+	
 	if !has_node("1"):
 		var node_1 := Item.new()
 		node_1.name = "1"
@@ -44,6 +39,13 @@ func replace(slotNumber: int, item: Item) -> void:
 	item.name = new_name
 	target.replace_by(item)
 
+func trigger_buffs(buff_capsule: Array[String]) -> void:
+	for buff in buff_capsule:
+		var buff_script := load(buff)
+		var item := Permanente.new()
+		item.add_to_group("rewind_prone")
+		item.script = buff_script
+		add_child(item)
 
 func _input(event: InputEvent) -> void:
 	if not event.is_pressed():

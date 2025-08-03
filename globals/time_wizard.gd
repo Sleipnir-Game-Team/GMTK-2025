@@ -52,6 +52,7 @@ var rewind_count: int = 0
 
 ## Vetor auxiliar para reaplicar efeitos de itens permanentes no jogador depois dele ser resetado.
 var buff_capsule: Array[String] = []
+var _all_buffs: Array[String] = []
 
 func _ready() -> void:
 	# Só processa quando pausado
@@ -137,6 +138,7 @@ func add_sample(prop_path: NodePath, value: Variant) -> void:
 
 func _on_rewind_finished() -> void:
 	restore()
+	GameManager.save_game(_all_buffs)
 	GameManager.resume()
 
 func _apply_history_tick(index: int) -> void:
@@ -168,7 +170,6 @@ func _speed_to_hit_deadline() -> float:
 	var physics_hz := float(Engine.physics_ticks_per_second)
 	var desired_tpf := float(_count) / seconds_left / physics_hz
 	return max(desired_tpf, _min_ticks_per_frame())
-
 #endregion
 
 #region SNAPSHOT/RESTORE (reset imediato)
@@ -231,7 +232,7 @@ func unpack(
 	
 		var source_template: Node = time_capsule[key] if time_capsule.has(key) else main[key]
 		if not is_instance_valid(source_template):
-			push_warning("Snapshot template was invalid for key: %s" % key)
+			push_warning("Snapshot inválido do node: %s" % key)
 			continue
 	
 		var node: Node = source_template.duplicate()
@@ -265,6 +266,7 @@ func unpack(
 #region AUXILIAR DE ITENS PERMANENTES
 func load_buff() -> Array[String]:
 	var dup := buff_capsule.duplicate()
+	_all_buffs = dup.duplicate()
 	buff_capsule = []
 	return dup
 

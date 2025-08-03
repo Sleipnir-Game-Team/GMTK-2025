@@ -34,3 +34,36 @@ func win_game() -> void:
 	
 func game_over() -> void:
 	UI_Controller.changeScreen("res://ui/menu/game_over_menu.tscn", get_tree().root)
+
+
+func save_game(buffs: Array[String]) -> void:
+	var save_file := FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var game: Node = get_tree().get_first_node_in_group("game")
+	var inventory := find_node("Player/Inventory", game)
+	
+	var data: Dictionary[String, Variant] = {
+		"buffs": buffs,
+		"inventory": inventory.get_children()
+	}
+	save_file.store_buffer(var_to_bytes_with_objects(data))
+
+func load_game() -> void:
+	var data: Dictionary[String, Variant] = bytes_to_var_with_objects(FileAccess.get_file_as_bytes("user://savegame.save"))
+	
+	var game: Node = get_tree().get_first_node_in_group("game")
+	var inventory := find_node("Player/Inventory", game)
+	
+	var items = inventory.get_children()
+	inventory.trigger_buffs(data.buffs)
+	for index in range(4):
+		var saved: Item = data.inventory[index]
+		
+		if saved != null:
+			inventory.remove_child(items[index])
+			saved.name = "%s" % [index+1]
+			inventory.add_child(saved)
+
+func start_or_load_game() -> void:
+	UI_Controller.changeScreen("res://main.tscn", get_tree().root)
+	if FileAccess.file_exists("user://savegame.save"):
+		load_game()
