@@ -2,8 +2,17 @@ extends Node
 
 var rng := RandomNumberGenerator.new()
 
-var chosen: Array[Item] = []
-var type: GDScript = null
+var chosen: Array[GDScript] = []
+var type = null
+
+func _ready():
+	UI_Controller.select_augment.connect(func_teste_selecionar)
+	UI_Controller.discard_augment.connect(func_teste_descartar)
+
+func func_teste_selecionar(selecionado):
+	print(selecionado)
+func func_teste_descartar(descartado):
+	print(descartado)
 
 func _input(event: InputEvent) -> void:
 	var inventory: Node = GameManager.find_node("Inventory", get_parent())
@@ -15,8 +24,9 @@ func _input(event: InputEvent) -> void:
 					print(item.get_script().resource_path.get_file())
 			KEY_9:
 				print("Escolhidos")
-				for item: Item in chosen:
+				for item: GDScript in chosen:
 					print(item.resource_path.get_file())
+				UI_Controller.processAction("augment", chosen)
 			KEY_U:
 				var lista := ItemsList.ativo.duplicate()
 				chosen = []
