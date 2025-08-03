@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://b3i8rywhwrud1"
-path="res://.godot/imported/layer_neutral.mp3-faceb3e322b60d5a857775896d086f31.mp3str"
+uid="uid://c3o2vivbiasd"
+path="res://.godot/imported/layer_neutral.mp3-1deed3c1a897c2046c3de2daed67d6b6.mp3str"
 
 [deps]
 
-source_file="res://Assets/music/level/layer_neutral.mp3"
-dest_files=["res://.godot/imported/layer_neutral.mp3-faceb3e322b60d5a857775896d086f31.mp3str"]
+source_file="res://assets/music/level/layer_neutral.mp3"
+dest_files=["res://.godot/imported/layer_neutral.mp3-1deed3c1a897c2046c3de2daed67d6b6.mp3str"]
 
 [params]
 

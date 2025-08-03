@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnvip46wm1pdw"]
+[gd_scene load_steps=5 format=3 uid="uid://bevslu0c3rktv"]
 
-[ext_resource type="Script" path="res://entities/prensa.gd" id="1_0gvv1"]
+[ext_resource type="Script" uid="uid://1s25fawp5tlm" path="res://entities/prensa.gd" id="1_0gvv1"]
 [ext_resource type="PackedScene" uid="uid://doqdxweydpikt" path="res://components/damage_area.tscn" id="2_esc0m"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="3_jlu5u"]
 

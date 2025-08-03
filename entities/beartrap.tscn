@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://vc8a4d5yypyt"]
+[gd_scene load_steps=6 format=3 uid="uid://dnixi33jpc4vo"]
 
 [ext_resource type="Script" uid="uid://dhethq8p82xi4" path="res://entities/beartrap.gd" id="1_7v1yc"]
 [ext_resource type="PackedScene" uid="uid://ycmcgby6ixu1" path="res://components/signalizer.tscn" id="1_c130s"]
@@ -8,7 +8,7 @@
 size = Vector2(20, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
-size = Vector2(20, 94.4869)
+size = Vector2(20, 74.9521)
 
 [node name="Beartrap" type="Area2D"]
 script = ExtResource("1_7v1yc")
@@ -37,7 +37,3 @@ one_shot = true
 
 [node name="Warmup" type="Timer" parent="."]
 one_shot = true
-
-[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
-[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
-[connection signal="timeout" from="Warmup" to="." method="_on_warmup_timeout"]

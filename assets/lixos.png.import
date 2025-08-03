@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0jytg5vg5tx3"
-path="res://.godot/imported/lixos.png-7cb9c10b4d683f5b0c101d3379f1758b.ctex"
+uid="uid://btn86lwpnx2q5"
+path="res://.godot/imported/lixos.png-71b52488e8256e074f371a8dee1c3dab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/lixos.png"
-dest_files=["res://.godot/imported/lixos.png-7cb9c10b4d683f5b0c101d3379f1758b.ctex"]
+source_file="res://assets/lixos.png"
+dest_files=["res://.godot/imported/lixos.png-71b52488e8256e074f371a8dee1c3dab.ctex"]
 
 [params]
 

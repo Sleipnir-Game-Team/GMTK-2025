@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://ccfjpiyq6qwn"
-path="res://.godot/imported/layer_hopeful.mp3-745bd75003a22f7e095ae508f0f38a68.mp3str"
+uid="uid://bbd8po0def4ye"
+path="res://.godot/imported/layer_hopeful.mp3-49a487470dcd1146c0588f7091f05231.mp3str"
 
 [deps]
 
-source_file="res://Assets/music/level/layer_hopeful.mp3"
-dest_files=["res://.godot/imported/layer_hopeful.mp3-745bd75003a22f7e095ae508f0f38a68.mp3str"]
+source_file="res://assets/music/level/layer_hopeful.mp3"
+dest_files=["res://.godot/imported/layer_hopeful.mp3-49a487470dcd1146c0588f7091f05231.mp3str"]
 
 [params]
 
